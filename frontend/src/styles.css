@@ -95,22 +95,6 @@ svg {
   margin-inline: auto;
 }
 
-.hero {
-  min-height: clamp(34rem, 78vh, 44rem);
-  display: grid;
-  align-items: center;
-  padding-block: clamp(3rem, 8vw, 6rem);
-  overflow: hidden;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.75fr);
-  gap: clamp(2rem, 6vw, 5rem);
-  align-items: center;
-}
-
-.hero-copy h1,
 .page-header h1 {
   max-width: 12ch;
   margin: 0;
@@ -120,7 +104,6 @@ svg {
   text-shadow: 0 0 34px rgba(139, 92, 246, 0.26);
 }
 
-.hero-lede,
 .page-header p {
   max-width: 46rem;
   color: var(--muted);
@@ -137,7 +120,6 @@ svg {
   text-transform: uppercase;
 }
 
-.hero-actions,
 .link-cluster,
 .tag-row,
 .filter-row {
@@ -145,10 +127,6 @@ svg {
   flex-wrap: wrap;
   gap: 0.75rem;
   align-items: center;
-}
-
-.hero-actions {
-  margin-top: 2rem;
 }
 
 .brand-panel {
