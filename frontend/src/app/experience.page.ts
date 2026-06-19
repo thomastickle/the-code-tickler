@@ -1,0 +1,68 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CardModule } from 'primeng/card';
+import { TagModule } from 'primeng/tag';
+import { TimelineModule } from 'primeng/timeline';
+
+import { experience, skillGroups } from './portfolio-data';
+
+@Component({
+  selector: 'app-experience-page',
+  imports: [CardModule, TagModule, TimelineModule],
+  template: `
+    <section class="section-inner page-header">
+      <p class="eyebrow">About</p>
+      <h1>Practical engineering across product and platform work</h1>
+      <p>
+        This page is structured for career highlights, work-safe accomplishments, and skills that help hiring
+        teams understand how the work gets done.
+      </p>
+    </section>
+
+    <section class="section-inner timeline-section">
+      <p-timeline [value]="experience" align="alternate">
+        <ng-template #marker>
+          <span class="timeline-marker" aria-hidden="true"></span>
+        </ng-template>
+        <ng-template #content let-item>
+          <p-card class="portfolio-card">
+            <ng-template #title>{{ item.role }}</ng-template>
+            <ng-template #subtitle>{{ item.company }}</ng-template>
+            <p>{{ item.summary }}</p>
+            <ul class="clean-list">
+              @for (win of item.wins; track win) {
+                <li>{{ win }}</li>
+              }
+            </ul>
+          </p-card>
+        </ng-template>
+        <ng-template #opposite let-item>
+          <span class="timeline-period">{{ item.period }}</span>
+        </ng-template>
+      </p-timeline>
+    </section>
+
+    <section class="section-inner content-section">
+      <div class="section-heading">
+        <p class="eyebrow">Capabilities</p>
+        <h2>Strengths to make specific</h2>
+      </div>
+      <div class="skill-grid">
+        @for (group of skillGroups; track group.name) {
+          <article class="skill-block">
+            <h3>{{ group.name }}</h3>
+            <div class="tag-row">
+              @for (skill of group.skills; track skill) {
+                <p-tag [value]="skill" rounded />
+              }
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ExperiencePage {
+  protected readonly experience = experience;
+  protected readonly skillGroups = skillGroups;
+}

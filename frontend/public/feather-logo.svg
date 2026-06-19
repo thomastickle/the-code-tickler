@@ -1,0 +1,22 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Purple feather">
+  <path d="M18 17C28 28 31 68 18 79" stroke="url(#braceA)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M78 17C68 28 65 68 78 79" stroke="url(#braceB)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M60.4 20.3C42.5 23.2 30.8 34.3 25.1 53.8C22.9 61.4 21.9 68.6 22.1 75.5C29.8 73 37.3 69.3 44.5 64.4C56.4 56.3 64.2 45.6 67.9 32.1C69 28.1 67.1 19.2 60.4 20.3Z" fill="url(#feather)"/>
+  <path d="M27 70C38 58 48.7 46.3 59 35" stroke="white" stroke-opacity=".82" stroke-width="3" stroke-linecap="round"/>
+  <path d="M39.5 56.5L27.5 55.5M47.5 47.5L35.5 45.5M52 41L45.5 32.5M43 53L52.5 55.5" stroke="white" stroke-opacity=".38" stroke-width="2" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="braceA" x1="18" x2="39" y1="17" y2="78" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <linearGradient id="braceB" x1="78" x2="57" y1="17" y2="78" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <linearGradient id="feather" x1="29" x2="67" y1="73" y2="22" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C3AED"/>
+      <stop offset=".46" stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+</svg>
