@@ -26,6 +26,9 @@
           >
             {{ item.label }}
           </a>
+          @if (!$last) {
+            <span class="text-[var(--muted)] opacity-50" aria-hidden="true">|</span>
+          }
         }
       </nav>
 

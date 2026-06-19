@@ -37,7 +37,7 @@ html.app-light {
   --chrome-bg: rgba(255, 255, 255, 0.84);
   --chrome-line: rgba(15, 23, 42, 0.1);
   --nav-active: #111827;
-  --nav-active-bg: rgba(124, 58, 237, 0.1);
+  --nav-active-bg: rgba(124, 58, 237, 0.18);
   --button-glass: rgba(255, 255, 255, 0.86);
   --card-bg: rgba(255, 255, 255, 0.9);
   --card-border: rgba(15, 23, 42, 0.1);

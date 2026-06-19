@@ -7,12 +7,6 @@
   filter: drop-shadow(0 0 14px rgba(139, 92, 246, 0.52));
 }
 
-.site-nav a:not(:last-child)::after {
-  content: "|";
-  margin-left: 0.75rem;
-  color: color-mix(in srgb, var(--muted) 52%, transparent);
-}
-
 .site-nav a.active,
 .site-nav a:hover,
 .site-nav a:focus-visible {
