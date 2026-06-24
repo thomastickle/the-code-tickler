@@ -2,14 +2,3 @@
   display: block;
   min-height: 100dvh;
 }
-
-.brand-glyph {
-  filter: drop-shadow(0 0 14px rgba(139, 92, 246, 0.52));
-}
-
-.site-nav a.active,
-.site-nav a:hover,
-.site-nav a:focus-visible {
-  color: var(--nav-active);
-  background: var(--nav-active-bg);
-}

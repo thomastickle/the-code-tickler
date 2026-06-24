@@ -1,0 +1,45 @@
+<header
+  class="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-[var(--chrome-line)] bg-[var(--chrome-bg)] px-4 py-3 backdrop-blur-[18px] md:px-10 lg:px-16 max-md:flex-col max-md:items-start"
+>
+  <a routerLink="/" class="inline-flex items-center gap-3 font-extrabold no-underline"
+     aria-label="The Code Tickler home">
+    <img
+      src="brand-mark-1x.png"
+      srcset="brand-mark-1x.png 1x, brand-mark-2x.png 2x, brand-mark-3x.png 3x"
+      alt=""
+      class="brand-glyph h-11 w-auto"
+      width="74"
+      height="52"
+      aria-hidden="true"
+    >
+    <span>The Code Tickler</span>
+  </a>
+
+  <div class="flex items-center justify-end gap-3 max-md:w-full max-md:items-start max-md:justify-between">
+    <nav class="site-nav flex flex-wrap items-center justify-end gap-1 max-md:justify-start"
+         aria-label="Primary navigation">
+      @for (item of navItems; track item.path) {
+        <a
+          class="rounded-full px-3 py-2 font-bold text-[var(--muted)] no-underline"
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+        >
+          {{ item.label }}
+        </a>
+        @if (!$last) {
+          <span class="text-[var(--muted)] opacity-50" aria-hidden="true">|</span>
+        }
+      }
+    </nav>
+
+    <button
+      type="button"
+      class="grid size-10 cursor-pointer place-items-center rounded-full border border-[var(--chrome-line)] bg-[var(--button-glass)] text-[var(--nav-active)]"
+      (click)="toggleTheme()"
+      [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+    >
+      <i [class]="darkMode() ? 'pi pi-sun' : 'pi pi-moon'" aria-hidden="true"></i>
+    </button>
+  </div>
+</header>

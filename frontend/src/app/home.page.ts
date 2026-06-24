@@ -29,12 +29,12 @@ import { links, profile, projects, skillGroups } from './portfolio-data';
 
         <div class="hero-visual" aria-label="Code Tickler visual">
           <img
-            src="code-tickler-hero-1440.webp"
-            srcset="code-tickler-hero-960.webp 960w, code-tickler-hero-1440.webp 1440w, code-tickler-hero-1920.webp 1920w, code-tickler-hero-2560.webp 2560w"
-            sizes="(max-width: 768px) 190vw, (max-width: 1440px) 110vw, 68rem"
-            width="1440"
-            height="810"
-            alt="The Code Tickler illustrated developer with floating code cards"
+            src="code-tickler-character-960.webp"
+            srcset="code-tickler-character-720.webp 720w, code-tickler-character-960.webp 960w, code-tickler-character-1280.webp 1280w, code-tickler-character-1600.webp 1600w"
+            sizes="(max-width: 768px) 150vw, (max-width: 1440px) 62vw, 48rem"
+            width="960"
+            height="997"
+            alt="Illustrated developer holding a purple feather"
           >
           <div class="floating-card spring">
             <strong>Spring Boot</strong>
