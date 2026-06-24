@@ -8,12 +8,8 @@ export const routes: Routes = [
   },
   {
     path: 'about',
-    loadComponent: () => import('./experience.page').then((module) => module.ExperiencePage),
+    loadComponent: () => import('./pages/about/about').then((module) => module.About),
     title: 'About | The Code Tickler',
-  },
-  {
-    path: 'experience',
-    redirectTo: 'about',
   },
   {
     path: 'projects',
