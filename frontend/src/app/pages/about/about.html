@@ -36,11 +36,12 @@
   <div class="grid grid-cols-1 gap-4 lg:grid-cols-3" aria-label="Experience and capabilities">
     @for (capability of capabilities; track capability.title) {
       <article class="capability-card flex min-h-full flex-col p-[clamp(1.25rem,2.8vw,1.65rem)]">
-        <i
-          class="{{ capability.icon }} mb-5 grid size-11 place-items-center rounded-lg border border-[color-mix(in_srgb,var(--accent)_46%,transparent)] bg-[color-mix(in_srgb,var(--accent)_14%,transparent)] text-xl text-[var(--accent-strong)]"
-          aria-hidden="true"
-        ></i>
-        <h3 class="m-0 mb-3 text-[clamp(1.25rem,2vw,1.5rem)] leading-tight">{{ capability.title }}</h3>
+        <header class="mb-5 flex items-start gap-4">
+          <span class="grid size-12 shrink-0 place-items-center rounded-lg border border-[color-mix(in_srgb,var(--accent)_46%,transparent)] bg-[color-mix(in_srgb,var(--accent)_14%,transparent)] text-[var(--accent-strong)]">
+            <i class="{{ capability.icon }} text-2xl" aria-hidden="true"></i>
+          </span>
+          <h3 class="m-0 text-[clamp(1.25rem,2vw,1.5rem)] leading-tight">{{ capability.title }}</h3>
+        </header>
         <p class="m-0 text-[1.0625rem] leading-relaxed text-[var(--muted)] md:text-lg">{{ capability.summary }}</p>
         <div class="mt-auto flex flex-wrap items-center gap-3 pt-5" aria-label="Capability tags">
           @for (tag of capability.tags; track tag) {

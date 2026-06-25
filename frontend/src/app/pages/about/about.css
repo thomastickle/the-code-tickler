@@ -5,7 +5,6 @@
 .about-hero {
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid var(--line);
   background:
     radial-gradient(circle at 16% 20%, rgba(139, 92, 246, 0.28), transparent 20rem),
     radial-gradient(circle at 86% 22%, rgba(34, 211, 238, 0.14), transparent 24rem),
