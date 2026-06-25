@@ -3,36 +3,13 @@ import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 
 @Component({
-  selector: 'app-writing-page',
+  selector: 'app-writing',
   imports: [CardModule, TagModule],
-  template: `
-    <section class="section-inner page-header">
-      <p class="eyebrow">Writing</p>
-      <h1>Notes from the workbench</h1>
-      <p>
-        A place for short technical notes, project writeups, and lessons learned. These placeholders can become
-        posts once the site has real articles.
-      </p>
-    </section>
-
-    <section class="section-inner card-grid project-grid" aria-label="Writing list">
-      @for (post of posts; track post.title) {
-        <p-card class="portfolio-card">
-          <ng-template #title>{{ post.title }}</ng-template>
-          <ng-template #subtitle>{{ post.date }}</ng-template>
-          <p>{{ post.summary }}</p>
-          <div class="tag-row">
-            @for (tag of post.tags; track tag) {
-              <p-tag [value]="tag" rounded />
-            }
-          </div>
-        </p-card>
-      }
-    </section>
-  `,
+  templateUrl: './writing.html',
+  styleUrl: './writing.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WritingPage {
+export class Writing {
   protected readonly posts = [
     {
       title: 'How I review code',

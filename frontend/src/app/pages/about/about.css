@@ -1,0 +1,63 @@
+:host {
+  display: block;
+}
+
+.about-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 16% 20%, rgba(139, 92, 246, 0.28), transparent 20rem),
+    radial-gradient(circle at 86% 22%, rgba(34, 211, 238, 0.14), transparent 24rem),
+    var(--hero-wash);
+  isolation: isolate;
+}
+
+.about-hero::before {
+  content: "";
+  position: absolute;
+  inset: 12% auto auto 50%;
+  z-index: -1;
+  width: min(34rem, 72vw);
+  aspect-ratio: 1;
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(139, 92, 246, 0.16), transparent 44%),
+    radial-gradient(circle, rgba(34, 211, 238, 0.1), transparent 62%);
+  filter: blur(3px);
+}
+
+.statement-card,
+.capability-card {
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--card-bg) 92%, transparent), color-mix(in srgb, var(--surface-alt) 78%, transparent));
+  box-shadow: 0 1.4rem 3rem rgba(2, 6, 23, 0.18);
+  backdrop-filter: blur(14px);
+}
+
+.statement-card {
+  position: relative;
+}
+
+.statement-card::before {
+  content: "";
+  position: absolute;
+  inset: 1rem auto 1rem 0;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+}
+
+html.app-light .statement-card,
+html.app-light .capability-card {
+  box-shadow: 0 1rem 2.4rem rgba(15, 23, 42, 0.08);
+}
+
+html.app-light .about-hero {
+  background:
+    radial-gradient(circle at 14% 18%, rgba(124, 58, 237, 0.16), transparent 18rem),
+    radial-gradient(circle at 88% 18%, rgba(14, 165, 233, 0.12), transparent 22rem),
+    var(--hero-wash);
+}

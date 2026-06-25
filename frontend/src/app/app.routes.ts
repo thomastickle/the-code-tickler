@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./home.page').then((module) => module.HomePage),
+    loadComponent: () => import('./pages/home/home').then((module) => module.Home),
     title: 'The Code Tickler | Developer Portfolio',
   },
   {
@@ -13,17 +13,17 @@ export const routes: Routes = [
   },
   {
     path: 'projects',
-    loadComponent: () => import('./projects.page').then((module) => module.ProjectsPage),
+    loadComponent: () => import('./pages/projects/projects').then((module) => module.Projects),
     title: 'Projects | The Code Tickler',
   },
   {
     path: 'writing',
-    loadComponent: () => import('./writing.page').then((module) => module.WritingPage),
+    loadComponent: () => import('./pages/writing/writing').then((module) => module.Writing),
     title: 'Writing | The Code Tickler',
   },
   {
     path: 'contact',
-    loadComponent: () => import('./contact.page').then((module) => module.ContactPage),
+    loadComponent: () => import('./pages/contact/contact').then((module) => module.Contact),
     title: 'Contact | The Code Tickler',
   },
   {

@@ -1,47 +1,50 @@
-<section class="section-inner page-header">
-  <p class="eyebrow">About</p>
-  <h1>Practical engineering across product and platform work</h1>
-  <p>
-    This page is structured for career highlights, work-safe accomplishments, and skills that help hiring
-    teams understand how the work gets done.
-  </p>
-</section>
+<section class="about-hero">
+  <div class="mx-auto grid min-h-[clamp(33rem,72vh,44rem)] w-[min(1360px,calc(100%_-_clamp(2rem,7vw,6rem)))] items-center gap-[clamp(2rem,5vw,4.5rem)] py-[clamp(4rem,9vw,7rem)] max-[1120px]:min-h-0 max-[1120px]:grid-cols-1 max-sm:py-[3.25rem] min-[1121px]:grid-cols-[minmax(0,0.96fr)_minmax(24rem,0.88fr)]">
+    <div class="min-w-0">
+      <p class="eyebrow">About</p>
+      <h1 class="m-0 max-w-[10.5ch] text-balance text-[clamp(2.9rem,6vw,5.25rem)] font-black leading-[0.94] drop-shadow-[0_0_34px_rgba(139,92,246,0.28)] max-[1120px]:max-w-[12ch] max-sm:text-[3rem]">
+        Practical engineering with a careful touch.
+      </h1>
+      <h2 class="mt-5 max-w-2xl text-[clamp(1.15rem,2.1vw,1.75rem)] font-bold leading-tight text-[var(--muted)] max-sm:text-xl">
+        {{ byline }}
+      </h2>
+    </div>
 
-<section class="section-inner timeline-section">
-  <p-timeline [value]="experience" align="alternate">
-    <ng-template #marker>
-      <span class="timeline-marker" aria-hidden="true"></span>
-    </ng-template>
-    <ng-template #content let-item>
-      <p-card class="portfolio-card">
-        <ng-template #title>{{ item.role }}</ng-template>
-        <ng-template #subtitle>{{ item.company }}</ng-template>
-        <p>{{ item.summary }}</p>
-        <ul class="clean-list">
-          @for (win of item.wins; track win) {
-            <li>{{ win }}</li>
-          }
-        </ul>
-      </p-card>
-    </ng-template>
-    <ng-template #opposite let-item>
-      <span class="timeline-period">{{ item.period }}</span>
-    </ng-template>
-  </p-timeline>
-</section>
-
-<section class="section-inner content-section">
-  <div class="section-heading">
-    <p class="eyebrow">Capabilities</p>
-    <h2>Strengths to make specific</h2>
+    <div class="grid w-[min(100%,38rem)] justify-self-end gap-4 max-[1120px]:w-full max-[1120px]:justify-self-stretch" aria-label="About The Code Tickler">
+      @for (statement of statements; track statement.label) {
+        <article class="statement-card p-[clamp(1.1rem,2.5vw,1.5rem)]">
+          <span class="mb-3 block text-xs font-black uppercase text-[var(--accent-strong)]">{{ statement.label }}</span>
+          <p class="m-0 text-[1.0625rem] leading-relaxed text-[var(--muted)] md:text-lg">{{ statement.text }}</p>
+        </article>
+      }
+    </div>
   </div>
-  <div class="skill-grid">
-    @for (group of skillGroups; track group.name) {
-      <article class="skill-block">
-        <h3>{{ group.name }}</h3>
-        <div class="tag-row">
-          @for (skill of group.skills; track skill) {
-            <p-tag [value]="skill" rounded />
+</section>
+
+<section class="mx-auto w-[min(1360px,calc(100%_-_clamp(2rem,7vw,6rem)))] py-[clamp(3.5rem,8vw,6rem)]">
+  <div class="mb-6 grid items-end gap-6 max-[1120px]:grid-cols-1 min-[1121px]:grid-cols-[minmax(0,0.9fr)_minmax(18rem,0.7fr)]">
+    <div>
+      <p class="eyebrow">Why it matters</p>
+      <h2 class="m-0 text-[clamp(2.1rem,4.7vw,3.6rem)] leading-none">What can I do?</h2>
+    </div>
+    <p class="m-0 text-lg leading-relaxed text-[var(--muted)]">
+      I’m Thomas Tickle, a software engineer and technical lead with nearly two decades of experience building,
+      modernizing, and operating production systems.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-3" aria-label="Experience and capabilities">
+    @for (capability of capabilities; track capability.title) {
+      <article class="capability-card flex min-h-full flex-col p-[clamp(1.25rem,2.8vw,1.65rem)]">
+        <i
+          class="{{ capability.icon }} mb-5 grid size-11 place-items-center rounded-lg border border-[color-mix(in_srgb,var(--accent)_46%,transparent)] bg-[color-mix(in_srgb,var(--accent)_14%,transparent)] text-xl text-[var(--accent-strong)]"
+          aria-hidden="true"
+        ></i>
+        <h3 class="m-0 mb-3 text-[clamp(1.25rem,2vw,1.5rem)] leading-tight">{{ capability.title }}</h3>
+        <p class="m-0 text-[1.0625rem] leading-relaxed text-[var(--muted)] md:text-lg">{{ capability.summary }}</p>
+        <div class="mt-auto flex flex-wrap items-center gap-3 pt-5" aria-label="Capability tags">
+          @for (tag of capability.tags; track tag) {
+            <p-tag [value]="tag" rounded severity="secondary"/>
           }
         </div>
       </article>
