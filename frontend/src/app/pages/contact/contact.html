@@ -1,20 +1,16 @@
 <section class="contact-section mx-auto grid min-h-[calc(100dvh_-_5rem)] w-[min(1120px,calc(100%_-_2rem))] items-center gap-8 py-12 md:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.42fr)] lg:gap-16">
   <div class="min-w-0">
     <h1 class="m-0 max-w-[12ch] text-balance text-[clamp(2.8rem,7vw,5.75rem)] font-black leading-[0.92] drop-shadow-[0_0_34px_rgba(139,92,246,0.26)]">
-      Let’s talk through the work.
+      Want to get in touch?
     </h1>
     <p class="mt-6 max-w-3xl text-[clamp(1.08rem,2.2vw,1.45rem)] font-semibold leading-relaxed text-surface-300">
       If you are comparing approaches, untangling a system, or looking for someone who can move between product detail and implementation reality, I am open to a conversation.
     </p>
-    <p class="mt-4 max-w-2xl text-lg leading-relaxed text-surface-400">
-      GitHub is best for code context. LinkedIn is best for professional background and direct outreach.
-    </p>
-
   </div>
 
   <aside class="contact-actions" aria-label="Contact links">
     <p-card class="portfolio-card">
-      <h2 class="m-0 text-[clamp(1.5rem,3vw,2rem)] leading-tight">Where else can you find me.</h2>
+      <h2 class="m-0 text-[clamp(1.5rem,3vw,2rem)] leading-tight">Find me elsewhere.</h2>
       <div class="mt-6 grid gap-3 [&_.p-button]:justify-center">
         @for (link of links; track link.label) {
           <a pButton [href]="link.href" target="_blank" rel="noopener" [label]="link.label" [icon]="link.icon"></a>
