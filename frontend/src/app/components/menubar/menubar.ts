@@ -4,9 +4,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Button } from 'primeng/button';
 import { Toolbar } from 'primeng/toolbar';
 
+import { MobileNavDrawer } from '../mobile-nav-drawer/mobile-nav-drawer';
+
 @Component({
   selector: 'app-menubar',
-  imports: [Button, RouterLink, RouterLinkActive, Toolbar],
+  imports: [Button, MobileNavDrawer, RouterLink, RouterLinkActive, Toolbar],
   templateUrl: './menubar.html',
   styleUrl: './menubar.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,6 +16,8 @@ import { Toolbar } from 'primeng/toolbar';
 export class Menubar {
   private readonly document = inject(DOCUMENT);
   protected readonly darkMode = signal(true);
+  protected readonly mobileMenuLoaded = signal(false);
+  protected readonly mobileMenuOpen = signal(false);
   protected readonly navItems = [
     { label: 'Home', path: '/' },
     { label: 'About', path: '/about' },
@@ -32,5 +36,18 @@ export class Menubar {
 
   protected toggleTheme(): void {
     this.darkMode.update((value) => !value);
+  }
+
+  protected openMobileMenu(): void {
+    this.mobileMenuLoaded.set(true);
+    this.mobileMenuOpen.set(true);
+  }
+
+  protected closeMobileMenu(): void {
+    this.mobileMenuOpen.set(false);
+  }
+
+  protected updateMobileMenuVisibility(visible: boolean): void {
+    this.mobileMenuOpen.set(visible);
   }
 }

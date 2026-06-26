@@ -1,0 +1,32 @@
+:host {
+  display: contents;
+}
+
+:host ::ng-deep .mobile-nav-drawer.p-drawer {
+  width: min(22rem, calc(100vw - 2rem));
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: var(--chrome-line);
+  background: var(--surface);
+  color: var(--ink);
+  backdrop-filter: blur(18px);
+}
+
+:host ::ng-deep .mobile-nav-drawer .p-drawer-header {
+  padding: 1.25rem 1.25rem 0.75rem;
+}
+
+:host ::ng-deep .mobile-nav-drawer .p-drawer-title {
+  font-weight: 900;
+}
+
+:host ::ng-deep .mobile-nav-drawer .p-drawer-content {
+  padding: 0.75rem 1.25rem 1.25rem;
+}
+
+.mobile-nav-link.active,
+.mobile-nav-link:hover,
+.mobile-nav-link:focus-visible {
+  color: var(--nav-active);
+  background: var(--nav-active-bg);
+}

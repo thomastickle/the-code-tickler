@@ -15,32 +15,52 @@
   </ng-template>
 
   <ng-template #end>
-    <div class="flex items-center justify-end gap-3 max-md:w-full max-md:items-start max-md:justify-between">
-    <nav class="site-nav flex flex-wrap items-center justify-end gap-1 max-md:justify-start"
-         aria-label="Primary navigation">
-      @for (item of navItems; track item.path) {
-        <a
-          class="rounded-full px-3 py-2 font-bold text-surface-400 no-underline"
-          [routerLink]="item.path"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-        >
-          {{ item.label }}
-        </a>
-        @if (!$last) {
-          <span class="text-surface-400 opacity-50" aria-hidden="true">|</span>
+    <div class="flex items-center justify-end gap-3">
+      <nav class="site-nav hidden items-center justify-end gap-1 md:flex"
+           aria-label="Primary navigation">
+        @for (item of navItems; track item.path) {
+          <a
+            class="rounded-full px-3 py-2 font-bold text-surface-400 no-underline"
+            [routerLink]="item.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+          >
+            {{ item.label }}
+          </a>
+          @if (!$last) {
+            <span class="text-surface-400 opacity-50" aria-hidden="true">|</span>
+          }
         }
-      }
-    </nav>
+      </nav>
 
-    <p-button
-      styleClass="theme-toggle"
-      (click)="toggleTheme()"
-      [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
-      [icon]="darkMode() ? 'pi pi-sun' : 'pi pi-moon'"
-      rounded
-      text
-    />
+      <p-button
+        styleClass="theme-toggle"
+        (click)="toggleTheme()"
+        [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+        [icon]="darkMode() ? 'pi pi-sun' : 'pi pi-moon'"
+        rounded
+        text
+      />
+
+      <span class="md:hidden">
+        <p-button
+          styleClass="mobile-menu-button"
+          (click)="openMobileMenu()"
+          aria-label="Open navigation menu"
+          icon="pi pi-bars"
+          rounded
+          text
+        />
+      </span>
     </div>
   </ng-template>
 </p-toolbar>
+
+@defer (when mobileMenuLoaded()) {
+  <app-mobile-nav-drawer
+    [open]="mobileMenuOpen()"
+    [navItems]="navItems"
+    (openChange)="updateMobileMenuVisibility($event)"
+    (navigate)="closeMobileMenu()"
+  />
+}
