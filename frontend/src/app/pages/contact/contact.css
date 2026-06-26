@@ -1,3 +1,55 @@
 :host {
   display: block;
+  background:
+    radial-gradient(circle at 14% 28%, rgba(139, 92, 246, 0.22), transparent 18rem),
+    radial-gradient(circle at 84% 22%, rgba(34, 211, 238, 0.12), transparent 22rem),
+    var(--hero-wash);
+}
+
+.contact-section {
+  position: relative;
+  isolation: isolate;
+}
+
+.contact-section::before {
+  content: "";
+  position: absolute;
+  inset: 14% 2rem auto auto;
+  z-index: -1;
+  width: min(28rem, 70vw);
+  aspect-ratio: 1;
+  border: 1px solid rgba(125, 211, 252, 0.16);
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(139, 92, 246, 0.14), transparent 44%),
+    radial-gradient(circle, rgba(34, 211, 238, 0.1), transparent 62%);
+  filter: blur(3px);
+}
+
+.contact-prompt {
+  display: block;
+  height: 100%;
+}
+
+:host ::ng-deep .contact-prompt .p-card {
+  height: 100%;
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--card-bg) 74%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+:host ::ng-deep .contact-prompt .p-card-body {
+  padding: 1rem;
+}
+
+:host ::ng-deep .contact-prompt .p-card-content {
+  padding: 0;
+}
+
+html.app-light :host {
+  background:
+    radial-gradient(circle at 14% 28%, rgba(124, 58, 237, 0.14), transparent 18rem),
+    radial-gradient(circle at 84% 22%, rgba(14, 165, 233, 0.1), transparent 22rem),
+    var(--hero-wash);
 }

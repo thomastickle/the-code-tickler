@@ -31,25 +31,18 @@ export const profile = {
   headline: 'Developer portfolio for thoughtful, practical software work.',
   intro:
     'A playful brand for serious engineering: clear systems, maintainable code, and user-facing details that hold up after launch.',
-  location: 'United States',
   availability: 'Open to developer conversations',
-  email: 'hello@thecodetickler.com',
 };
 
 export const links: LinkItem[] = [
   {
-    label: 'Email',
-    href: `mailto:${profile.email}`,
-    icon: 'pi pi-envelope',
-  },
-  {
     label: 'GitHub',
-    href: 'https://github.com/thecodetickler',
+    href: 'https://github.com/thomastickle',
     icon: 'pi pi-github',
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/thecodetickler',
+    href: 'https://www.linkedin.com/in/thomas-tickle/',
     icon: 'pi pi-linkedin',
   },
 ];
