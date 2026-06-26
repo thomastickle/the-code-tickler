@@ -48,7 +48,7 @@ The SPA fallback for client-side routes is copied from `public/_redirects`.
 
 ## Cloudflare Pages Deployment
 
-Deployment is handled by the root GitHub Actions workflow at `.github/workflows/cloudflare-pages.yml`.
+Deployment is handled by the root GitHub Actions workflow at `.github/workflows/ci-cd.yml`.
 
 GitHub Environment settings required by the workflow:
 
@@ -67,8 +67,7 @@ The workflow:
 - Caches Angular build artifacts from `.angular/cache`.
 - Runs `npm ci`, CI unit tests, and production build.
 - Uploads JUnit test results, coverage reports, and the production build as GitHub Actions artifacts.
-- Validates pull requests without requiring Cloudflare credentials.
-- Validates `master` branch pushes without deploying.
-- Deploys `dist/the-code-tickler/browser` from the `Cloudflare` Environment only on `deploy/cloudflare-pages` branch pushes.
+- Validates pull requests to `main` without requiring Cloudflare credentials.
+- Deploys `dist/the-code-tickler/browser` from the `Cloudflare` Environment on `main` branch pushes.
 
-Set the Cloudflare Pages production branch to `deploy/cloudflare-pages`. Merge normal application changes to `master`, then update `deploy/cloudflare-pages` when the site is ready to release.
+Set the Cloudflare Pages production branch to `main`. Merging changes to `main` is the production release path.

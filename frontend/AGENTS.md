@@ -56,6 +56,7 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 
 ## Deployment
 
-- Cloudflare Pages deployment is frontend-only and is driven by the root `.github/workflows/cloudflare-pages.yml` workflow.
+- Cloudflare Pages deployment is frontend-only and is driven by the root `.github/workflows/ci-cd.yml` workflow.
+- Pull requests target `main`; pushes to `main` validate and deploy the production build.
 - Keep the build output directory as `dist/the-code-tickler/browser` unless `angular.json` output changes and the workflow is updated in the same change.
 - Preserve `public/_redirects`; it provides the SPA fallback required for client-side Angular routes on Cloudflare Pages.
