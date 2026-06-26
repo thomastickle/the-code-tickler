@@ -1,59 +1,66 @@
-# TheCodeTickler
+# The Code Tickler Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.16.
+Angular 21 portfolio frontend for The Code Tickler. The app is a static browser build and is deployable to Cloudflare Pages.
 
-## Development server
+## Local Development
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Install dependencies from the frontend directory:
 
 ```bash
-ng generate component component-name
+npm ci
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Start the development server:
 
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+The app runs at `http://localhost:4200/` by default.
 
-To build the project run:
+## Build And Test
+
+Run the unit test suite once:
 
 ```bash
-ng build
+npm test -- --watch=false
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Create the production bundle:
 
 ```bash
-ng test
+npm run build
 ```
 
-## Running end-to-end tests
+Angular writes Cloudflare-ready browser assets to:
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
+```text
+dist/the-code-tickler/browser
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+The SPA fallback for client-side routes is copied from `public/_redirects`.
 
-## Additional Resources
+## Cloudflare Pages Deployment
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Deployment is handled by the root GitHub Actions workflow at `.github/workflows/cloudflare-pages.yml`.
+
+GitHub Environment settings required by the workflow:
+
+```text
+CLOUDFLARE_API_TOKEN      Environment secret with Cloudflare Pages edit/deploy access
+CLOUDFLARE_ACCOUNT_ID     Environment secret for the target Cloudflare account
+CLOUDFLARE_PROJECT_NAME   Optional environment variable; defaults to the-code-tickler
+```
+
+Create these values under the repository Environment named `Cloudflare`. The project name should be the Cloudflare Pages project slug, for example `the-code-tickler`.
+
+The workflow:
+
+- Uses Node from `.node-version`.
+- Restores npm cache from `package-lock.json`.
+- Caches Angular build artifacts from `.angular/cache`.
+- Runs `npm ci`, unit tests, and production build.
+- Validates pull requests without requiring Cloudflare credentials.
+- Deploys `dist/the-code-tickler/browser` from the `Cloudflare` Environment on branch pushes and manual dispatches.
+
+Set the Cloudflare Pages production branch to `master`.
