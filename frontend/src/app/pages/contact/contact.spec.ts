@@ -23,9 +23,9 @@ describe('Contact', () => {
   it('renders the simplified contact copy', () => {
     const element: HTMLElement = fixture.nativeElement;
 
-    expect(element.textContent).toContain('Let’s talk through the work.');
-    expect(element.textContent).toContain('Where else can you find me.');
-    expect(element.textContent).toContain('GitHub is best for code context.');
+    expect(element.textContent).toContain('Want to get in touch?');
+    expect(element.textContent).toContain('Find me elsewhere.');
+    expect(element.textContent).toContain('I am open to a conversation.');
   });
 
   it('links to GitHub and LinkedIn without email or resume actions', () => {
