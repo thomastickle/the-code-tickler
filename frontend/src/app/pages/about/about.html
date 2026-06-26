@@ -5,24 +5,24 @@
       <h1 class="m-0 max-w-[10.5ch] text-balance text-[clamp(2.9rem,6vw,5.25rem)] font-black leading-[0.94] drop-shadow-[0_0_34px_rgba(139,92,246,0.28)] max-[1120px]:max-w-[12ch] max-sm:text-[3rem]">
         Practical engineering with a careful touch.
       </h1>
-      <h2 class="mt-5 max-w-2xl text-[clamp(1.15rem,2.1vw,1.75rem)] font-bold leading-tight text-[var(--muted)] max-sm:text-xl">
+      <h2 class="mt-5 max-w-2xl text-[clamp(1.15rem,2.1vw,1.75rem)] font-bold leading-tight text-surface-400 max-sm:text-xl">
         {{ byline }}
       </h2>
     </div>
 
     <div class="grid w-[min(100%,38rem)] justify-self-end gap-4 max-[1120px]:w-full max-[1120px]:justify-self-stretch" aria-label="About The Code Tickler">
       @for (statement of statements; track statement.label) {
-        <article class="statement-card p-[clamp(1.1rem,2.5vw,1.5rem)]">
+        <p-card class="statement-card about-card">
           <span class="mb-3 block text-xs font-black uppercase text-[var(--accent-strong)]">{{ statement.label }}</span>
-          <p class="m-0 text-[1.0625rem] leading-relaxed text-[var(--muted)] md:text-lg">{{ statement.text }}</p>
-        </article>
+          <p class="m-0 text-[1.0625rem] leading-relaxed text-surface-400 md:text-lg">{{ statement.text }}</p>
+        </p-card>
       }
     </div>
   </div>
 
   <a
     href="#about-capabilities"
-    class="absolute bottom-4 left-1/2 hidden size-11 -translate-x-1/2 place-items-center rounded-full border border-[var(--chrome-line)] bg-[var(--button-glass)] text-[var(--accent-strong)] no-underline backdrop-blur-md transition hover:-translate-y-0.5 hover:border-[var(--accent-strong)] md:grid"
+    class="absolute bottom-4 left-1/2 hidden size-11 -translate-x-1/2 place-items-center rounded-full border border-surface-700/70 bg-surface-900/70 text-primary no-underline backdrop-blur-md transition hover:-translate-y-0.5 hover:border-primary md:grid"
     aria-label="Continue to capabilities"
   >
     <i class="pi pi-arrow-down" aria-hidden="true"></i>
@@ -35,7 +35,7 @@
       <p class="eyebrow">Why it matters</p>
       <h2 class="m-0 text-[clamp(2.1rem,4.7vw,3.6rem)] leading-none">What can I do?</h2>
     </div>
-    <p class="m-0 text-lg leading-relaxed text-[var(--muted)]">
+    <p class="m-0 text-lg leading-relaxed text-surface-400">
       I’m Thomas Tickle, a software engineer and technical lead with nearly two decades of experience building,
       modernizing, and operating production systems.
     </p>
@@ -43,20 +43,22 @@
 
   <div class="grid grid-cols-1 gap-4 lg:grid-cols-3" aria-label="Experience and capabilities">
     @for (capability of capabilities; track capability.title) {
-      <article class="capability-card flex min-h-full flex-col p-[clamp(1.25rem,2.8vw,1.65rem)]">
+      <p-card class="capability-card about-card">
+        <div class="flex min-h-full flex-col">
         <header class="mb-5 flex items-start gap-4">
-          <span class="grid size-12 shrink-0 place-items-center rounded-lg border border-[color-mix(in_srgb,var(--accent)_46%,transparent)] bg-[color-mix(in_srgb,var(--accent)_14%,transparent)] text-[var(--accent-strong)]">
+          <span class="grid size-12 shrink-0 place-items-center rounded-lg border border-primary/45 bg-primary/15 text-primary">
             <i class="{{ capability.icon }} text-2xl" aria-hidden="true"></i>
           </span>
           <h3 class="m-0 text-[clamp(1.25rem,2vw,1.5rem)] leading-tight">{{ capability.title }}</h3>
         </header>
-        <p class="m-0 text-[1.0625rem] leading-relaxed text-[var(--muted)] md:text-lg">{{ capability.summary }}</p>
+        <p class="m-0 text-[1.0625rem] leading-relaxed text-surface-400 md:text-lg">{{ capability.summary }}</p>
         <div class="mt-auto flex flex-wrap items-center gap-3 pt-5" aria-label="Capability tags">
           @for (tag of capability.tags; track tag) {
             <p-tag [value]="tag" rounded severity="secondary"/>
           }
         </div>
-      </article>
+        </div>
+      </p-card>
     }
   </div>
 </section>

@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { TagModule } from 'primeng/tag';
+import { ButtonDirective } from 'primeng/button';
+import { Card } from 'primeng/card';
+import { Tag } from 'primeng/tag';
 
 import { links, profile } from '../../portfolio-data';
 
 @Component({
   selector: 'app-contact',
-  imports: [ButtonModule, CardModule, TagModule],
+  imports: [ButtonDirective, Card, Tag],
   templateUrl: './contact.html',
   styleUrl: './contact.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

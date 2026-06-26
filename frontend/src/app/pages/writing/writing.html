@@ -3,7 +3,7 @@
   <h1 class="m-0 max-w-[13ch] text-[clamp(2.6rem,8vw,5.5rem)] font-black leading-[0.92] drop-shadow-[0_0_34px_rgba(139,92,246,0.26)] max-sm:text-[3.2rem]">
     Notes from the workbench
   </h1>
-  <p class="max-w-[46rem] text-[clamp(1.05rem,2.2vw,1.35rem)] leading-relaxed text-[var(--muted)]">
+  <p class="max-w-[46rem] text-[clamp(1.05rem,2.2vw,1.35rem)] leading-relaxed text-surface-400">
     A place for short technical notes, project writeups, and lessons learned. These placeholders can become
     posts once the site has real articles.
   </p>
@@ -14,7 +14,7 @@
     <p-card class="portfolio-card">
       <ng-template #title>{{ post.title }}</ng-template>
       <ng-template #subtitle>{{ post.date }}</ng-template>
-      <p class="text-[var(--muted)] leading-relaxed">{{ post.summary }}</p>
+      <p class="text-surface-400 leading-relaxed">{{ post.summary }}</p>
       <div class="mt-4 flex flex-wrap items-center gap-3">
         @for (tag of post.tags; track tag) {
           <p-tag [value]="tag" rounded />

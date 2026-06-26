@@ -1,23 +1,24 @@
 @import 'tailwindcss';
+@import 'tailwindcss-primeui';
 @import 'primeicons/primeicons.css';
 
 :root {
   color-scheme: dark;
-  --ink: #f8fafc;
-  --muted: #a8b3cf;
-  --surface: rgba(10, 17, 42, 0.88);
-  --surface-alt: rgba(16, 26, 59, 0.82);
-  --line: rgba(139, 92, 246, 0.28);
-  --accent: #8b5cf6;
+  --ink: var(--p-text-color);
+  --muted: var(--p-text-muted-color);
+  --surface: color-mix(in srgb, var(--p-content-background) 88%, transparent);
+  --surface-alt: color-mix(in srgb, var(--p-surface-800) 82%, transparent);
+  --line: color-mix(in srgb, var(--p-primary-500) 28%, transparent);
+  --accent: var(--p-primary-500);
   --accent-strong: #22d3ee;
   --code: #34d399;
-  --page-bg: #020617;
+  --page-bg: var(--p-surface-950);
   --chrome-bg: rgba(4, 9, 30, 0.76);
   --chrome-line: rgba(125, 211, 252, 0.18);
   --nav-active: #ffffff;
-  --nav-active-bg: rgba(139, 92, 246, 0.22);
+  --nav-active-bg: color-mix(in srgb, var(--p-primary-500) 22%, transparent);
   --button-glass: rgba(15, 23, 42, 0.74);
-  --card-bg: rgba(12, 20, 49, 0.78);
+  --card-bg: color-mix(in srgb, var(--p-content-background) 78%, transparent);
   --card-border: rgba(125, 211, 252, 0.2);
   --hero-wash:
     radial-gradient(circle at 75% 40%, rgba(34, 211, 238, 0.18), transparent 22rem),
@@ -28,22 +29,22 @@
 
 html.app-light {
   color-scheme: light;
-  --ink: #0f172a;
-  --muted: #64748b;
-  --surface: rgba(255, 255, 255, 0.92);
-  --surface-alt: rgba(248, 250, 252, 0.9);
-  --line: rgba(15, 23, 42, 0.12);
-  --accent: #7c3aed;
+  --ink: var(--p-text-color);
+  --muted: var(--p-text-muted-color);
+  --surface: color-mix(in srgb, var(--p-content-background) 92%, transparent);
+  --surface-alt: color-mix(in srgb, var(--p-surface-50) 90%, transparent);
+  --line: color-mix(in srgb, var(--p-surface-950) 12%, transparent);
+  --accent: var(--p-primary-600);
   --accent-strong: #0f766e;
   --code: #0369a1;
-  --page-bg: #f8fafc;
+  --page-bg: var(--p-surface-50);
   --chrome-bg: rgba(255, 255, 255, 0.84);
   --chrome-line: rgba(15, 23, 42, 0.1);
   --nav-active: #111827;
-  --nav-active-bg: rgba(124, 58, 237, 0.18);
+  --nav-active-bg: color-mix(in srgb, var(--p-primary-600) 18%, transparent);
   --button-glass: rgba(255, 255, 255, 0.86);
-  --card-bg: rgba(255, 255, 255, 0.9);
-  --card-border: rgba(15, 23, 42, 0.1);
+  --card-bg: color-mix(in srgb, var(--p-content-background) 90%, transparent);
+  --card-border: color-mix(in srgb, var(--p-surface-950) 10%, transparent);
   --hero-wash:
     radial-gradient(circle at 72% 38%, rgba(124, 58, 237, 0.14), transparent 20rem),
     radial-gradient(circle at 58% 62%, rgba(34, 211, 238, 0.12), transparent 28rem),

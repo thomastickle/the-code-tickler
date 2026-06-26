@@ -1,6 +1,30 @@
 
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
 
+## Project Stack
+
+- Angular 21 standalone components.
+- PrimeNG 21 for interactive controls and repeated UI surfaces.
+- PrimeUIX Aura theming configured through `providePrimeNG`.
+- Tailwind CSS v4 with `tailwindcss-primeui` for Prime token-backed utilities.
+- PrimeIcons for iconography.
+
+## PrimeNG And Tailwind Rules
+
+- Prefer PrimeNG components for interactive controls, navigation/chrome primitives, cards, tags, segmented choices, and repeated content surfaces.
+- Prefer standalone PrimeNG exports such as `Button`, `ButtonDirective`, `Card`, `Tag`, `Toolbar`, and `SelectButton` over NgModule imports when available.
+- Use Tailwind for page layout, spacing, typography, responsive grids, and token-backed color utilities.
+- Use Prime token-backed Tailwind utilities such as `primary-*` and `surface-*` before adding new custom color variables.
+- Keep custom CSS for brand/effect work: hero image positioning, floating code cards, background washes, pseudo-elements, and small adapters for PrimeNG-generated DOM.
+- PrimeNG theme configuration belongs in `providePrimeNG`; do not add a parallel component theme system.
+- Dark mode is class-driven through `.app-dark` and `.app-light`.
+
+## Agent Workflow
+
+- For Codex CLI, use the root `.codex/config.toml` MCP setup. The VS Code MCP file is not the CLI source of truth.
+- If Angular or PrimeNG MCP tools are unavailable, inspect installed packages and official docs instead of guessing.
+- Run `npm run build:production` and `npm run test:ci` after UI-impacting changes.
+
 ## TypeScript Best Practices
 
 - Use strict type checking
@@ -56,6 +80,6 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 
 ## Deployment
 
-- Cloudflare Pages deployment is frontend-only and is driven by the root `.github/workflows/cloudflare-pages.yml` workflow.
+- Cloudflare Pages deployment is frontend-only and is driven by the root `.github/workflows/ci-cd.yml` workflow.
 - Keep the build output directory as `dist/the-code-tickler/browser` unless `angular.json` output changes and the workflow is updated in the same change.
 - Preserve `public/_redirects`; it provides the SPA fallback required for client-side Angular routes on Cloudflare Pages.

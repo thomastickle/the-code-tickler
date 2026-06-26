@@ -5,7 +5,7 @@
       <h1 class="m-0 max-w-[12ch] text-[clamp(3rem,11vw,7rem)] font-black leading-[0.92] drop-shadow-[0_0_34px_rgba(139,92,246,0.26)]">
         {{ profile.brand }}
       </h1>
-      <p class="max-w-3xl text-[clamp(1.05rem,2.2vw,1.35rem)] leading-relaxed text-[var(--muted)]">
+      <p class="max-w-3xl text-[clamp(1.05rem,2.2vw,1.35rem)] leading-relaxed text-surface-400">
         Developer portfolio, project notes, and practical engineering work with Angular, TypeScript,
         backend systems, and the occasional well-placed feather.
       </p>
@@ -42,7 +42,7 @@
       <p class="eyebrow">Featured work</p>
       <h2 class="m-0 text-[clamp(2rem,5vw,3.25rem)] leading-none">Projects with clear intent</h2>
     </div>
-    <a routerLink="/projects" class="inline-flex items-center gap-2 font-black text-[var(--accent-strong)] no-underline">
+    <a routerLink="/projects" class="inline-flex items-center gap-2 font-black text-primary no-underline">
       All projects <i class="pi pi-arrow-right" aria-hidden="true"></i>
     </a>
   </div>
@@ -52,8 +52,8 @@
       <p-card class="portfolio-card">
         <ng-template #title>{{ project.name }}</ng-template>
         <ng-template #subtitle>{{ project.status }}</ng-template>
-        <p class="text-[var(--muted)] leading-relaxed">{{ project.summary }}</p>
-        <p class="text-[var(--muted)] leading-relaxed">{{ project.impact }}</p>
+        <p class="text-surface-400 leading-relaxed">{{ project.summary }}</p>
+        <p class="text-surface-400 leading-relaxed">{{ project.impact }}</p>
         <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Project stack">
           @for (tech of project.stack; track tech) {
             <p-tag [value]="tech" severity="secondary" rounded />
@@ -71,29 +71,31 @@
   </div>
   <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
     @for (group of skillGroups; track group.name) {
-      <article class="rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] p-5">
+      <p-card class="portfolio-card">
         <h3 class="m-0 mb-4">{{ group.name }}</h3>
         <div class="mt-4 flex flex-wrap items-center gap-3">
           @for (skill of group.skills; track skill) {
             <p-tag [value]="skill" rounded />
           }
         </div>
-      </article>
+      </p-card>
     }
   </div>
 </section>
 
-<section
-  class="mx-auto mb-12 flex w-[min(1120px,calc(100%_-_2rem))] items-center justify-between gap-6 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] p-5 md:mb-20 max-md:flex-col max-md:items-start"
+<p-card
+  class="portfolio-card mx-auto mb-12 block w-[min(1120px,calc(100%_-_2rem))] md:mb-20"
   aria-label="Contact links"
 >
-  <div>
-    <p class="eyebrow">Next step</p>
-    <h2 class="m-0 text-[clamp(2rem,5vw,3.25rem)] leading-none">Start with a conversation.</h2>
+  <div class="flex items-center justify-between gap-6 max-md:flex-col max-md:items-start">
+    <div>
+      <p class="eyebrow">Next step</p>
+      <h2 class="m-0 text-[clamp(2rem,5vw,3.25rem)] leading-none">Start with a conversation.</h2>
+    </div>
+    <div class="flex flex-wrap items-center gap-3">
+      @for (link of links; track link.label) {
+        <a pButton [href]="link.href" target="_blank" rel="noopener" [label]="link.label" [icon]="link.icon"></a>
+      }
+    </div>
   </div>
-  <div class="flex flex-wrap items-center gap-3">
-    @for (link of links; track link.label) {
-      <a pButton [href]="link.href" target="_blank" rel="noopener" [label]="link.label" [icon]="link.icon"></a>
-    }
-  </div>
-</section>
+</p-card>

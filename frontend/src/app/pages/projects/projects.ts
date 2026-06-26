@@ -1,13 +1,15 @@
+import { FormsModule } from '@angular/forms';
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { ButtonDirective } from 'primeng/button';
 import { Card } from 'primeng/card';
+import { SelectButton } from 'primeng/selectbutton';
 import { Tag } from 'primeng/tag';
 
 import { projects } from '../../portfolio-data';
 
 @Component({
   selector: 'app-projects',
-  imports: [ButtonDirective, Card, Tag],
+  imports: [ButtonDirective, Card, FormsModule, SelectButton, Tag],
   templateUrl: './projects.html',
   styleUrl: './projects.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

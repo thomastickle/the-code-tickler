@@ -1,11 +1,10 @@
-import {Component} from '@angular/core';
-import {Tag} from 'primeng/tag';
+import { Component } from '@angular/core';
+import { Card } from 'primeng/card';
+import { Tag } from 'primeng/tag';
 
 @Component({
   selector: 'app-about',
-  imports: [
-    Tag,
-  ],
+  imports: [Card, Tag],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })

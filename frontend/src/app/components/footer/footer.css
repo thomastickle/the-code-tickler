@@ -1,3 +1,37 @@
 :host {
   display: block;
 }
+
+:host ::ng-deep .site-footer-toolbar.p-toolbar {
+  gap: 1rem;
+  padding: 1.5rem 1rem;
+  border: 0;
+  border-top: 1px solid var(--chrome-line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  :host ::ng-deep .site-footer-toolbar.p-toolbar {
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :host ::ng-deep .site-footer-toolbar.p-toolbar {
+    padding-inline: 4rem;
+  }
+}
+
+@media (max-width: 767px) {
+  :host ::ng-deep .site-footer-toolbar.p-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  :host ::ng-deep .site-footer-toolbar .p-toolbar-start,
+  :host ::ng-deep .site-footer-toolbar .p-toolbar-end {
+    width: 100%;
+  }
+}

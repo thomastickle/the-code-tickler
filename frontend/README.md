@@ -2,9 +2,20 @@
 
 Angular 21 portfolio frontend for The Code Tickler. The app is a static browser build and is deployable to Cloudflare Pages.
 
+## Stack
+
+- Angular 21
+- PrimeNG 21
+- PrimeUIX Aura themes
+- Tailwind CSS v4
+- `tailwindcss-primeui` for Prime token-backed Tailwind utilities
+- PrimeIcons
+
+PrimeNG is configured in `src/app/app.config.ts` with `providePrimeNG`. Tailwind is loaded from `src/styles.css`.
+
 ## Local Development
 
-Install dependencies from the frontend directory:
+Install dependencies from this `frontend/` directory:
 
 ```bash
 npm ci
@@ -46,9 +57,17 @@ dist/the-code-tickler/browser
 
 The SPA fallback for client-side routes is copied from `public/_redirects`.
 
+## UI Architecture
+
+- Route pages live under `src/app/pages`.
+- Shared shell components live under `src/app/components`.
+- Prefer PrimeNG components for controls, chrome, cards, tags, and repeated surfaces.
+- Use Tailwind utilities for layout and spacing.
+- Keep custom CSS focused on brand effects and small PrimeNG generated-DOM adapters.
+
 ## Cloudflare Pages Deployment
 
-Deployment is handled by the root GitHub Actions workflow at `.github/workflows/cloudflare-pages.yml`.
+Deployment is handled by the root GitHub Actions workflow at `.github/workflows/ci-cd.yml`.
 
 GitHub Environment settings required by the workflow:
 
@@ -72,3 +91,7 @@ The workflow:
 - Deploys `dist/the-code-tickler/browser` from the `Cloudflare` Environment only on `deploy/cloudflare-pages` branch pushes.
 
 Set the Cloudflare Pages production branch to `deploy/cloudflare-pages`. Merge normal application changes to `master`, then update `deploy/cloudflare-pages` when the site is ready to release.
+
+## Agent Notes
+
+Read `AGENTS.md` in this directory and the repository root before making broad UI changes.
