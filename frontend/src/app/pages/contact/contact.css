@@ -26,27 +26,6 @@
   filter: blur(3px);
 }
 
-.contact-prompt {
-  display: block;
-  height: 100%;
-}
-
-:host ::ng-deep .contact-prompt .p-card {
-  height: 100%;
-  border: 1px solid var(--card-border);
-  border-radius: 0.5rem;
-  background: color-mix(in srgb, var(--card-bg) 74%, transparent);
-  backdrop-filter: blur(14px);
-}
-
-:host ::ng-deep .contact-prompt .p-card-body {
-  padding: 1rem;
-}
-
-:host ::ng-deep .contact-prompt .p-card-content {
-  padding: 0;
-}
-
 html.app-light :host {
   background:
     radial-gradient(circle at 14% 28%, rgba(124, 58, 237, 0.14), transparent 18rem),

@@ -14,9 +14,4 @@ import { links, profile } from '../../portfolio-data';
 export class Contact {
   protected readonly profile = profile;
   protected readonly links = links;
-  protected readonly prompts = [
-    'Comparing approaches before a build or modernization effort',
-    'Untangling a system that has become hard to explain',
-    'Looking for practical engineering judgment across product and implementation details',
-  ];
 }

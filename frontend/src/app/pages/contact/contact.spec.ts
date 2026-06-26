@@ -24,8 +24,8 @@ describe('Contact', () => {
     const element: HTMLElement = fixture.nativeElement;
 
     expect(element.textContent).toContain('Let’s talk through the work.');
+    expect(element.textContent).toContain('Where else can you find me.');
     expect(element.textContent).toContain('GitHub is best for code context.');
-    expect(element.textContent).toContain('No contact form yet.');
   });
 
   it('links to GitHub and LinkedIn without email or resume actions', () => {
@@ -38,11 +38,12 @@ describe('Contact', () => {
     expect(fixture.nativeElement.textContent).not.toContain('Request resume');
   });
 
-  it('renders conversation prompts', () => {
+  it('does not render removed contact prompt copy', () => {
     const element: HTMLElement = fixture.nativeElement;
 
-    expect(element.textContent).toContain('Comparing approaches');
-    expect(element.textContent).toContain('Untangling a system');
-    expect(element.textContent).toContain('implementation reality');
+    expect(element.textContent).not.toContain('No contact form yet.');
+    expect(element.textContent).not.toContain('Comparing approaches');
+    expect(element.textContent).not.toContain('Untangling a system');
+    expect(element.textContent).not.toContain('Looking for practical engineering judgment');
   });
 });
