@@ -61,6 +61,7 @@ The workflow:
 - Caches Angular build artifacts from `.angular/cache`.
 - Runs `npm ci`, unit tests, and production build.
 - Validates pull requests without requiring Cloudflare credentials.
-- Deploys `dist/the-code-tickler/browser` from the `Cloudflare` Environment on branch pushes and manual dispatches.
+- Validates `master` branch pushes without deploying.
+- Deploys `dist/the-code-tickler/browser` from the `Cloudflare` Environment on `deploy/cloudflare-pages` branch pushes and manual dispatches.
 
-Set the Cloudflare Pages production branch to `master`.
+Set the Cloudflare Pages production branch to `deploy/cloudflare-pages`. Merge normal application changes to `master`, then update `deploy/cloudflare-pages` when the site is ready to release.
