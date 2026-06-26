@@ -41,6 +41,14 @@
   color: var(--nav-active);
 }
 
+:host ::ng-deep .mobile-menu-button.p-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--chrome-line);
+  background: var(--button-glass);
+  color: var(--nav-active);
+}
+
 @media (min-width: 768px) {
   :host ::ng-deep .site-toolbar.p-toolbar {
     padding-inline: 2.5rem;
@@ -50,21 +58,5 @@
 @media (min-width: 1024px) {
   :host ::ng-deep .site-toolbar.p-toolbar {
     padding-inline: 4rem;
-  }
-}
-
-@media (max-width: 767px) {
-  :host ::ng-deep .site-toolbar.p-toolbar,
-  :host ::ng-deep .site-toolbar .p-toolbar-group-end {
-    align-items: flex-start;
-  }
-
-  :host ::ng-deep .site-toolbar.p-toolbar {
-    flex-direction: column;
-  }
-
-  :host ::ng-deep .site-toolbar .p-toolbar-start,
-  :host ::ng-deep .site-toolbar .p-toolbar-end {
-    width: 100%;
   }
 }

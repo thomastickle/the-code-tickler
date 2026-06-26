@@ -1,0 +1,22 @@
+<p-drawer
+  styleClass="mobile-nav-drawer"
+  header="Navigation"
+  position="right"
+  [visible]="open()"
+  (visibleChange)="openChange.emit($event)"
+  [blockScroll]="true"
+>
+  <nav class="mobile-nav grid gap-2" aria-label="Mobile navigation">
+    @for (item of navItems(); track item.path) {
+      <a
+        class="mobile-nav-link rounded-lg px-4 py-3 font-black text-surface-300 no-underline"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+        (click)="navigate.emit()"
+      >
+        {{ item.label }}
+      </a>
+    }
+  </nav>
+</p-drawer>

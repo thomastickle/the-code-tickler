@@ -21,4 +21,32 @@ describe('Menubar', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('renders a mobile menu button', () => {
+    const button = fixture.nativeElement.querySelector('[aria-label="Open navigation menu"]');
+
+    expect(button).toBeTruthy();
+  });
+
+  it('renders desktop navigation links', () => {
+    const element: HTMLElement = fixture.nativeElement;
+    const labels = ['Home', 'About', 'Projects', 'Writing', 'Contact'];
+
+    for (const label of labels) {
+      expect(element.textContent).toContain(label);
+    }
+  });
+
+  it('opens and closes the mobile menu', () => {
+    component['openMobileMenu']();
+    fixture.detectChanges();
+
+    expect(component['mobileMenuLoaded']()).toBe(true);
+    expect(component['mobileMenuOpen']()).toBe(true);
+
+    component['updateMobileMenuVisibility'](false);
+    fixture.detectChanges();
+
+    expect(component['mobileMenuOpen']()).toBe(false);
+  });
 });
