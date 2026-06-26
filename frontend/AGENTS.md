@@ -53,3 +53,9 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Design services around a single responsibility
 - Use the `providedIn: 'root'` option for singleton services
 - Use the `inject()` function instead of constructor injection
+
+## Deployment
+
+- Cloudflare Pages deployment is frontend-only and is driven by the root `.github/workflows/cloudflare-pages.yml` workflow.
+- Keep the build output directory as `dist/the-code-tickler/browser` unless `angular.json` output changes and the workflow is updated in the same change.
+- Preserve `public/_redirects`; it provides the SPA fallback required for client-side Angular routes on Cloudflare Pages.
