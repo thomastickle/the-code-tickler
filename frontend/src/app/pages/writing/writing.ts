@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CardModule } from 'primeng/card';
-import { TagModule } from 'primeng/tag';
+import { Card } from 'primeng/card';
+import { Tag } from 'primeng/tag';
 
 @Component({
   selector: 'app-writing',
-  imports: [CardModule, TagModule],
+  imports: [Card, Tag],
   templateUrl: './writing.html',
   styleUrl: './writing.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

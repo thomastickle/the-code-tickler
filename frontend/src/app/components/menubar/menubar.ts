@@ -1,10 +1,12 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Button } from 'primeng/button';
+import { Toolbar } from 'primeng/toolbar';
 
 @Component({
   selector: 'app-menubar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [Button, RouterLink, RouterLinkActive, Toolbar],
   templateUrl: './menubar.html',
   styleUrl: './menubar.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

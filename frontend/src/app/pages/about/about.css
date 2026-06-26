@@ -27,13 +27,31 @@
   filter: blur(3px);
 }
 
-.statement-card,
-.capability-card {
+.about-card {
+  display: block;
+  height: 100%;
+}
+
+:host ::ng-deep .about-card .p-card {
+  height: 100%;
   border: 1px solid var(--card-border);
   border-radius: 0.5rem;
   background: linear-gradient(145deg, color-mix(in srgb, var(--card-bg) 92%, transparent), color-mix(in srgb, var(--surface-alt) 78%, transparent));
   box-shadow: 0 1.4rem 3rem rgba(2, 6, 23, 0.18);
   backdrop-filter: blur(14px);
+}
+
+:host ::ng-deep .about-card .p-card-body,
+:host ::ng-deep .about-card .p-card-content {
+  height: 100%;
+}
+
+:host ::ng-deep .about-card .p-card-body {
+  padding: clamp(1.25rem, 2.8vw, 1.65rem);
+}
+
+:host ::ng-deep .about-card .p-card-content {
+  padding: 0;
 }
 
 .statement-card {

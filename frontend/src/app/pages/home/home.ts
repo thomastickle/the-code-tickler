@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { TagModule } from 'primeng/tag';
+import { Button, ButtonDirective } from 'primeng/button';
+import { Card } from 'primeng/card';
+import { Tag } from 'primeng/tag';
 
 import { links, profile, projects, skillGroups } from '../../portfolio-data';
 
 @Component({
   selector: 'app-home',
-  imports: [ButtonModule, CardModule, RouterLink, TagModule],
+  imports: [Button, ButtonDirective, Card, RouterLink, Tag],
   templateUrl: './home.html',
   styleUrl: './home.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
