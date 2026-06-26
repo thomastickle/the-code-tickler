@@ -44,13 +44,15 @@ The SPA fallback for client-side routes is copied from `public/_redirects`.
 
 Deployment is handled by the root GitHub Actions workflow at `.github/workflows/cloudflare-pages.yml`.
 
-Repository settings required by the workflow:
+GitHub Environment settings required by the workflow:
 
 ```text
-CLOUDFLARE_API_TOKEN      GitHub secret with Cloudflare Pages edit/deploy access
-CLOUDFLARE_ACCOUNT_ID     GitHub secret for the target Cloudflare account
-CLOUDFLARE_PROJECT_NAME   Optional GitHub variable; defaults to the-code-tickler
+CLOUDFLARE_API_TOKEN      Environment secret with Cloudflare Pages edit/deploy access
+CLOUDFLARE_ACCOUNT_ID     Environment secret for the target Cloudflare account
+CLOUDFLARE_PROJECT_NAME   Optional environment variable; defaults to the-code-tickler
 ```
+
+Create these values under the repository Environment named `Cloudflare`. The project name should be the Cloudflare Pages project slug, for example `the-code-tickler`.
 
 The workflow:
 
@@ -58,7 +60,7 @@ The workflow:
 - Restores npm cache from `package-lock.json`.
 - Caches Angular build artifacts from `.angular/cache`.
 - Runs `npm ci`, unit tests, and production build.
-- Deploys `dist/the-code-tickler/browser` on branch pushes and manual dispatches.
-- Validates pull requests without deploying.
+- Validates pull requests without requiring Cloudflare credentials.
+- Deploys `dist/the-code-tickler/browser` from the `Cloudflare` Environment on branch pushes and manual dispatches.
 
 Set the Cloudflare Pages production branch to `master`.
