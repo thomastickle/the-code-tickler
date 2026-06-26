@@ -1,4 +1,4 @@
-name: Cloudflare Pages
+name: CI/CD
 
 on:
   push:
@@ -8,10 +8,9 @@ on:
   pull_request:
     branches:
       - master
-  workflow_dispatch:
 
 concurrency:
-  group: cloudflare-pages-${{ github.ref }}
+  group: ci-cd-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -48,22 +47,63 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run unit tests
-        run: npm test -- --watch=false
+      - name: Run unit tests with coverage
+        run: npm run test:ci
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: frontend-test-results
+          path: frontend/test-results/
+          if-no-files-found: error
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: frontend-coverage
+          path: frontend/coverage/
+          if-no-files-found: error
 
       - name: Build production bundle
-        run: npm run build
+        run: npm run build:production
 
-      - name: Verify Cloudflare Pages output
+      - name: Verify production output
         run: |
           test -f dist/the-code-tickler/browser/index.html
           test -f dist/the-code-tickler/browser/_redirects
+          ! find dist/the-code-tickler/browser -name '*.map' -print -quit | grep .
+
+      - name: Upload production build
+        uses: actions/upload-artifact@v7
+        with:
+          name: frontend-production-build
+          path: frontend/dist/the-code-tickler/browser/
+          if-no-files-found: error
+
+      - name: Write CI summary
+        if: always()
+        run: |
+          {
+            echo "### Frontend CI"
+            echo
+            echo "- Test command: \`npm run test:ci\`"
+            echo "- Production build: \`npm run build:production\`"
+            echo "- Output directory: \`frontend/dist/the-code-tickler/browser\`"
+            echo
+            if [ -f coverage/the-code-tickler/coverage-summary.json ]; then
+              node -e 'const summary = require("./coverage/the-code-tickler/coverage-summary.json").total; console.log("| Metric | Covered | Total | Pct |"); console.log("| --- | ---: | ---: | ---: |"); for (const key of ["lines", "statements", "functions", "branches"]) { const row = summary[key]; console.log(`| ${key} | ${row.covered} | ${row.total} | ${row.pct}% |`); }'
+            else
+              echo "Coverage summary was not generated."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
 
   deploy:
     name: Deploy frontend
     runs-on: ubuntu-latest
     needs: validate
-    if: github.event_name == 'workflow_dispatch' || github.ref_name == 'deploy/cloudflare-pages'
+    if: github.event_name == 'push' && github.ref_name == 'deploy/cloudflare-pages'
     environment: Cloudflare
 
     env:
@@ -96,16 +136,30 @@ jobs:
         run: npm ci
 
       - name: Build production bundle
-        run: npm run build
+        run: npm run build:production
 
-      - name: Verify Cloudflare Pages output
+      - name: Verify production output
         run: |
           test -f dist/the-code-tickler/browser/index.html
           test -f dist/the-code-tickler/browser/_redirects
+          ! find dist/the-code-tickler/browser -name '*.map' -print -quit | grep .
 
       - name: Deploy to Cloudflare Pages
+        id: deploy
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy frontend/dist/the-code-tickler/browser --project-name="${{ env.CLOUDFLARE_PROJECT_NAME }}" --branch="${{ github.ref_name }}" --commit-dirty=true
+
+      - name: Write deployment summary
+        if: always()
+        run: |
+          {
+            echo "### Frontend Deploy"
+            echo
+            echo "- Branch: \`${{ github.ref_name }}\`"
+            echo "- Project: \`${{ env.CLOUDFLARE_PROJECT_NAME }}\`"
+            echo "- Output directory: \`frontend/dist/the-code-tickler/browser\`"
+            echo "- Wrangler Action: \`cloudflare/wrangler-action@v4\`"
+          } >> "$GITHUB_STEP_SUMMARY"

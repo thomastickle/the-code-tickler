@@ -33,6 +33,7 @@ yarn-error.log
 # Miscellaneous
 .wrangler/
 frontend/.angular/cache/
+frontend/test-results/
 .sass-cache/
 /connect.lock
 frontend/coverage/

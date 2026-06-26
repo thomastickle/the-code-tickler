@@ -26,10 +26,16 @@ Run the unit test suite once:
 npm test -- --watch=false
 ```
 
+Run the CI test suite with JUnit and coverage reports:
+
+```bash
+npm run test:ci
+```
+
 Create the production bundle:
 
 ```bash
-npm run build
+npm run build:production
 ```
 
 Angular writes Cloudflare-ready browser assets to:
@@ -59,9 +65,10 @@ The workflow:
 - Uses Node from `.node-version`.
 - Restores npm cache from `package-lock.json`.
 - Caches Angular build artifacts from `.angular/cache`.
-- Runs `npm ci`, unit tests, and production build.
+- Runs `npm ci`, CI unit tests, and production build.
+- Uploads JUnit test results, coverage reports, and the production build as GitHub Actions artifacts.
 - Validates pull requests without requiring Cloudflare credentials.
 - Validates `master` branch pushes without deploying.
-- Deploys `dist/the-code-tickler/browser` from the `Cloudflare` Environment on `deploy/cloudflare-pages` branch pushes and manual dispatches.
+- Deploys `dist/the-code-tickler/browser` from the `Cloudflare` Environment only on `deploy/cloudflare-pages` branch pushes.
 
 Set the Cloudflare Pages production branch to `deploy/cloudflare-pages`. Merge normal application changes to `master`, then update `deploy/cloudflare-pages` when the site is ready to release.
