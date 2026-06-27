@@ -4,13 +4,22 @@ export interface LinkItem {
   icon: string;
 }
 
+export type ProjectSection = 'active' | 'maintained' | 'legacy';
+
 export interface Project {
   name: string;
-  status: string;
+  status?: string;
+  section: ProjectSection;
   summary: string;
   impact: string;
   stack: string[];
   links: LinkItem[];
+}
+
+export interface ProjectSectionSummary {
+  id: ProjectSection;
+  title: string;
+  emptyMessage: string;
 }
 
 export interface ExperienceItem {
@@ -49,48 +58,40 @@ export const links: LinkItem[] = [
 
 export const projects: Project[] = [
   {
-    name: 'Portfolio Platform',
-    status: 'In progress',
-    summary: 'A fast Angular and PrimeNG portfolio built for Cloudflare Pages.',
-    impact: 'Shows frontend architecture, deployment awareness, and polished product judgment.',
-    stack: ['Angular', 'PrimeNG', 'TypeScript', 'Cloudflare Pages'],
+    name: 'The Code Tickler',
+    section: 'active',
+    summary: 'A personal portfolio site for independent project notes, practical engineering work, and public-facing craft.',
+    impact: 'Keeps the frontend, deployment path, and project writing in one maintainable Angular codebase.',
+    stack: ['Angular', 'PrimeNG', 'Tailwind CSS', 'Cloudflare Pages'],
     links: [
       {
-        label: 'Site',
-        href: 'https://thecodetickler.com',
-        icon: 'pi pi-external-link',
-      },
-    ],
-  },
-  {
-    name: 'Developer Tooling Showcase',
-    status: 'Placeholder',
-    summary: 'Replace this with a tool, automation project, integration, or internal platform you built.',
-    impact: 'Describe the before-and-after: time saved, defects reduced, or decisions clarified.',
-    stack: ['TypeScript', 'APIs', 'Automation'],
-    links: [
-      {
-        label: 'Repository',
-        href: 'https://github.com/thecodetickler',
+        label: 'Source',
+        href: 'https://github.com/thomastickle/the-code-tickler',
         icon: 'pi pi-github',
       },
     ],
   },
+];
+
+export const projectSections: ProjectSectionSummary[] = [
   {
-    name: 'Production System Story',
-    status: 'Placeholder',
-    summary: 'Use this slot for a work-safe case study about scaling, reliability, or user workflow design.',
-    impact: 'Focus on ownership, tradeoffs, and the measurable result without exposing private details.',
-    stack: ['Architecture', 'Testing', 'Observability'],
-    links: [
-      {
-        label: 'Notes',
-        href: 'mailto:hello@thecodetickler.com?subject=Production%20system%20story',
-        icon: 'pi pi-send',
-      },
-    ],
+    id: 'active',
+    title: 'Active',
+    emptyMessage: 'No active independent project is published yet.',
+  },
+  {
+    id: 'maintained',
+    title: 'Maintained',
+    emptyMessage: 'No maintained independent projects are listed yet.',
+  },
+  {
+    id: 'legacy',
+    title: 'Legacy (No Active Maintenance)',
+    emptyMessage: 'No legacy independent projects are listed yet.',
   },
 ];
+
+export const visibleProjectStack = (project: Project): string[] => project.stack.slice(0, 4);
 
 export const experience: ExperienceItem[] = [
   {
