@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Card } from 'primeng/card';
-import { Tag } from 'primeng/tag';
+import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { Card } from 'primeng/card'
+import { Tag } from 'primeng/tag'
 
 @Component({
   selector: 'app-writing',
@@ -29,5 +29,5 @@ export class Writing {
       summary: 'A future case study on developer tooling that removes repetitive work.',
       tags: ['Automation', 'Tooling'],
     },
-  ];
+  ]
 }

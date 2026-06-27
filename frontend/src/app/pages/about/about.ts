@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Card } from 'primeng/card';
-import { Tag } from 'primeng/tag';
+import { Component } from '@angular/core'
+import { Card } from 'primeng/card'
+import { Tag } from 'primeng/tag'
 
 @Component({
   selector: 'app-about',
@@ -10,7 +10,7 @@ import { Tag } from 'primeng/tag';
 })
 export class About {
   protected readonly byline =
-    'I help real-world software systems become clearer, faster, safer, and easier to change.';
+    'I help real-world software systems become clearer, faster, safer, and easier to change.'
 
   protected readonly statements = [
     {
@@ -25,7 +25,7 @@ export class About {
       label: 'The system',
       text: 'Sometimes the system is not just software. It can be architecture, business process, developer experience, team workflow, or the space where all of those things overlap.',
     },
-  ];
+  ]
 
   protected readonly capabilities = [
     {
@@ -49,5 +49,5 @@ export class About {
         'I enjoy the messy middle where new requirements, reliability, delivery pressure, production reality, and team constraints all meet.',
       tags: ['Technical leadership', 'Mentoring', 'Delivery'],
     },
-  ];
+  ]
 }

@@ -1,38 +1,38 @@
 export interface LinkItem {
-  label: string;
-  href: string;
-  icon: string;
+  label: string
+  href: string
+  icon: string
 }
 
-export type ProjectSection = 'active' | 'maintained' | 'legacy';
+export type ProjectSection = 'active' | 'maintained' | 'legacy'
 
 export interface Project {
-  name: string;
-  status?: string;
-  section: ProjectSection;
-  summary: string;
-  impact: string;
-  stack: string[];
-  links: LinkItem[];
+  name: string
+  status?: string
+  section: ProjectSection
+  summary: string
+  impact: string
+  stack: string[]
+  links: LinkItem[]
 }
 
 export interface ProjectSectionSummary {
-  id: ProjectSection;
-  title: string;
-  emptyMessage: string;
+  id: ProjectSection
+  title: string
+  emptyMessage: string
 }
 
 export interface ExperienceItem {
-  period: string;
-  role: string;
-  company: string;
-  summary: string;
-  wins: string[];
+  period: string
+  role: string
+  company: string
+  summary: string
+  wins: string[]
 }
 
 export interface SkillGroup {
-  name: string;
-  skills: string[];
+  name: string
+  skills: string[]
 }
 
 export const profile = {
@@ -41,7 +41,7 @@ export const profile = {
   intro:
     'A playful brand for serious engineering: clear systems, maintainable code, and user-facing details that hold up after launch.',
   availability: 'Open to developer conversations',
-};
+}
 
 export const links: LinkItem[] = [
   {
@@ -54,7 +54,7 @@ export const links: LinkItem[] = [
     href: 'https://www.linkedin.com/in/thomas-tickle/',
     icon: 'pi pi-linkedin',
   },
-];
+]
 
 export const projects: Project[] = [
   {
@@ -73,7 +73,7 @@ export const projects: Project[] = [
       },
     ],
   },
-];
+]
 
 export const projectSections: ProjectSectionSummary[] = [
   {
@@ -91,9 +91,9 @@ export const projectSections: ProjectSectionSummary[] = [
     title: 'Legacy (No Active Maintenance)',
     emptyMessage: 'No legacy independent projects are listed yet.',
   },
-];
+]
 
-export const visibleProjectStack = (project: Project): string[] => project.stack.slice(0, 4);
+export const visibleProjectStack = (project: Project): string[] => project.stack.slice(0, 4)
 
 export const experience: ExperienceItem[] = [
   {
@@ -126,7 +126,7 @@ export const experience: ExperienceItem[] = [
       'Keeps the craft sharp through small experiments, code review, and pragmatic technology choices.',
     wins: ['Documents decisions', 'Prefers useful abstractions over novelty'],
   },
-];
+]
 
 export const skillGroups: SkillGroup[] = [
   {
@@ -141,4 +141,4 @@ export const skillGroups: SkillGroup[] = [
     name: 'Delivery',
     skills: ['Clear planning', 'Incremental rollout', 'Code review', 'Developer tooling'],
   },
-];
+]

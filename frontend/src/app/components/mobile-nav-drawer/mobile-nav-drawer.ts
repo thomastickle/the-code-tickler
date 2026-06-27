@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Drawer } from 'primeng/drawer';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core'
+import { RouterLink, RouterLinkActive } from '@angular/router'
+import { Drawer } from 'primeng/drawer'
 
 export interface NavItem {
-  label: string;
-  path: string;
+  label: string
+  path: string
 }
 
 @Component({
@@ -15,8 +15,8 @@ export interface NavItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MobileNavDrawer {
-  readonly open = input.required<boolean>();
-  readonly navItems = input.required<readonly NavItem[]>();
-  readonly openChange = output<boolean>();
-  readonly navigate = output<void>();
+  readonly open = input.required<boolean>()
+  readonly navItems = input.required<readonly NavItem[]>()
+  readonly openChange = output<boolean>()
+  readonly navigate = output<void>()
 }
