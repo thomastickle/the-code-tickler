@@ -2,3 +2,17 @@
   display: block;
   min-height: 100dvh;
 }
+
+.app-content {
+  transition: padding-left 180ms ease;
+}
+
+@media (min-width: 768px) {
+  .app-shell-rail .app-content {
+    padding-left: 5rem;
+  }
+
+  :host-context(.nav-rail-expanded) .app-shell-rail .app-content {
+    padding-left: 16rem;
+  }
+}

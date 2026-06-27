@@ -1,21 +1,36 @@
 <p-drawer
   styleClass="mobile-nav-drawer"
-  header="Navigation"
-  position="right"
+  position="left"
   [visible]="open()"
   (visibleChange)="openChange.emit($event)"
   [blockScroll]="true"
 >
+  <ng-template #header>
+    <div class="inline-flex items-center gap-3 font-black">
+      <img
+        src="brand-mark-1x.png"
+        srcset="brand-mark-1x.png 1x, brand-mark-2x.png 2x, brand-mark-3x.png 3x"
+        alt=""
+        class="drawer-brand h-10 w-auto"
+        width="74"
+        height="52"
+        aria-hidden="true"
+      />
+      <span>Navigation</span>
+    </div>
+  </ng-template>
+
   <nav class="mobile-nav grid gap-2" aria-label="Mobile navigation">
     @for (item of navItems(); track item.path) {
       <a
-        class="mobile-nav-link rounded-lg px-4 py-3 font-black text-surface-300 no-underline"
+        class="mobile-nav-link inline-flex items-center gap-3 rounded-lg px-4 py-3 font-black text-surface-300 no-underline"
         [routerLink]="item.path"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: item.path === '/' }"
         (click)="navigate.emit()"
       >
-        {{ item.label }}
+        <span [class]="item.icon" aria-hidden="true"></span>
+        <span>{{ item.label }}</span>
       </a>
     }
   </nav>

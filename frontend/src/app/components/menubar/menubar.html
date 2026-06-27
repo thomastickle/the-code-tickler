@@ -1,66 +1,85 @@
-<p-toolbar class="site-toolbar sticky top-0 z-10 block">
-  <ng-template #start>
-    <a
-      routerLink="/"
-      class="inline-flex items-center gap-3 font-extrabold no-underline"
-      aria-label="The Code Tickler home"
-    >
-      <img
-        src="brand-mark-1x.png"
-        srcset="brand-mark-1x.png 1x, brand-mark-2x.png 2x, brand-mark-3x.png 3x"
-        alt=""
-        class="brand-glyph h-11 w-auto"
-        width="74"
-        height="52"
-        aria-hidden="true"
-      />
-      <span>The Code Tickler</span>
-    </a>
-  </ng-template>
+<header
+  class="mobile-shell-bar sticky top-0 z-20 flex items-center justify-between gap-3 px-4 py-3 md:hidden"
+>
+  <button
+    type="button"
+    class="brandmark-trigger"
+    (click)="openMobileMenu()"
+    aria-label="Open navigation menu"
+  >
+    <img
+      src="brand-mark-1x.png"
+      srcset="brand-mark-1x.png 1x, brand-mark-2x.png 2x, brand-mark-3x.png 3x"
+      alt=""
+      width="74"
+      height="52"
+      aria-hidden="true"
+    />
+  </button>
 
-  <ng-template #end>
-    <div class="flex items-center justify-end gap-3">
-      <nav
-        class="site-nav hidden items-center justify-end gap-1 md:flex"
-        aria-label="Primary navigation"
+  <p class="current-page-label" aria-live="polite">{{ currentPageLabel() }}</p>
+
+  <p-button
+    styleClass="theme-toggle"
+    (click)="toggleTheme()"
+    [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+    [icon]="darkMode() ? 'pi pi-sun' : 'pi pi-moon'"
+    rounded
+    text
+  />
+</header>
+
+<aside
+  class="desktop-nav-rail fixed left-0 top-0 z-20 hidden h-dvh flex-col md:flex"
+  [class.expanded]="railExpanded()"
+  aria-label="Primary navigation"
+>
+  <button
+    type="button"
+    class="rail-brand-trigger"
+    (click)="toggleRail()"
+    [attr.aria-expanded]="railExpanded()"
+    aria-label="Toggle navigation rail"
+  >
+    <img
+      src="brand-mark-1x.png"
+      srcset="brand-mark-1x.png 1x, brand-mark-2x.png 2x, brand-mark-3x.png 3x"
+      alt=""
+      width="74"
+      height="52"
+      aria-hidden="true"
+    />
+    <span class="rail-brand-label">The Code Tickler</span>
+  </button>
+
+  <p class="rail-location">
+    <span>Current</span>
+    <strong>{{ currentPageLabel() }}</strong>
+  </p>
+
+  <nav class="rail-nav grid gap-2" aria-label="Primary navigation">
+    @for (item of navItems; track item.path) {
+      <a
+        class="rail-nav-link"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
       >
-        @for (item of navItems; track item.path) {
-          <a
-            class="rounded-full px-3 py-2 font-bold text-surface-400 no-underline"
-            [routerLink]="item.path"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-          >
-            {{ item.label }}
-          </a>
-          @if (!$last) {
-            <span class="text-surface-400 opacity-50" aria-hidden="true">|</span>
-          }
-        }
-      </nav>
+        <span [class]="item.icon" aria-hidden="true"></span>
+        <span class="rail-link-label">{{ item.label }}</span>
+      </a>
+    }
+  </nav>
 
-      <p-button
-        styleClass="theme-toggle"
-        (click)="toggleTheme()"
-        [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
-        [icon]="darkMode() ? 'pi pi-sun' : 'pi pi-moon'"
-        rounded
-        text
-      />
-
-      <span class="md:hidden">
-        <p-button
-          styleClass="mobile-menu-button"
-          (click)="openMobileMenu()"
-          aria-label="Open navigation menu"
-          icon="pi pi-bars"
-          rounded
-          text
-        />
-      </span>
-    </div>
-  </ng-template>
-</p-toolbar>
+  <p-button
+    styleClass="theme-toggle rail-theme-toggle"
+    (click)="toggleTheme()"
+    [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+    [icon]="darkMode() ? 'pi pi-sun' : 'pi pi-moon'"
+    rounded
+    text
+  />
+</aside>
 
 @defer (when mobileMenuLoaded()) {
   <app-mobile-nav-drawer

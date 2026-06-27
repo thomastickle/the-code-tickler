@@ -4,9 +4,9 @@
 
 :host ::ng-deep .mobile-nav-drawer.p-drawer {
   width: min(22rem, calc(100vw - 2rem));
-  border-left-width: 1px;
-  border-left-style: solid;
-  border-left-color: var(--chrome-line);
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: var(--chrome-line);
   background: var(--surface);
   color: var(--ink);
   backdrop-filter: blur(18px);
@@ -18,6 +18,10 @@
 
 :host ::ng-deep .mobile-nav-drawer .p-drawer-title {
   font-weight: 900;
+}
+
+.drawer-brand {
+  filter: drop-shadow(0 0 14px rgba(139, 92, 246, 0.52));
 }
 
 :host ::ng-deep .mobile-nav-drawer .p-drawer-content {

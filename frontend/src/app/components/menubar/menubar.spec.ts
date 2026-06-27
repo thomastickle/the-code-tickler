@@ -15,6 +15,7 @@ describe('Menubar', () => {
 
     fixture = TestBed.createComponent(Menubar)
     component = fixture.componentInstance
+    fixture.detectChanges()
     await fixture.whenStable()
   })
 
@@ -22,10 +23,18 @@ describe('Menubar', () => {
     expect(component).toBeTruthy()
   })
 
-  it('renders a mobile menu button', () => {
-    const button = fixture.nativeElement.querySelector('[aria-label="Open navigation menu"]')
+  it('renders a brandmark mobile menu button without a hamburger trigger', () => {
+    const element: HTMLElement = fixture.nativeElement
+    const button = element.querySelector('[aria-label="Open navigation menu"]')
 
     expect(button).toBeTruthy()
+    expect(element.querySelector('.pi-bars')).toBeNull()
+  })
+
+  it('renders the current page label', () => {
+    const element: HTMLElement = fixture.nativeElement
+
+    expect(element.textContent).toContain('Home')
   })
 
   it('renders desktop navigation links', () => {
@@ -48,5 +57,19 @@ describe('Menubar', () => {
     fixture.detectChanges()
 
     expect(component['mobileMenuOpen']()).toBe(false)
+  })
+
+  it('toggles the desktop rail', () => {
+    const button = fixture.nativeElement.querySelector(
+      '[aria-label="Toggle navigation rail"]',
+    ) as HTMLButtonElement
+
+    expect(component['railExpanded']()).toBe(false)
+
+    button.click()
+    fixture.detectChanges()
+
+    expect(component['railExpanded']()).toBe(true)
+    expect(button.getAttribute('aria-expanded')).toBe('true')
   })
 })
