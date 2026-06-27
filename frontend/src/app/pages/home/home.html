@@ -51,11 +51,13 @@
     @for (project of featuredProjects; track project.name) {
       <p-card class="portfolio-card">
         <ng-template #title>{{ project.name }}</ng-template>
-        <ng-template #subtitle>{{ project.status }}</ng-template>
+        @if (project.status) {
+          <ng-template #subtitle>{{ project.status }}</ng-template>
+        }
         <p class="text-surface-400 leading-relaxed">{{ project.summary }}</p>
         <p class="text-surface-400 leading-relaxed">{{ project.impact }}</p>
         <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Project stack">
-          @for (tech of project.stack; track tech) {
+          @for (tech of visibleProjectStack(project); track tech) {
             <p-tag [value]="tech" severity="secondary" rounded />
           }
         </div>

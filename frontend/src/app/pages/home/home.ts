@@ -4,7 +4,7 @@ import { Button, ButtonDirective } from 'primeng/button';
 import { Card } from 'primeng/card';
 import { Tag } from 'primeng/tag';
 
-import { links, profile, projects, skillGroups } from '../../portfolio-data';
+import { links, profile, projects, skillGroups, visibleProjectStack } from '../../portfolio-data';
 
 @Component({
   selector: 'app-home',
@@ -17,5 +17,6 @@ export class Home {
   protected readonly profile = profile;
   protected readonly links = links;
   protected readonly skillGroups = skillGroups;
-  protected readonly featuredProjects = projects.slice(0, 2);
+  protected readonly visibleProjectStack = visibleProjectStack;
+  protected readonly featuredProjects = projects.filter((project) => project.section === 'active').slice(0, 2);
 }

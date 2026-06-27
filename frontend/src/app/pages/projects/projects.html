@@ -1,45 +1,50 @@
-<section class="mx-auto w-[min(1120px,calc(100%_-_2rem))] py-10 pb-4 md:py-16 md:pb-4 lg:py-20 lg:pb-4">
-  <p class="eyebrow">Projects</p>
-  <h1 class="m-0 max-w-[13ch] text-[clamp(2.6rem,8vw,5.5rem)] font-black leading-[0.92] drop-shadow-[0_0_34px_rgba(139,92,246,0.26)] max-sm:text-[3.2rem]">
-    Work samples and case-study slots
+<section class="mx-auto w-[min(1120px,calc(100%_-_2rem))] py-10 pb-6 md:py-16 md:pb-8">
+  <h1 class="m-0 max-w-[16ch] text-[clamp(2.25rem,6vw,4.5rem)] font-black leading-none drop-shadow-[0_0_34px_rgba(139,92,246,0.2)]">
+    Independent projects
   </h1>
-  <p class="max-w-[46rem] text-[clamp(1.05rem,2.2vw,1.35rem)] leading-relaxed text-surface-400">
-    Replace these entries with real projects as the portfolio fills in. The layout is ready for code,
-    writeups, demos, and work-safe impact summaries.
+  <p class="max-w-[44rem] text-[clamp(1rem,2vw,1.2rem)] leading-relaxed text-surface-400">
+    Personal software work outside client and employer codebases, grouped by what is active,
+    maintained, and complete.
   </p>
 </section>
 
-<section class="mx-auto w-[min(1120px,calc(100%_-_2rem))] py-4 pb-8" aria-label="Project filters">
-  <span id="project-filter-label" class="sr-only">Project category filter</span>
-  <p-selectButton
-    styleClass="project-filter"
-    [options]="filters"
-    [allowEmpty]="false"
-    [ngModel]="activeFilter()"
-    (onChange)="activeFilter.set($event.value)"
-    ariaLabelledBy="project-filter-label"
-  />
-</section>
-
-<section class="mx-auto grid w-[min(1120px,calc(100%_-_2rem))] grid-cols-1 gap-4 pb-10 md:grid-cols-2 md:pb-16 lg:grid-cols-3 lg:pb-20" aria-label="Project list">
-  @for (project of filteredProjects(); track project.name) {
-    <p-card class="portfolio-card project-card">
-      <ng-template #title>{{ project.name }}</ng-template>
-      <ng-template #subtitle>{{ project.status }}</ng-template>
-      <p class="text-surface-400 leading-relaxed">{{ project.summary }}</p>
-      <p class="text-surface-400 leading-relaxed">{{ project.impact }}</p>
-      <div class="mt-4 flex flex-wrap items-center gap-3">
-        @for (tech of project.stack; track tech) {
-          <p-tag [value]="tech" rounded />
-        }
+<div class="mx-auto grid w-[min(1120px,calc(100%_-_2rem))] gap-8 pb-10 md:pb-16 lg:pb-20">
+  @for (projectSection of projectSections(); track projectSection.id) {
+    <section class="grid gap-4" [attr.aria-labelledby]="projectSection.id + '-projects-heading'">
+      <div class="flex items-end justify-between gap-4 max-sm:flex-col max-sm:items-start">
+        <h2 [id]="projectSection.id + '-projects-heading'" class="eyebrow m-0">{{ projectSection.title }}</h2>
       </div>
-      <ng-template #footer>
-        <div class="flex flex-wrap items-center gap-3">
-          @for (link of project.links; track link.label) {
-            <a pButton [href]="link.href" target="_blank" rel="noopener" [label]="link.label" [icon]="link.icon" outlined></a>
+
+      @if (projectSection.projects.length > 0) {
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          @for (project of projectSection.projects; track project.name) {
+            <p-card class="portfolio-card project-card">
+              <ng-template #title>{{ project.name }}</ng-template>
+              @if (project.status) {
+                <ng-template #subtitle>{{ project.status }}</ng-template>
+              }
+              <p class="text-surface-400 leading-relaxed">{{ project.summary }}</p>
+              <p class="text-surface-400 leading-relaxed">{{ project.impact }}</p>
+              <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Project technologies">
+                @for (tech of visibleProjectStack(project); track tech) {
+                  <p-tag [value]="tech" rounded />
+                }
+              </div>
+              <ng-template #footer>
+                <div class="flex flex-wrap items-center gap-3">
+                  @for (link of project.links; track link.label) {
+                    <a pButton [href]="link.href" target="_blank" rel="noopener" [label]="link.label" [icon]="link.icon" outlined></a>
+                  }
+                </div>
+              </ng-template>
+            </p-card>
           }
         </div>
-      </ng-template>
-    </p-card>
+      } @else {
+        <p class="m-0 rounded-lg border border-dashed border-surface-700 bg-surface-900/35 px-4 py-3 text-sm leading-relaxed text-surface-400">
+          {{ projectSection.emptyMessage }}
+        </p>
+      }
+    </section>
   }
-</section>
+</div>
