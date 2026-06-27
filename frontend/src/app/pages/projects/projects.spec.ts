@@ -25,7 +25,9 @@ describe('Projects', () => {
 
   it('renders the compact independent-project intro', () => {
     expect(compiled.textContent).toContain('Independent projects');
-    expect(compiled.textContent).toContain('Personal software work outside client and employer codebases');
+    expect(compiled.textContent).toContain(
+      'Personal software work outside client and employer codebases',
+    );
     expect(compiled.textContent).not.toContain('Work samples and case-study slots');
   });
 
@@ -64,10 +66,16 @@ describe('Projects', () => {
 
   it('keeps empty maintained and legacy sections visible without project cards', () => {
     const sections = Array.from(compiled.querySelectorAll('section'));
-    const maintainedSection = sections.find((section) => section.textContent?.includes('Maintained'));
-    const legacySection = sections.find((section) => section.textContent?.includes('Legacy (No Active Maintenance)'));
+    const maintainedSection = sections.find((section) =>
+      section.textContent?.includes('Maintained'),
+    );
+    const legacySection = sections.find((section) =>
+      section.textContent?.includes('Legacy (No Active Maintenance)'),
+    );
 
-    expect(maintainedSection?.textContent).toContain('No maintained independent projects are listed yet.');
+    expect(maintainedSection?.textContent).toContain(
+      'No maintained independent projects are listed yet.',
+    );
     expect(legacySection?.textContent).toContain('No legacy independent projects are listed yet.');
     expect(maintainedSection?.querySelector('p-card')).toBeNull();
     expect(legacySection?.querySelector('p-card')).toBeNull();

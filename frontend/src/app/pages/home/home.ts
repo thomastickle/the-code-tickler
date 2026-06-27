@@ -18,5 +18,7 @@ export class Home {
   protected readonly links = links;
   protected readonly skillGroups = skillGroups;
   protected readonly visibleProjectStack = visibleProjectStack;
-  protected readonly featuredProjects = projects.filter((project) => project.section === 'active').slice(0, 2);
+  protected readonly featuredProjects = projects
+    .filter((project) => project.section === 'active')
+    .slice(0, 2);
 }

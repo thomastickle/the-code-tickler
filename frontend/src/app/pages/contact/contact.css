@@ -12,7 +12,7 @@
 }
 
 .contact-section::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 14% 2rem auto auto;
   z-index: -1;
@@ -29,6 +29,5 @@
 html.app-light :host {
   background:
     radial-gradient(circle at 14% 28%, rgba(124, 58, 237, 0.14), transparent 18rem),
-    radial-gradient(circle at 84% 22%, rgba(14, 165, 233, 0.1), transparent 22rem),
-    var(--hero-wash);
+    radial-gradient(circle at 84% 22%, rgba(14, 165, 233, 0.1), transparent 22rem), var(--hero-wash);
 }

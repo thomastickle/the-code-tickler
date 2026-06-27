@@ -13,7 +13,7 @@
 }
 
 .about-hero::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 12% auto auto 50%;
   z-index: -1;
@@ -36,7 +36,11 @@
   height: 100%;
   border: 1px solid var(--card-border);
   border-radius: 0.5rem;
-  background: linear-gradient(145deg, color-mix(in srgb, var(--card-bg) 92%, transparent), color-mix(in srgb, var(--surface-alt) 78%, transparent));
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--card-bg) 92%, transparent),
+    color-mix(in srgb, var(--surface-alt) 78%, transparent)
+  );
   box-shadow: 0 1.4rem 3rem rgba(2, 6, 23, 0.18);
   backdrop-filter: blur(14px);
 }
@@ -59,7 +63,7 @@
 }
 
 .statement-card::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 1rem auto 1rem 0;
   width: 3px;
