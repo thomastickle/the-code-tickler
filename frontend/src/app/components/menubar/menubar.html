@@ -1,72 +1,80 @@
-<p-toolbar class="site-toolbar sticky top-0 z-10 block">
-  <ng-template #start>
-    <a
-      routerLink="/"
-      class="inline-flex items-center gap-3 font-extrabold no-underline"
-      aria-label="The Code Tickler home"
+<header class="site-shell-bar sticky top-0 z-20">
+  <div
+    class="mx-auto flex w-[min(1120px,calc(100%_-_2rem))] items-center justify-between gap-4 py-3"
+  >
+    <button
+      type="button"
+      class="brandmark-trigger"
+      (click)="toggleNavigation()"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="brandmark-navigation"
+      aria-label="Toggle navigation menu"
     >
       <img
         src="brand-mark-1x.png"
         srcset="brand-mark-1x.png 1x, brand-mark-2x.png 2x, brand-mark-3x.png 3x"
         alt=""
-        class="brand-glyph h-11 w-auto"
         width="74"
         height="52"
         aria-hidden="true"
       />
-      <span>The Code Tickler</span>
-    </a>
-  </ng-template>
+      <span class="hidden font-black sm:inline">The Code Tickler</span>
+    </button>
 
-  <ng-template #end>
-    <div class="flex items-center justify-end gap-3">
-      <nav
-        class="site-nav hidden items-center justify-end gap-1 md:flex"
-        aria-label="Primary navigation"
-      >
-        @for (item of navItems; track item.path) {
-          <a
-            class="rounded-full px-3 py-2 font-bold text-surface-400 no-underline"
-            [routerLink]="item.path"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-          >
-            {{ item.label }}
-          </a>
-          @if (!$last) {
-            <span class="text-surface-400 opacity-50" aria-hidden="true">|</span>
-          }
-        }
-      </nav>
+    <p class="current-page-label" aria-live="polite">{{ currentPageLabel() }}</p>
 
-      <p-button
-        styleClass="theme-toggle"
-        (click)="toggleTheme()"
-        [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
-        [icon]="darkMode() ? 'pi pi-sun' : 'pi pi-moon'"
-        rounded
-        text
-      />
+    <p-button
+      styleClass="theme-toggle"
+      (click)="toggleTheme()"
+      [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+      [icon]="darkMode() ? 'pi pi-sun' : 'pi pi-moon'"
+      rounded
+      text
+    />
+  </div>
+</header>
 
-      <span class="md:hidden">
-        <p-button
-          styleClass="mobile-menu-button"
-          (click)="openMobileMenu()"
-          aria-label="Open navigation menu"
-          icon="pi pi-bars"
-          rounded
-          text
-        />
-      </span>
-    </div>
-  </ng-template>
-</p-toolbar>
-
-@defer (when mobileMenuLoaded()) {
-  <app-mobile-nav-drawer
-    [open]="mobileMenuOpen()"
-    [navItems]="navItems"
-    (openChange)="updateMobileMenuVisibility($event)"
-    (navigate)="closeMobileMenu()"
-  />
+@if (menuOpen()) {
+  <div
+    class="navigation-scrim fixed inset-0 z-10"
+    aria-hidden="true"
+    (click)="closeNavigation()"
+  ></div>
 }
+
+<section
+  id="brandmark-navigation"
+  class="brandmark-menu fixed z-30"
+  [class.open]="menuOpen()"
+  aria-label="Primary navigation"
+>
+  <div class="brandmark-menu-header">
+    <img
+      src="brand-mark-1x.png"
+      srcset="brand-mark-1x.png 1x, brand-mark-2x.png 2x, brand-mark-3x.png 3x"
+      alt=""
+      width="74"
+      height="52"
+      aria-hidden="true"
+    />
+    <div>
+      <p class="m-0 text-sm font-black">The Code Tickler</p>
+      <p class="m-0 text-xs text-surface-400">Currently viewing {{ currentPageLabel() }}</p>
+    </div>
+  </div>
+
+  <nav class="grid gap-2" aria-label="Primary navigation">
+    @for (item of navItems; track item.path) {
+      <a
+        class="brandmark-menu-link"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+        (click)="closeNavigation()"
+      >
+        <span [class]="item.icon" aria-hidden="true"></span>
+        <span>{{ item.label }}</span>
+      </a>
+    }
+  </nav>
+</section>
