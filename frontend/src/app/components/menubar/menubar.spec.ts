@@ -46,6 +46,18 @@ describe('Menubar', () => {
     }
   })
 
+  it('expands navigation from the brandmark control without a duplicate header', () => {
+    component['toggleNavigation']()
+    fixture.detectChanges()
+
+    const element: HTMLElement = fixture.nativeElement
+
+    expect(element.querySelector('.brandmark-menu-root.open')).toBeTruthy()
+    expect(element.querySelector('.brandmark-menu.open')).toBeTruthy()
+    expect(element.querySelector('.brandmark-menu-header')).toBeNull()
+    expect(element.textContent).not.toContain('Currently viewing')
+  })
+
   it('opens and closes the brandmark menu', () => {
     component['toggleNavigation']()
     fixture.detectChanges()
