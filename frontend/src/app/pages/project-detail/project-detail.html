@@ -13,7 +13,9 @@
         >
           {{ project.name }}
         </h1>
-        <p class="max-w-3xl text-[clamp(1.05rem,2.2vw,1.35rem)] leading-relaxed text-surface-400">
+        <p
+          class="max-w-3xl text-[clamp(1.05rem,2.2vw,1.35rem)] leading-relaxed text-[var(--muted)]"
+        >
           {{ project.summary }}
         </p>
       </div>
@@ -46,7 +48,7 @@
         <h2 class="m-0 text-[clamp(1.6rem,3vw,2.25rem)] leading-tight">What this project is</h2>
         <div class="mt-5 grid gap-4">
           @for (paragraph of project.detail.blurb; track paragraph) {
-            <p class="m-0 leading-relaxed text-surface-400">{{ paragraph }}</p>
+            <p class="m-0 leading-relaxed text-[var(--muted)]">{{ paragraph }}</p>
           }
         </div>
       </p-card>
@@ -59,7 +61,7 @@
               <article class="related-writing-item">
                 <p class="eyebrow m-0">{{ post.date }}</p>
                 <h3 class="m-0 mt-2 text-xl">{{ post.title }}</h3>
-                <p class="m-0 mt-3 leading-relaxed text-surface-400">{{ post.summary }}</p>
+                <p class="m-0 mt-3 leading-relaxed text-[var(--muted)]">{{ post.summary }}</p>
                 <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Writing tags">
                   @for (tag of post.tags; track tag) {
                     <p-tag [value]="tag" severity="secondary" rounded />
@@ -69,7 +71,7 @@
             }
           </div>
         } @else {
-          <p class="m-0 mt-5 leading-relaxed text-surface-400">
+          <p class="m-0 mt-5 leading-relaxed text-[var(--muted)]">
             No related writing is attached to this project yet.
           </p>
         }
@@ -101,7 +103,7 @@
     <p-card class="portfolio-card detail-card">
       <p class="eyebrow">Project not found</p>
       <h1 class="m-0 text-[clamp(2.25rem,6vw,4rem)] leading-none">No project lives here yet.</h1>
-      <p class="max-w-2xl leading-relaxed text-surface-400">
+      <p class="max-w-2xl leading-relaxed text-[var(--muted)]">
         The project detail you opened is not available. Return to the projects list to see the
         currently published work.
       </p>

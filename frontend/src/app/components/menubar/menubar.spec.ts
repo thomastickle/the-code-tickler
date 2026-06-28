@@ -8,6 +8,8 @@ describe('Menubar', () => {
   let fixture: ComponentFixture<Menubar>
 
   beforeEach(async () => {
+    localStorage.clear()
+
     await TestBed.configureTestingModule({
       imports: [Menubar],
       providers: [provideRouter([])],
@@ -100,5 +102,24 @@ describe('Menubar', () => {
     fixture.detectChanges()
 
     expect(component['menuOpen']()).toBe(false)
+  })
+
+  it('saves the selected theme preference', () => {
+    component['toggleTheme']()
+    fixture.detectChanges()
+
+    expect(localStorage.getItem('the-code-tickler-theme')).toBe('light')
+    expect(document.documentElement.classList).toContain('app-light')
+  })
+
+  it('restores a saved light theme preference', async () => {
+    localStorage.setItem('the-code-tickler-theme', 'light')
+
+    const lightFixture = TestBed.createComponent(Menubar)
+    lightFixture.detectChanges()
+    await lightFixture.whenStable()
+
+    expect(lightFixture.componentInstance['darkMode']()).toBe(false)
+    expect(document.documentElement.classList).toContain('app-light')
   })
 })

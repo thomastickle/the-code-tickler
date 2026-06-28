@@ -10,7 +10,7 @@
         Practical engineering with a careful touch.
       </h1>
       <h2
-        class="mt-5 max-w-2xl text-[clamp(1.15rem,2.1vw,1.75rem)] font-bold leading-tight text-surface-400 max-sm:text-xl"
+        class="mt-5 max-w-2xl text-[clamp(1.15rem,2.1vw,1.75rem)] font-bold leading-tight text-[var(--muted)] max-sm:text-xl"
       >
         {{ byline }}
       </h2>
@@ -25,7 +25,7 @@
           <span class="mb-3 block text-xs font-black uppercase text-[var(--accent-strong)]">{{
             statement.label
           }}</span>
-          <p class="m-0 text-[1.0625rem] leading-relaxed text-surface-400 md:text-lg">
+          <p class="m-0 text-[1.0625rem] leading-relaxed text-[var(--muted)] md:text-lg">
             {{ statement.text }}
           </p>
         </p-card>
@@ -53,7 +53,7 @@
       <p class="eyebrow">Why it matters</p>
       <h2 class="m-0 text-[clamp(2.1rem,4.7vw,3.6rem)] leading-none">What can I do?</h2>
     </div>
-    <p class="m-0 text-lg leading-relaxed text-surface-400">
+    <p class="m-0 text-lg leading-relaxed text-[var(--muted)]">
       I’m Thomas Tickle, a software engineer and technical lead with nearly two decades of
       experience building, modernizing, and operating production systems.
     </p>
@@ -73,7 +73,7 @@
               {{ capability.title }}
             </h3>
           </header>
-          <p class="m-0 text-[1.0625rem] leading-relaxed text-surface-400 md:text-lg">
+          <p class="m-0 text-[1.0625rem] leading-relaxed text-[var(--muted)] md:text-lg">
             {{ capability.summary }}
           </p>
           <div class="mt-auto flex flex-wrap items-center gap-3 pt-5" aria-label="Capability tags">
