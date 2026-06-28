@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  background:
+    radial-gradient(circle at 16% 18%, rgba(139, 92, 246, 0.22), transparent 20rem),
+    radial-gradient(circle at 86% 18%, rgba(34, 211, 238, 0.12), transparent 24rem),
+    var(--hero-wash);
+}
+
+.project-detail-hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.detail-card,
+.detail-meta-card {
+  display: block;
+  height: 100%;
+}
+
+:host ::ng-deep .detail-card .p-card,
+:host ::ng-deep .detail-meta-card .p-card {
+  height: 100%;
+}
+
+:host ::ng-deep .detail-card .p-card-content,
+:host ::ng-deep .detail-meta-card .p-card-content {
+  padding: 0;
+}
+
+.detail-list {
+  display: grid;
+  gap: 0.85rem;
+  margin-bottom: 0;
+  padding-left: 1.15rem;
+  color: var(--p-surface-400);
+  line-height: 1.65;
+}
+
+.related-writing-item {
+  border-top: 1px solid var(--card-border);
+  padding-top: 1.25rem;
+}
+
+.related-writing-item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+html.app-light :host {
+  background:
+    radial-gradient(circle at 16% 18%, rgba(124, 58, 237, 0.14), transparent 20rem),
+    radial-gradient(circle at 86% 18%, rgba(14, 165, 233, 0.1), transparent 24rem),
+    var(--hero-wash);
+}

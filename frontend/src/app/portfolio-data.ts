@@ -8,10 +8,16 @@ export type ProjectSection = 'active' | 'maintained' | 'legacy'
 
 export interface Project {
   name: string
+  slug: string
   status?: string
   section: ProjectSection
   summary: string
-  impact: string
+  impact?: string
+  detail: {
+    blurb: string[]
+    highlights: string[]
+    ownershipNotes: string[]
+  }
   stack: string[]
   links: LinkItem[]
 }
@@ -33,6 +39,15 @@ export interface ExperienceItem {
 export interface SkillGroup {
   name: string
   skills: string[]
+}
+
+export interface WritingPost {
+  slug: string
+  title: string
+  date: string
+  summary: string
+  tags: string[]
+  projectSlugs?: string[]
 }
 
 export const profile = {
@@ -59,11 +74,28 @@ export const links: LinkItem[] = [
 export const projects: Project[] = [
   {
     name: 'The Code Tickler',
+    slug: 'the-code-tickler',
     section: 'active',
     summary:
       'A personal portfolio site for independent project notes, practical engineering work, and public-facing craft.',
-    impact:
-      'Keeps the frontend, deployment path, and project writing in one maintainable Angular codebase.',
+    detail: {
+      blurb: [
+        'The Code Tickler is the working home for my independent software projects, writing, and public-facing engineering notes. It is intentionally small enough to keep moving and structured enough to show how I think about product shape, delivery, maintenance, and long-term ownership.',
+        'This site is also a useful proving ground. The frontend, content model, routing, visual system, and deployment path all live in one Angular codebase, which makes it easier to try ideas quickly while still treating the work like a maintainable product.',
+        'The project detail view is the first step toward making each project card more useful than a summary tile. Over time, each project can gather deeper writeups, decisions, related articles, source links, and notes about what changed after launch.',
+      ],
+      highlights: [
+        'Angular standalone components with lazy-loaded routes',
+        'PrimeNG surfaces styled with Tailwind utility classes and token-backed colors',
+        'Cloudflare Pages-oriented static deployment',
+        'Shared portfolio data that can grow into richer project records',
+      ],
+      ownershipNotes: [
+        'Keep the project list honest by separating active, maintained, and legacy work.',
+        'Use project detail pages for context that does not fit cleanly on summary cards.',
+        'Tie writing back to the project that prompted it so articles feel connected to real work.',
+      ],
+    },
     stack: ['Angular', 'PrimeNG', 'Tailwind CSS', 'Cloudflare Pages'],
     links: [
       {
@@ -72,6 +104,32 @@ export const projects: Project[] = [
         icon: 'pi pi-github',
       },
     ],
+  },
+]
+
+export const writingPosts: WritingPost[] = [
+  {
+    slug: 'how-i-review-code',
+    title: 'How I review code',
+    date: 'Placeholder',
+    summary: 'A future note about reading for behavior, maintainability, and product fit.',
+    tags: ['Code review', 'Delivery'],
+    projectSlugs: ['the-code-tickler'],
+  },
+  {
+    slug: 'angular-patterns-worth-keeping',
+    title: 'Angular patterns worth keeping',
+    date: 'Placeholder',
+    summary: 'A future writeup about component boundaries, signals, and practical UI state.',
+    tags: ['Angular', 'TypeScript'],
+    projectSlugs: ['the-code-tickler'],
+  },
+  {
+    slug: 'small-tools-real-leverage',
+    title: 'Small tools, real leverage',
+    date: 'Placeholder',
+    summary: 'A future case study on developer tooling that removes repetitive work.',
+    tags: ['Automation', 'Tooling'],
   },
 ]
 
@@ -94,6 +152,12 @@ export const projectSections: ProjectSectionSummary[] = [
 ]
 
 export const visibleProjectStack = (project: Project): string[] => project.stack.slice(0, 4)
+
+export const projectBySlug = (slug: string | null | undefined): Project | undefined =>
+  projects.find((project) => project.slug === slug)
+
+export const relatedWritingForProject = (project: Project): WritingPost[] =>
+  writingPosts.filter((post) => post.projectSlugs?.includes(project.slug))
 
 export const experience: ExperienceItem[] = [
   {

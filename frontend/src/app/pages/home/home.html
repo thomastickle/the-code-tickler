@@ -69,13 +69,23 @@
 
   <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
     @for (project of featuredProjects; track project.name) {
-      <p-card class="portfolio-card">
+      <p-card
+        class="portfolio-card interactive-project-card"
+        role="link"
+        tabindex="0"
+        [attr.aria-label]="'Open project details for ' + project.name"
+        (click)="openProject(project)"
+        (keydown.enter)="openProjectFromKeyboard($event, project)"
+        (keydown.space)="openProjectFromKeyboard($event, project)"
+      >
         <ng-template #title>{{ project.name }}</ng-template>
         @if (project.status) {
           <ng-template #subtitle>{{ project.status }}</ng-template>
         }
         <p class="text-surface-400 leading-relaxed">{{ project.summary }}</p>
-        <p class="text-surface-400 leading-relaxed">{{ project.impact }}</p>
+        @if (project.impact) {
+          <p class="text-surface-400 leading-relaxed">{{ project.impact }}</p>
+        }
         <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Project stack">
           @for (tech of visibleProjectStack(project); track tech) {
             <p-tag [value]="tech" severity="secondary" rounded />
