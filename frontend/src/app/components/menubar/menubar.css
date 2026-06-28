@@ -2,33 +2,117 @@
   display: block;
 }
 
-:host ::ng-deep .site-toolbar.p-toolbar {
-  gap: 1rem;
-  padding: 0.75rem 1rem;
-  border: 0;
-  border-bottom: 1px solid var(--chrome-line);
-  border-radius: 0;
+.site-shell-bar,
+.brandmark-menu-popout {
+  border-color: var(--chrome-line);
   background: var(--chrome-bg);
   color: var(--ink);
   backdrop-filter: blur(18px);
 }
 
-:host ::ng-deep .site-toolbar .p-toolbar-start,
-:host ::ng-deep .site-toolbar .p-toolbar-end {
-  min-width: 0;
+.site-shell-bar {
+  border-bottom: 1px solid var(--chrome-line);
 }
 
-:host ::ng-deep .site-toolbar .p-toolbar-end {
-  justify-content: flex-end;
+.site-shell-inner {
+  grid-template-columns: minmax(3.25rem, 1fr) minmax(0, auto) minmax(2.5rem, 1fr);
 }
 
-.brand-glyph {
+.brandmark-menu-root {
+  position: relative;
+  min-width: 3.25rem;
+  justify-self: start;
+}
+
+.brandmark-trigger {
+  display: inline-flex;
+  min-width: 3.25rem;
+  height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0 0.8rem;
+  border: 1px solid var(--chrome-line);
+  border-radius: 999px;
+  background: var(--button-glass);
+  color: inherit;
+  cursor: pointer;
+}
+
+.brandmark-trigger:hover,
+.brandmark-trigger:focus-visible {
+  color: var(--nav-active);
+  background: var(--nav-active-bg);
+}
+
+.brandmark-trigger img {
+  width: auto;
   filter: drop-shadow(0 0 14px rgba(139, 92, 246, 0.52));
 }
 
-.site-nav a.active,
-.site-nav a:hover,
-.site-nav a:focus-visible {
+.brandmark-trigger img {
+  height: 2.2rem;
+}
+
+.brandmark-menu-chevron {
+  margin-left: auto;
+  color: var(--muted);
+  transition: transform 160ms ease;
+}
+
+.brandmark-trigger[aria-expanded='true'] .brandmark-menu-chevron {
+  transform: rotate(180deg);
+}
+
+.current-page-label {
+  margin: 0;
+  overflow: hidden;
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.navigation-scrim {
+  background: rgba(2, 6, 23, 0.34);
+}
+
+.brandmark-menu-popout {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  left: 0;
+  z-index: 30;
+  width: min(24rem, calc(100vw - 2rem));
+  padding: 1rem;
+  border: 1px solid var(--chrome-line);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--p-surface-950) 96%, black);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.28);
+  transform-origin: top left;
+  animation: brandmark-menu-enter 160ms ease both;
+}
+
+:host-context(.app-light) .brandmark-menu-popout {
+  background: color-mix(in srgb, var(--p-surface-0) 98%, white);
+}
+
+.brandmark-menu-link {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding-inline: 1rem;
+  border-radius: 0.75rem;
+  color: var(--muted);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.brandmark-menu-link.active,
+.brandmark-menu-link:hover,
+.brandmark-menu-link:focus-visible {
   color: var(--nav-active);
   background: var(--nav-active-bg);
 }
@@ -41,22 +125,14 @@
   color: var(--nav-active);
 }
 
-:host ::ng-deep .mobile-menu-button.p-button {
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 1px solid var(--chrome-line);
-  background: var(--button-glass);
-  color: var(--nav-active);
-}
-
-@media (min-width: 768px) {
-  :host ::ng-deep .site-toolbar.p-toolbar {
-    padding-inline: 2.5rem;
+@keyframes brandmark-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-0.35rem) scale(0.98);
   }
-}
 
-@media (min-width: 1024px) {
-  :host ::ng-deep .site-toolbar.p-toolbar {
-    padding-inline: 4rem;
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }

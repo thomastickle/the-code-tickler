@@ -15,12 +15,13 @@ describe('MobileNavDrawer', () => {
     fixture = TestBed.createComponent(MobileNavDrawer)
     fixture.componentRef.setInput('open', true)
     fixture.componentRef.setInput('navItems', [
-      { label: 'Home', path: '/' },
-      { label: 'About', path: '/about' },
-      { label: 'Projects', path: '/projects' },
-      { label: 'Writing', path: '/writing' },
-      { label: 'Contact', path: '/contact' },
+      { label: 'Home', path: '/', icon: 'pi pi-home' },
+      { label: 'About', path: '/about', icon: 'pi pi-user' },
+      { label: 'Projects', path: '/projects', icon: 'pi pi-briefcase' },
+      { label: 'Writing', path: '/writing', icon: 'pi pi-pencil' },
+      { label: 'Contact', path: '/contact', icon: 'pi pi-send' },
     ])
+    fixture.detectChanges()
     await fixture.whenStable()
   })
 

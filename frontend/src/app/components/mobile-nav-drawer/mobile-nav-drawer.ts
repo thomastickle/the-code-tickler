@@ -5,6 +5,7 @@ import { Drawer } from 'primeng/drawer'
 export interface NavItem {
   label: string
   path: string
+  icon: string
 }
 
 @Component({
