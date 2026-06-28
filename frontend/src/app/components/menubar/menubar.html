@@ -2,24 +2,52 @@
   <div
     class="mx-auto flex w-[min(1120px,calc(100%_-_2rem))] items-center justify-between gap-4 py-3"
   >
-    <button
-      type="button"
-      class="brandmark-trigger"
-      (click)="toggleNavigation()"
-      [attr.aria-expanded]="menuOpen()"
-      aria-controls="brandmark-navigation"
-      aria-label="Toggle navigation menu"
+    <section
+      id="brandmark-navigation"
+      class="brandmark-menu"
+      [class.open]="menuOpen()"
+      aria-label="Primary navigation"
     >
-      <img
-        src="brand-mark-1x.png"
-        srcset="brand-mark-1x.png 1x, brand-mark-2x.png 2x, brand-mark-3x.png 3x"
-        alt=""
-        width="74"
-        height="52"
-        aria-hidden="true"
-      />
-      <span class="hidden font-black sm:inline">The Code Tickler</span>
-    </button>
+      <button
+        type="button"
+        class="brandmark-trigger"
+        (click)="toggleNavigation()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="brandmark-navigation"
+        aria-label="Toggle navigation menu"
+      >
+        <img
+          src="brand-mark-1x.png"
+          srcset="brand-mark-1x.png 1x, brand-mark-2x.png 2x, brand-mark-3x.png 3x"
+          alt=""
+          width="74"
+          height="52"
+          aria-hidden="true"
+        />
+        <span class="hidden font-black sm:inline">The Code Tickler</span>
+        <span
+          class="pi pi-chevron-down brandmark-menu-chevron hidden sm:inline"
+          aria-hidden="true"
+        ></span>
+      </button>
+
+      @if (menuOpen()) {
+        <nav class="grid gap-2" aria-label="Primary navigation">
+          @for (item of navItems; track item.path) {
+            <a
+              class="brandmark-menu-link"
+              [routerLink]="item.path"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+              (click)="closeNavigation()"
+            >
+              <span [class]="item.icon" aria-hidden="true"></span>
+              <span>{{ item.label }}</span>
+            </a>
+          }
+        </nav>
+      }
+    </section>
 
     <p class="current-page-label" aria-live="polite">{{ currentPageLabel() }}</p>
 
@@ -41,40 +69,3 @@
     (click)="closeNavigation()"
   ></div>
 }
-
-<section
-  id="brandmark-navigation"
-  class="brandmark-menu fixed z-30"
-  [class.open]="menuOpen()"
-  aria-label="Primary navigation"
->
-  <div class="brandmark-menu-header">
-    <img
-      src="brand-mark-1x.png"
-      srcset="brand-mark-1x.png 1x, brand-mark-2x.png 2x, brand-mark-3x.png 3x"
-      alt=""
-      width="74"
-      height="52"
-      aria-hidden="true"
-    />
-    <div>
-      <p class="m-0 text-sm font-black">The Code Tickler</p>
-      <p class="m-0 text-xs text-surface-400">Currently viewing {{ currentPageLabel() }}</p>
-    </div>
-  </div>
-
-  <nav class="grid gap-2" aria-label="Primary navigation">
-    @for (item of navItems; track item.path) {
-      <a
-        class="brandmark-menu-link"
-        [routerLink]="item.path"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-        (click)="closeNavigation()"
-      >
-        <span [class]="item.icon" aria-hidden="true"></span>
-        <span>{{ item.label }}</span>
-      </a>
-    }
-  </nav>
-</section>

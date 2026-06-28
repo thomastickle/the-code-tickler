@@ -14,8 +14,32 @@
   border-bottom: 1px solid var(--chrome-line);
 }
 
+.brandmark-menu {
+  position: relative;
+  z-index: 30;
+  width: auto;
+  min-width: 3.25rem;
+  padding: 0;
+  border: 1px solid var(--chrome-line);
+  border-radius: 999px;
+  box-shadow: none;
+  transition:
+    width 160ms ease,
+    padding 160ms ease,
+    border-radius 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.brandmark-menu.open {
+  width: min(24rem, calc(100vw - 2rem));
+  padding: 0.6rem;
+  border-radius: 1rem;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.28);
+}
+
 .brandmark-trigger {
   display: inline-flex;
+  width: 100%;
   min-width: 3.25rem;
   height: 3.25rem;
   align-items: center;
@@ -36,14 +60,22 @@
   background: var(--nav-active-bg);
 }
 
-.brandmark-trigger img,
-.brandmark-menu-header img {
+.brandmark-trigger img {
   width: auto;
   filter: drop-shadow(0 0 14px rgba(139, 92, 246, 0.52));
 }
 
 .brandmark-trigger img {
   height: 2.2rem;
+}
+
+.brandmark-menu-chevron {
+  margin-left: auto;
+  transition: transform 160ms ease;
+}
+
+.brandmark-menu.open .brandmark-menu-chevron {
+  transform: rotate(180deg);
 }
 
 .current-page-label {
@@ -59,40 +91,6 @@
 
 .navigation-scrim {
   background: rgba(2, 6, 23, 0.34);
-}
-
-.brandmark-menu {
-  top: 5rem;
-  left: 1rem;
-  width: min(24rem, calc(100vw - 2rem));
-  padding: 1rem;
-  border: 1px solid var(--chrome-line);
-  border-radius: 1rem;
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.28);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-0.5rem) scale(0.98);
-  transform-origin: top left;
-  transition:
-    opacity 160ms ease,
-    transform 160ms ease;
-}
-
-.brandmark-menu.open {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0) scale(1);
-}
-
-.brandmark-menu-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.brandmark-menu-header img {
-  height: 2.6rem;
 }
 
 .brandmark-menu-link {
@@ -120,10 +118,4 @@
   border: 1px solid var(--chrome-line);
   background: var(--button-glass);
   color: var(--nav-active);
-}
-
-@media (min-width: 768px) {
-  .brandmark-menu {
-    left: max(2rem, calc((100vw - 1120px) / 2));
-  }
 }

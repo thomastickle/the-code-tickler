@@ -38,12 +38,30 @@ describe('Menubar', () => {
   })
 
   it('renders desktop navigation links', () => {
+    component['toggleNavigation']()
+    fixture.detectChanges()
+
     const element: HTMLElement = fixture.nativeElement
     const labels = ['Home', 'About', 'Projects', 'Writing', 'Contact']
 
     for (const label of labels) {
       expect(element.textContent).toContain(label)
     }
+  })
+
+  it('expands one persistent brandmark menu surface', () => {
+    const element: HTMLElement = fixture.nativeElement
+
+    expect(element.querySelector('.brandmark-menu')).toBeTruthy()
+    expect(element.querySelector('.brandmark-menu.open')).toBeNull()
+    expect(element.textContent).not.toContain('About')
+
+    component['toggleNavigation']()
+    fixture.detectChanges()
+
+    expect(element.querySelector('.brandmark-menu.open')).toBeTruthy()
+    expect(element.textContent).toContain('About')
+    expect(element.textContent).not.toContain('Currently viewing')
   })
 
   it('opens and closes the brandmark menu', () => {
