@@ -94,7 +94,7 @@
   animation: brandmark-menu-enter 160ms ease both;
 }
 
-html.app-light .brandmark-menu-popout {
+:host-context(.app-light) .brandmark-menu-popout {
   background: color-mix(in srgb, var(--p-surface-0) 98%, white);
 }
 
