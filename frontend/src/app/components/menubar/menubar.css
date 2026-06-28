@@ -36,8 +36,7 @@
   background: var(--nav-active-bg);
 }
 
-.brandmark-trigger img,
-.brandmark-menu-header img {
+.brandmark-trigger img {
   width: auto;
   filter: drop-shadow(0 0 14px rgba(139, 92, 246, 0.52));
 }
@@ -87,12 +86,7 @@
 .brandmark-menu-header {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
   margin-bottom: 1rem;
-}
-
-.brandmark-menu-header img {
-  height: 2.6rem;
 }
 
 .brandmark-menu-link {

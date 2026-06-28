@@ -46,6 +46,18 @@ describe('Menubar', () => {
     }
   })
 
+  it('keeps the open menu header concise', () => {
+    component['toggleNavigation']()
+    fixture.detectChanges()
+
+    const element: HTMLElement = fixture.nativeElement
+    const menuHeader = element.querySelector('.brandmark-menu-header')
+
+    expect(menuHeader?.textContent).toContain('The Code Tickler')
+    expect(menuHeader?.textContent).not.toContain('Currently viewing')
+    expect(menuHeader?.querySelector('img')).toBeNull()
+  })
+
   it('opens and closes the brandmark menu', () => {
     component['toggleNavigation']()
     fixture.detectChanges()
