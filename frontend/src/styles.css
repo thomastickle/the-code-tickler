@@ -107,6 +107,11 @@ svg {
   background: var(--hero-wash);
 }
 
+.site-frame {
+  width: min(1360px, calc(100% - clamp(2rem, 7vw, 6rem)));
+  margin-inline: auto;
+}
+
 .eyebrow {
   margin: 0 0 0.8rem;
   color: var(--accent-strong);

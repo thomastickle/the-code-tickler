@@ -22,6 +22,14 @@ describe('Home', () => {
     expect(component).toBeTruthy()
   })
 
+  it('uses the shared site frame for primary page sections', () => {
+    fixture.detectChanges()
+
+    const element: HTMLElement = fixture.nativeElement
+
+    expect(element.querySelectorAll('.site-frame').length).toBeGreaterThanOrEqual(4)
+  })
+
   it('opens the featured project detail from the project card', () => {
     const router = TestBed.inject(Router)
     const navigateSpy = vi.spyOn(router, 'navigate').mockResolvedValue(true)
