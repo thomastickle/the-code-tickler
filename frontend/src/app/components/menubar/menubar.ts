@@ -6,6 +6,9 @@ import { filter } from 'rxjs'
 
 import { type NavItem } from '../mobile-nav-drawer/mobile-nav-drawer'
 
+const themePreferenceKey = 'the-code-tickler-theme'
+type ThemePreference = 'dark' | 'light'
+
 @Component({
   selector: 'app-menubar',
   imports: [Button, RouterLink, RouterLinkActive],
@@ -16,7 +19,7 @@ import { type NavItem } from '../mobile-nav-drawer/mobile-nav-drawer'
 export class Menubar {
   private readonly document = inject(DOCUMENT)
   private readonly router = inject(Router)
-  protected readonly darkMode = signal(true)
+  protected readonly darkMode = signal(this.readThemePreference() !== 'light')
   protected readonly menuOpen = signal(false)
   protected readonly currentUrl = signal(this.router.url)
   protected readonly navItems: readonly NavItem[] = [
@@ -26,17 +29,24 @@ export class Menubar {
     { label: 'Writing', path: '/writing', icon: 'pi pi-pencil' },
     { label: 'Contact', path: '/contact', icon: 'pi pi-send' },
   ]
-  protected readonly currentPageLabel = computed(
-    () =>
-      this.navItems.find((item) => this.currentUrl().split('?')[0] === item.path)?.label ??
-      this.navItems[0].label,
-  )
+  protected readonly currentPageLabel = computed(() => {
+    const currentPath = this.currentUrl().split('?')[0].split('#')[0]
+
+    return (
+      this.navItems.find(
+        (item) =>
+          currentPath === item.path ||
+          (item.path !== '/' && currentPath.startsWith(`${item.path}/`)),
+      )?.label ?? this.navItems[0].label
+    )
+  })
 
   constructor() {
     effect(() => {
       const isDark = this.darkMode()
       this.document.documentElement.classList.toggle('app-dark', isDark)
       this.document.documentElement.classList.toggle('app-light', !isDark)
+      this.writeThemePreference(isDark ? 'dark' : 'light')
     })
 
     this.router.events
@@ -57,5 +67,15 @@ export class Menubar {
 
   protected closeNavigation(): void {
     this.menuOpen.set(false)
+  }
+
+  private readThemePreference(): ThemePreference | null {
+    const preference = this.document.defaultView?.localStorage.getItem(themePreferenceKey)
+
+    return preference === 'dark' || preference === 'light' ? preference : null
+  }
+
+  private writeThemePreference(preference: ThemePreference): void {
+    this.document.defaultView?.localStorage.setItem(themePreferenceKey, preference)
   }
 }

@@ -11,7 +11,7 @@
       >
         {{ profile.brand }}
       </h1>
-      <p class="max-w-3xl text-[clamp(1.05rem,2.2vw,1.35rem)] leading-relaxed text-surface-400">
+      <p class="max-w-3xl text-[clamp(1.05rem,2.2vw,1.35rem)] leading-relaxed text-[var(--muted)]">
         Developer portfolio, project notes, and practical engineering work with Angular, TypeScript,
         backend systems, and the occasional well-placed feather.
       </p>
@@ -69,13 +69,31 @@
 
   <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
     @for (project of featuredProjects; track project.name) {
-      <p-card class="portfolio-card">
-        <ng-template #title>{{ project.name }}</ng-template>
+      <p-card
+        class="portfolio-card interactive-project-card"
+        role="link"
+        tabindex="0"
+        [attr.aria-label]="'Open project details for ' + project.name"
+        (click)="openProject(project)"
+        (keydown.enter)="openProjectFromKeyboard($event, project)"
+        (keydown.space)="openProjectFromKeyboard($event, project)"
+      >
+        <ng-template #title>
+          <span class="project-title-line">
+            <span class="project-title-text">{{ project.name }}</span>
+            <span class="project-detail-cue" aria-hidden="true">
+              <span>Details</span>
+              <i class="pi pi-arrow-right"></i>
+            </span>
+          </span>
+        </ng-template>
         @if (project.status) {
           <ng-template #subtitle>{{ project.status }}</ng-template>
         }
-        <p class="text-surface-400 leading-relaxed">{{ project.summary }}</p>
-        <p class="text-surface-400 leading-relaxed">{{ project.impact }}</p>
+        <p class="leading-relaxed text-[var(--muted)]">{{ project.summary }}</p>
+        @if (project.impact) {
+          <p class="leading-relaxed text-[var(--muted)]">{{ project.impact }}</p>
+        }
         <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Project stack">
           @for (tech of visibleProjectStack(project); track tech) {
             <p-tag [value]="tech" severity="secondary" rounded />

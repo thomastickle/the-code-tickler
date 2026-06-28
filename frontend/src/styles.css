@@ -5,7 +5,7 @@
 :root {
   color-scheme: dark;
   --ink: var(--p-text-color);
-  --muted: var(--p-text-muted-color);
+  --muted: var(--p-surface-400);
   --surface: color-mix(in srgb, var(--p-content-background) 88%, transparent);
   --surface-alt: color-mix(in srgb, var(--p-surface-800) 82%, transparent);
   --line: color-mix(in srgb, var(--p-primary-500) 28%, transparent);
@@ -20,6 +20,9 @@
   --button-glass: rgba(15, 23, 42, 0.74);
   --card-bg: color-mix(in srgb, var(--p-content-background) 78%, transparent);
   --card-border: rgba(125, 211, 252, 0.2);
+  --card-shadow: 0 1.2rem 3rem rgba(2, 6, 23, 0.16);
+  --empty-state-bg: rgba(15, 23, 42, 0.35);
+  --empty-state-border: var(--p-surface-700);
   --hero-wash:
     radial-gradient(circle at 75% 40%, rgba(34, 211, 238, 0.18), transparent 22rem),
     radial-gradient(circle at 60% 58%, rgba(124, 58, 237, 0.32), transparent 30rem),
@@ -37,9 +40,9 @@
 html.app-light {
   color-scheme: light;
   --ink: var(--p-text-color);
-  --muted: var(--p-text-muted-color);
+  --muted: var(--p-surface-600);
   --surface: color-mix(in srgb, var(--p-content-background) 92%, transparent);
-  --surface-alt: color-mix(in srgb, var(--p-surface-50) 90%, transparent);
+  --surface-alt: color-mix(in srgb, var(--p-surface-100) 92%, transparent);
   --line: color-mix(in srgb, var(--p-surface-950) 12%, transparent);
   --accent: var(--p-primary-600);
   --accent-strong: #0f766e;
@@ -50,8 +53,11 @@ html.app-light {
   --nav-active: #111827;
   --nav-active-bg: color-mix(in srgb, var(--p-primary-600) 18%, transparent);
   --button-glass: rgba(255, 255, 255, 0.86);
-  --card-bg: color-mix(in srgb, var(--p-content-background) 90%, transparent);
-  --card-border: color-mix(in srgb, var(--p-surface-950) 10%, transparent);
+  --card-bg: color-mix(in srgb, #f8fbff 94%, var(--p-primary-50));
+  --card-border: color-mix(in srgb, var(--p-surface-950) 18%, var(--p-primary-600) 8%);
+  --card-shadow: 0 1rem 2.4rem rgba(15, 23, 42, 0.12);
+  --empty-state-bg: color-mix(in srgb, var(--p-surface-0) 86%, var(--p-surface-100));
+  --empty-state-border: color-mix(in srgb, var(--p-surface-950) 22%, transparent);
   --hero-wash:
     radial-gradient(circle at 72% 38%, rgba(124, 58, 237, 0.14), transparent 20rem),
     radial-gradient(circle at 58% 62%, rgba(34, 211, 238, 0.12), transparent 28rem),
@@ -193,18 +199,135 @@ html.app-light .floating-card {
   height: 100%;
 }
 
+.portfolio-card.p-card,
 .portfolio-card .p-card {
   height: 100%;
   border: 1px solid var(--card-border);
   border-radius: 0.5rem;
   background: var(--card-bg);
   color: var(--ink);
-  box-shadow: 0 1.2rem 3rem rgba(2, 6, 23, 0.16);
+  box-shadow: var(--card-shadow);
   backdrop-filter: blur(14px);
 }
 
 .portfolio-card .p-card-title {
   font-size: 1.2rem;
+}
+
+.portfolio-card .p-card-subtitle {
+  color: var(--muted);
+}
+
+html.app-light .project-card.portfolio-card.p-card,
+html.app-light .project-card.portfolio-card .p-card {
+  border: 1px solid #7899c4;
+  background: linear-gradient(145deg, #ecf7ff 0%, #dceeff 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72),
+    0 0.9rem 2.25rem rgba(37, 99, 235, 0.16),
+    0 1.25rem 2.75rem rgba(15, 23, 42, 0.19);
+}
+
+.interactive-project-card {
+  cursor: pointer;
+  outline: 0;
+}
+
+.interactive-project-card.p-card,
+.interactive-project-card .p-card {
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.project-title-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem 0.85rem;
+}
+
+.project-title-text {
+  min-width: 0;
+  flex: 1 1 12rem;
+  overflow-wrap: anywhere;
+}
+
+.project-detail-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0;
+  color: var(--accent);
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0.88;
+  transition:
+    color 160ms ease,
+    opacity 160ms ease;
+}
+
+.project-detail-cue .pi {
+  font-size: 0.78rem;
+}
+
+.interactive-project-card.p-card:hover,
+.interactive-project-card:hover .p-card,
+.interactive-project-card.p-card:focus-visible,
+.interactive-project-card:focus-visible .p-card {
+  border-color: color-mix(in srgb, var(--p-primary-400) 64%, var(--card-border));
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--p-primary-400) 18%, transparent),
+    0 1.35rem 3rem rgba(2, 6, 23, 0.22);
+}
+
+html.app-light .interactive-project-card.p-card:hover,
+html.app-light .interactive-project-card:hover .p-card,
+html.app-light .interactive-project-card.p-card:focus-visible,
+html.app-light .interactive-project-card:focus-visible .p-card {
+  border-color: #4f7aaa;
+  box-shadow:
+    0 0 0 2px rgba(37, 99, 235, 0.2),
+    0 1.35rem 3rem rgba(15, 23, 42, 0.23);
+}
+
+.interactive-project-card.p-card:hover .project-detail-cue,
+.interactive-project-card:hover .project-detail-cue,
+.interactive-project-card.p-card:focus-visible .project-detail-cue,
+.interactive-project-card:focus-visible .project-detail-cue {
+  color: var(--accent-strong);
+  opacity: 1;
+}
+
+.interactive-project-card.p-card:focus-visible,
+.interactive-project-card:focus-visible .p-card {
+  outline: 2px solid var(--p-primary-400);
+  outline-offset: 3px;
+}
+
+@media (hover: none) {
+  .project-detail-cue {
+    opacity: 1;
+  }
+
+  .interactive-project-card.p-card:active,
+  .interactive-project-card:active .p-card {
+    border-color: var(--p-primary-400);
+    box-shadow:
+      0 0 0 2px color-mix(in srgb, var(--p-primary-400) 18%, transparent),
+      0 1rem 2.35rem rgba(2, 6, 23, 0.2);
+  }
+
+  html.app-light .interactive-project-card.p-card:active,
+  html.app-light .interactive-project-card:active .p-card {
+    border-color: #4f7aaa;
+    box-shadow:
+      0 0 0 2px rgba(37, 99, 235, 0.2),
+      0 1rem 2.35rem rgba(15, 23, 42, 0.22);
+  }
 }
 
 @media (max-width: 860px) {

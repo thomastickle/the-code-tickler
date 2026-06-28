@@ -1,0 +1,116 @@
+@if (project(); as project) {
+  <section class="project-detail-hero mx-auto w-[min(1120px,calc(100%_-_2rem))] py-10 md:py-16">
+    <a pButton routerLink="/projects" severity="secondary" outlined>
+      <span class="pi pi-arrow-left" aria-hidden="true"></span>
+      <span>Projects</span>
+    </a>
+
+    <div class="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.36fr)] lg:items-start">
+      <div>
+        <p class="eyebrow">Project detail</p>
+        <h1
+          class="m-0 max-w-[14ch] text-[clamp(2.5rem,7vw,5rem)] font-black leading-none drop-shadow-[0_0_34px_rgba(139,92,246,0.22)]"
+        >
+          {{ project.name }}
+        </h1>
+        <p
+          class="max-w-3xl text-[clamp(1.05rem,2.2vw,1.35rem)] leading-relaxed text-[var(--muted)]"
+        >
+          {{ project.summary }}
+        </p>
+      </div>
+
+      <p-card class="portfolio-card detail-meta-card">
+        <h2 class="m-0 text-lg">Project stack</h2>
+        <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Project stack">
+          @for (tech of visibleProjectStack(project); track tech) {
+            <p-tag [value]="tech" rounded />
+          }
+        </div>
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          @for (link of project.links; track link.label) {
+            <a pButton [href]="link.href" target="_blank" rel="noopener" outlined>
+              <span [class]="link.icon" aria-hidden="true"></span>
+              <span>{{ link.label }}</span>
+            </a>
+          }
+        </div>
+      </p-card>
+    </div>
+  </section>
+
+  <section
+    class="mx-auto grid w-[min(1120px,calc(100%_-_2rem))] gap-6 pb-10 md:pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.42fr)] lg:pb-20"
+    aria-label="Project narrative"
+  >
+    <div class="grid gap-4">
+      <p-card class="portfolio-card detail-card">
+        <h2 class="m-0 text-[clamp(1.6rem,3vw,2.25rem)] leading-tight">What this project is</h2>
+        <div class="mt-5 grid gap-4">
+          @for (paragraph of project.detail.blurb; track paragraph) {
+            <p class="m-0 leading-relaxed text-[var(--muted)]">{{ paragraph }}</p>
+          }
+        </div>
+      </p-card>
+
+      <p-card class="portfolio-card detail-card">
+        <h2 class="m-0 text-[clamp(1.6rem,3vw,2.25rem)] leading-tight">Related writing</h2>
+        @if (relatedWriting().length > 0) {
+          <div class="mt-5 grid gap-4">
+            @for (post of relatedWriting(); track post.slug) {
+              <article class="related-writing-item">
+                <p class="eyebrow m-0">{{ post.date }}</p>
+                <h3 class="m-0 mt-2 text-xl">{{ post.title }}</h3>
+                <p class="m-0 mt-3 leading-relaxed text-[var(--muted)]">{{ post.summary }}</p>
+                <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Writing tags">
+                  @for (tag of post.tags; track tag) {
+                    <p-tag [value]="tag" severity="secondary" rounded />
+                  }
+                </div>
+              </article>
+            }
+          </div>
+        } @else {
+          <p class="m-0 mt-5 leading-relaxed text-[var(--muted)]">
+            No related writing is attached to this project yet.
+          </p>
+        }
+      </p-card>
+    </div>
+
+    <aside class="grid gap-4" aria-label="Project notes">
+      <p-card class="portfolio-card detail-card">
+        <h2 class="m-0 text-xl">Highlights</h2>
+        <ul class="detail-list mt-5">
+          @for (highlight of project.detail.highlights; track highlight) {
+            <li>{{ highlight }}</li>
+          }
+        </ul>
+      </p-card>
+
+      <p-card class="portfolio-card detail-card">
+        <h2 class="m-0 text-xl">Ownership notes</h2>
+        <ul class="detail-list mt-5">
+          @for (note of project.detail.ownershipNotes; track note) {
+            <li>{{ note }}</li>
+          }
+        </ul>
+      </p-card>
+    </aside>
+  </section>
+} @else {
+  <section class="mx-auto w-[min(760px,calc(100%_-_2rem))] py-16 md:py-24">
+    <p-card class="portfolio-card detail-card">
+      <p class="eyebrow">Project not found</p>
+      <h1 class="m-0 text-[clamp(2.25rem,6vw,4rem)] leading-none">No project lives here yet.</h1>
+      <p class="max-w-2xl leading-relaxed text-[var(--muted)]">
+        The project detail you opened is not available. Return to the projects list to see the
+        currently published work.
+      </p>
+      <a pButton routerLink="/projects" outlined>
+        <span class="pi pi-arrow-left" aria-hidden="true"></span>
+        <span>Back to projects</span>
+      </a>
+    </p-card>
+  </section>
+}

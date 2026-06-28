@@ -1,14 +1,10 @@
-<section class="mx-auto w-[min(1120px,calc(100%_-_2rem))] py-10 pb-6 md:py-16 md:pb-8">
-  <h1
-    class="m-0 max-w-[16ch] text-[clamp(2.25rem,6vw,4.5rem)] font-black leading-none drop-shadow-[0_0_34px_rgba(139,92,246,0.2)]"
-  >
-    Independent projects
-  </h1>
-  <p class="max-w-[44rem] text-[clamp(1rem,2vw,1.2rem)] leading-relaxed text-surface-400">
-    Personal software work outside client and employer codebases, grouped by what is active,
-    maintained, and complete.
+<div class="mx-auto w-[min(1120px,calc(100%_-_2rem))] py-10 pb-6 md:py-16 md:pb-8">
+  <p class="m-0 text-[clamp(1rem,2vw,1.2rem)] leading-relaxed text-[var(--muted)]">
+    A living portfolio of software I’m building, maintaining, and refining under The Code Tickler
+    brand. These projects include active experiments, useful tools, product ideas, and completed
+    work that show how I approach design, delivery, debugging, and long-term code ownership.
   </p>
-</section>
+</div>
 
 <div class="mx-auto grid w-[min(1120px,calc(100%_-_2rem))] gap-8 pb-10 md:pb-16 lg:pb-20">
   @for (projectSection of projectSections(); track projectSection.id) {
@@ -22,13 +18,31 @@
       @if (projectSection.projects.length > 0) {
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           @for (project of projectSection.projects; track project.name) {
-            <p-card class="portfolio-card project-card">
-              <ng-template #title>{{ project.name }}</ng-template>
+            <p-card
+              class="portfolio-card project-card interactive-project-card"
+              role="link"
+              tabindex="0"
+              [attr.aria-label]="'Open project details for ' + project.name"
+              (click)="openProject(project)"
+              (keydown.enter)="openProjectFromKeyboard($event, project)"
+              (keydown.space)="openProjectFromKeyboard($event, project)"
+            >
+              <ng-template #title>
+                <span class="project-title-line">
+                  <span class="project-title-text">{{ project.name }}</span>
+                  <span class="project-detail-cue" aria-hidden="true">
+                    <span>Details</span>
+                    <i class="pi pi-arrow-right"></i>
+                  </span>
+                </span>
+              </ng-template>
               @if (project.status) {
                 <ng-template #subtitle>{{ project.status }}</ng-template>
               }
-              <p class="text-surface-400 leading-relaxed">{{ project.summary }}</p>
-              <p class="text-surface-400 leading-relaxed">{{ project.impact }}</p>
+              <p class="leading-relaxed text-[var(--muted)]">{{ project.summary }}</p>
+              @if (project.impact) {
+                <p class="leading-relaxed text-[var(--muted)]">{{ project.impact }}</p>
+              }
               <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Project technologies">
                 @for (tech of visibleProjectStack(project); track tech) {
                   <p-tag [value]="tech" rounded />
@@ -37,7 +51,16 @@
               <ng-template #footer>
                 <div class="flex flex-wrap items-center gap-3">
                   @for (link of project.links; track link.label) {
-                    <a pButton [href]="link.href" target="_blank" rel="noopener" outlined>
+                    <a
+                      pButton
+                      [href]="link.href"
+                      target="_blank"
+                      rel="noopener"
+                      outlined
+                      (click)="$event.stopPropagation()"
+                      (keydown.enter)="$event.stopPropagation()"
+                      (keydown.space)="$event.stopPropagation()"
+                    >
                       <span [class]="link.icon" aria-hidden="true"></span>
                       <span>{{ link.label }}</span>
                     </a>
@@ -48,9 +71,7 @@
           }
         </div>
       } @else {
-        <p
-          class="m-0 rounded-lg border border-dashed border-surface-700 bg-surface-900/35 px-4 py-3 text-sm leading-relaxed text-surface-400"
-        >
+        <p class="project-empty-state m-0 rounded-lg px-4 py-3 text-sm leading-relaxed">
           {{ projectSection.emptyMessage }}
         </p>
       }

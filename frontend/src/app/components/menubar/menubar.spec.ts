@@ -8,6 +8,8 @@ describe('Menubar', () => {
   let fixture: ComponentFixture<Menubar>
 
   beforeEach(async () => {
+    localStorage.clear()
+
     await TestBed.configureTestingModule({
       imports: [Menubar],
       providers: [provideRouter([])],
@@ -35,6 +37,15 @@ describe('Menubar', () => {
     const element: HTMLElement = fixture.nativeElement
 
     expect(element.textContent).toContain('Home')
+  })
+
+  it('uses Projects as the current page label for project detail routes', () => {
+    component['currentUrl'].set('/projects/the-code-tickler')
+    fixture.detectChanges()
+
+    const element: HTMLElement = fixture.nativeElement
+
+    expect(element.querySelector('.current-page-label')?.textContent).toContain('Projects')
   })
 
   it('uses a centered header layout for the current page label', () => {
@@ -91,5 +102,24 @@ describe('Menubar', () => {
     fixture.detectChanges()
 
     expect(component['menuOpen']()).toBe(false)
+  })
+
+  it('saves the selected theme preference', () => {
+    component['toggleTheme']()
+    fixture.detectChanges()
+
+    expect(localStorage.getItem('the-code-tickler-theme')).toBe('light')
+    expect(document.documentElement.classList).toContain('app-light')
+  })
+
+  it('restores a saved light theme preference', async () => {
+    localStorage.setItem('the-code-tickler-theme', 'light')
+
+    const lightFixture = TestBed.createComponent(Menubar)
+    lightFixture.detectChanges()
+    await lightFixture.whenStable()
+
+    expect(lightFixture.componentInstance['darkMode']()).toBe(false)
+    expect(document.documentElement.classList).toContain('app-light')
   })
 })

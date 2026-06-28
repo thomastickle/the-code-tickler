@@ -19,4 +19,14 @@ describe('Writing', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  it('renders shared writing posts', () => {
+    fixture.detectChanges()
+
+    const element: HTMLElement = fixture.nativeElement
+
+    expect(element.textContent).toContain('How I review code')
+    expect(element.textContent).toContain('Angular patterns worth keeping')
+    expect(element.textContent).toContain('Small tools, real leverage')
+  })
 })

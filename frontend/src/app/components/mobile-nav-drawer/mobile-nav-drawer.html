@@ -9,7 +9,7 @@
   <nav class="mobile-nav grid gap-2" aria-label="Mobile navigation">
     @for (item of navItems(); track item.path) {
       <a
-        class="mobile-nav-link rounded-lg px-4 py-3 font-black text-surface-300 no-underline"
+        class="mobile-nav-link rounded-lg px-4 py-3 font-black text-[var(--muted)] no-underline"
         [routerLink]="item.path"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: item.path === '/' }"

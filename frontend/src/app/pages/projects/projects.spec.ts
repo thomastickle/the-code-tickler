@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { Router, provideRouter } from '@angular/router'
 
 import { Projects } from './projects'
 
@@ -10,6 +11,7 @@ describe('Projects', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Projects],
+      providers: [provideRouter([])],
     }).compileComponents()
 
     fixture = TestBed.createComponent(Projects)
@@ -24,10 +26,11 @@ describe('Projects', () => {
   })
 
   it('renders the compact independent-project intro', () => {
-    expect(compiled.textContent).toContain('Independent projects')
     expect(compiled.textContent).toContain(
-      'Personal software work outside client and employer codebases',
+      'A living portfolio of software I’m building, maintaining, and refining under The Code Tickler brand.',
     )
+    expect(compiled.textContent).toContain('long-term code ownership')
+    expect(compiled.textContent).not.toContain('Independent projects')
     expect(compiled.textContent).not.toContain('Work samples and case-study slots')
   })
 
@@ -62,6 +65,20 @@ describe('Projects', () => {
           link.href === 'https://github.com/thomastickle/the-code-tickler',
       ),
     ).toBe(true)
+  })
+
+  it('opens The Code Tickler detail from the project card', () => {
+    const router = TestBed.inject(Router)
+    const navigateSpy = vi.spyOn(router, 'navigate').mockResolvedValue(true)
+    const projectCard = compiled.querySelector(
+      '[aria-label="Open project details for The Code Tickler"]',
+    )
+
+    projectCard?.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+
+    expect(projectCard?.getAttribute('role')).toBe('link')
+    expect(projectCard?.getAttribute('tabindex')).toBe('0')
+    expect(navigateSpy).toHaveBeenCalledWith(['/projects', 'the-code-tickler'])
   })
 
   it('keeps empty maintained and legacy sections visible without project cards', () => {
