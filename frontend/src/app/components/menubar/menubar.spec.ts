@@ -38,6 +38,9 @@ describe('Menubar', () => {
   })
 
   it('renders desktop navigation links', () => {
+    component['toggleNavigation']()
+    fixture.detectChanges()
+
     const element: HTMLElement = fixture.nativeElement
     const labels = ['Home', 'About', 'Projects', 'Writing', 'Contact']
 
@@ -46,12 +49,24 @@ describe('Menubar', () => {
     }
   })
 
+  it('swaps the compact trigger for the expanded menu surface', () => {
+    component['toggleNavigation']()
+    fixture.detectChanges()
+
+    const element: HTMLElement = fixture.nativeElement
+
+    expect(element.querySelector('.brandmark-trigger')).toBeNull()
+    expect(element.querySelector('.brandmark-menu')).toBeTruthy()
+    expect(element.querySelector('.brandmark-menu-toggle')).toBeTruthy()
+    expect(element.textContent).not.toContain('Currently viewing')
+  })
+
   it('opens and closes the brandmark menu', () => {
     component['toggleNavigation']()
     fixture.detectChanges()
 
     expect(component['menuOpen']()).toBe(true)
-    expect(fixture.nativeElement.querySelector('.brandmark-menu.open')).toBeTruthy()
+    expect(fixture.nativeElement.querySelector('.brandmark-menu')).toBeTruthy()
 
     component['closeNavigation']()
     fixture.detectChanges()
