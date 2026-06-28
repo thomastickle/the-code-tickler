@@ -6,11 +6,7 @@ import { ButtonDirective } from 'primeng/button'
 import { Card } from 'primeng/card'
 import { Tag } from 'primeng/tag'
 
-import {
-  projectBySlug,
-  relatedWritingForProject,
-  visibleProjectStack,
-} from '../../portfolio-data'
+import { projectBySlug, relatedWritingForProject, visibleProjectStack } from '../../portfolio-data'
 
 @Component({
   selector: 'app-project-detail',
