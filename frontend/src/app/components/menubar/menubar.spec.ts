@@ -38,6 +38,9 @@ describe('Menubar', () => {
   })
 
   it('renders desktop navigation links', () => {
+    component['toggleNavigation']()
+    fixture.detectChanges()
+
     const element: HTMLElement = fixture.nativeElement
     const labels = ['Home', 'About', 'Projects', 'Writing', 'Contact']
 
@@ -46,12 +49,34 @@ describe('Menubar', () => {
     }
   })
 
+  it('keeps the compact trigger in flow when the menu opens', () => {
+    component['toggleNavigation']()
+    fixture.detectChanges()
+
+    const element: HTMLElement = fixture.nativeElement
+
+    expect(element.querySelector('.brandmark-trigger')).toBeTruthy()
+    expect(element.querySelector('.brandmark-menu-surface')).toBeTruthy()
+    expect(element.querySelector('.current-page-label')?.textContent).toContain('Home')
+    expect(element.textContent).not.toContain('Currently viewing')
+  })
+
+  it('keeps brandmark chrome separate from active navigation links', () => {
+    component['toggleNavigation']()
+    fixture.detectChanges()
+
+    const element: HTMLElement = fixture.nativeElement
+
+    expect(element.querySelector('.brandmark-menu-header.active')).toBeNull()
+    expect(element.querySelectorAll('.brandmark-menu-link').length).toBeGreaterThan(0)
+  })
+
   it('opens and closes the brandmark menu', () => {
     component['toggleNavigation']()
     fixture.detectChanges()
 
     expect(component['menuOpen']()).toBe(true)
-    expect(fixture.nativeElement.querySelector('.brandmark-menu.open')).toBeTruthy()
+    expect(fixture.nativeElement.querySelector('.brandmark-menu-surface')).toBeTruthy()
 
     component['closeNavigation']()
     fixture.detectChanges()
