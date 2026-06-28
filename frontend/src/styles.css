@@ -207,6 +207,30 @@ html.app-light .floating-card {
   font-size: 1.2rem;
 }
 
+.interactive-project-card {
+  cursor: pointer;
+  outline: 0;
+}
+
+.interactive-project-card .p-card {
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.interactive-project-card:hover .p-card,
+.interactive-project-card:focus-visible .p-card {
+  border-color: color-mix(in srgb, var(--p-primary-400) 64%, var(--card-border));
+  box-shadow: 0 1.45rem 3.25rem rgba(2, 6, 23, 0.22);
+  transform: translateY(-2px);
+}
+
+.interactive-project-card:focus-visible .p-card {
+  outline: 2px solid var(--p-primary-400);
+  outline-offset: 3px;
+}
+
 @media (max-width: 860px) {
   .hero-visual {
     min-height: 22rem;

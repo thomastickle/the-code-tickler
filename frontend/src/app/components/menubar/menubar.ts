@@ -27,9 +27,17 @@ export class Menubar {
     { label: 'Contact', path: '/contact', icon: 'pi pi-send' },
   ]
   protected readonly currentPageLabel = computed(
-    () =>
-      this.navItems.find((item) => this.currentUrl().split('?')[0] === item.path)?.label ??
-      this.navItems[0].label,
+    () => {
+      const currentPath = this.currentUrl().split('?')[0].split('#')[0]
+
+      return (
+        this.navItems.find(
+          (item) =>
+            currentPath === item.path ||
+            (item.path !== '/' && currentPath.startsWith(`${item.path}/`)),
+        )?.label ?? this.navItems[0].label
+      )
+    },
   )
 
   constructor() {

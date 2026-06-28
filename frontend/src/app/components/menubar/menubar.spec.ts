@@ -37,6 +37,15 @@ describe('Menubar', () => {
     expect(element.textContent).toContain('Home')
   })
 
+  it('uses Projects as the current page label for project detail routes', () => {
+    component['currentUrl'].set('/projects/the-code-tickler')
+    fixture.detectChanges()
+
+    const element: HTMLElement = fixture.nativeElement
+
+    expect(element.querySelector('.current-page-label')?.textContent).toContain('Projects')
+  })
+
   it('uses a centered header layout for the current page label', () => {
     const element: HTMLElement = fixture.nativeElement
     const shell = element.querySelector('.site-shell-inner')

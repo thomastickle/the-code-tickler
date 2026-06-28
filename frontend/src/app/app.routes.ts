@@ -17,6 +17,12 @@ export const routes: Routes = [
     title: 'Projects | The Code Tickler',
   },
   {
+    path: 'projects/:slug',
+    loadComponent: () =>
+      import('./pages/project-detail/project-detail').then((module) => module.ProjectDetail),
+    title: 'Project | The Code Tickler',
+  },
+  {
     path: 'writing',
     loadComponent: () => import('./pages/writing/writing').then((module) => module.Writing),
     title: 'Writing | The Code Tickler',
