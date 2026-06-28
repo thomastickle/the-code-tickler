@@ -1,8 +1,14 @@
-<section class="section-band grid min-h-[clamp(34rem,78vh,44rem)] items-center overflow-hidden py-12 md:py-20 lg:py-24">
-  <div class="mx-auto grid w-[min(1120px,calc(100%_-_2rem))] items-center gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(18rem,0.75fr)] lg:gap-20">
+<section
+  class="section-band grid min-h-[clamp(34rem,78vh,44rem)] items-center overflow-hidden py-12 md:py-20 lg:py-24"
+>
+  <div
+    class="mx-auto grid w-[min(1120px,calc(100%_-_2rem))] items-center gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(18rem,0.75fr)] lg:gap-20"
+  >
     <div>
       <p class="eyebrow">Gentle prodding for cleaner, happier code</p>
-      <h1 class="m-0 max-w-[12ch] text-[clamp(3rem,11vw,7rem)] font-black leading-[0.92] drop-shadow-[0_0_34px_rgba(139,92,246,0.26)]">
+      <h1
+        class="m-0 max-w-[12ch] text-[clamp(3rem,11vw,7rem)] font-black leading-[0.92] drop-shadow-[0_0_34px_rgba(139,92,246,0.26)]"
+      >
         {{ profile.brand }}
       </h1>
       <p class="max-w-3xl text-[clamp(1.05rem,2.2vw,1.35rem)] leading-relaxed text-surface-400">
@@ -11,19 +17,30 @@
       </p>
       <div class="mt-8 flex flex-wrap items-center gap-3" aria-label="Primary actions">
         <p-button label="Write Better Code" icon="pi pi-terminal" routerLink="/projects" />
-        <p-button label="Get in Touch" icon="pi pi-send" severity="secondary" outlined routerLink="/contact" />
+        <p-button
+          label="Get in Touch"
+          icon="pi pi-send"
+          severity="secondary"
+          outlined
+          routerLink="/contact"
+        />
       </div>
     </div>
 
     <div class="hero-visual" aria-label="Code Tickler visual">
       <img
         src="code-tickler-character-960.webp"
-        srcset="code-tickler-character-720.webp 720w, code-tickler-character-960.webp 960w, code-tickler-character-1280.webp 1280w, code-tickler-character-1600.webp 1600w"
+        srcset="
+          code-tickler-character-720.webp   720w,
+          code-tickler-character-960.webp   960w,
+          code-tickler-character-1280.webp 1280w,
+          code-tickler-character-1600.webp 1600w
+        "
         sizes="(max-width: 768px) 150vw, (max-width: 1440px) 62vw, 48rem"
         width="960"
         height="997"
         alt="Illustrated developer holding a purple feather"
-      >
+      />
       <div class="floating-card spring">
         <strong>Spring Boot</strong>
         <code>&#64;GetMapping("/&#123;id&#125;")</code>
@@ -42,7 +59,10 @@
       <p class="eyebrow">Featured work</p>
       <h2 class="m-0 text-[clamp(2rem,5vw,3.25rem)] leading-none">Projects with clear intent</h2>
     </div>
-    <a routerLink="/projects" class="inline-flex items-center gap-2 font-black text-primary no-underline">
+    <a
+      routerLink="/projects"
+      class="inline-flex items-center gap-2 font-black text-primary no-underline"
+    >
       All projects <i class="pi pi-arrow-right" aria-hidden="true"></i>
     </a>
   </div>
@@ -51,11 +71,13 @@
     @for (project of featuredProjects; track project.name) {
       <p-card class="portfolio-card">
         <ng-template #title>{{ project.name }}</ng-template>
-        <ng-template #subtitle>{{ project.status }}</ng-template>
+        @if (project.status) {
+          <ng-template #subtitle>{{ project.status }}</ng-template>
+        }
         <p class="text-surface-400 leading-relaxed">{{ project.summary }}</p>
         <p class="text-surface-400 leading-relaxed">{{ project.impact }}</p>
         <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Project stack">
-          @for (tech of project.stack; track tech) {
+          @for (tech of visibleProjectStack(project); track tech) {
             <p-tag [value]="tech" severity="secondary" rounded />
           }
         </div>
@@ -67,7 +89,9 @@
 <section class="mx-auto w-[min(1120px,calc(100%_-_2rem))] py-12 md:py-20">
   <div class="mb-6">
     <p class="eyebrow">How I work</p>
-    <h2 class="m-0 text-[clamp(2rem,5vw,3.25rem)] leading-none">Useful software, delivered plainly</h2>
+    <h2 class="m-0 text-[clamp(2rem,5vw,3.25rem)] leading-none">
+      Useful software, delivered plainly
+    </h2>
   </div>
   <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
     @for (group of skillGroups; track group.name) {
@@ -94,7 +118,10 @@
     </div>
     <div class="flex flex-wrap items-center gap-3">
       @for (link of links; track link.label) {
-        <a pButton [href]="link.href" target="_blank" rel="noopener" [label]="link.label" [icon]="link.icon"></a>
+        <a pButton [href]="link.href" target="_blank" rel="noopener">
+          <span [class]="link.icon" aria-hidden="true"></span>
+          <span>{{ link.label }}</span>
+        </a>
       }
     </div>
   </div>

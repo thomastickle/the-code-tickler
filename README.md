@@ -40,6 +40,6 @@ npm run build:production
 
 ## Deployment
 
-The `CI/CD` GitHub Actions workflow validates pull requests to `main` and pushes to `main`.
+The `CI/CD` GitHub Actions workflow validates pull requests to `main` and `development`.
 
-Pushes to `main` also deploy the production build to Cloudflare Pages using the `Cloudflare` GitHub Environment. The Cloudflare Pages project should use `main` as its production branch.
+Pushes to `main` deploy the production build to Cloudflare Pages using the `Cloudflare` GitHub Environment. Pushes to `development` deploy a Cloudflare Pages preview because `development` is not the production branch. The Cloudflare Pages project should use `main` as its production branch.

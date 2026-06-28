@@ -1,66 +1,75 @@
-<p-toolbar class="site-toolbar sticky top-0 z-10 block">
-  <ng-template #start>
-    <a routerLink="/" class="inline-flex items-center gap-3 font-extrabold no-underline" aria-label="The Code Tickler home">
-      <img
-        src="brand-mark-1x.png"
-        srcset="brand-mark-1x.png 1x, brand-mark-2x.png 2x, brand-mark-3x.png 3x"
-        alt=""
-        class="brand-glyph h-11 w-auto"
-        width="74"
-        height="52"
-        aria-hidden="true"
+<header class="site-shell-bar sticky top-0 z-20">
+  <div
+    class="site-shell-inner mx-auto grid w-[min(1120px,calc(100%_-_2rem))] items-center gap-4 py-3"
+  >
+    <div class="brandmark-menu-root">
+      <button
+        type="button"
+        class="brandmark-trigger"
+        (click)="toggleNavigation()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="brandmark-navigation"
+        aria-label="Toggle navigation menu"
       >
-      <span>The Code Tickler</span>
-    </a>
-  </ng-template>
-
-  <ng-template #end>
-    <div class="flex items-center justify-end gap-3">
-      <nav class="site-nav hidden items-center justify-end gap-1 md:flex"
-           aria-label="Primary navigation">
-        @for (item of navItems; track item.path) {
-          <a
-            class="rounded-full px-3 py-2 font-bold text-surface-400 no-underline"
-            [routerLink]="item.path"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-          >
-            {{ item.label }}
-          </a>
-          @if (!$last) {
-            <span class="text-surface-400 opacity-50" aria-hidden="true">|</span>
-          }
-        }
-      </nav>
-
-      <p-button
-        styleClass="theme-toggle"
-        (click)="toggleTheme()"
-        [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
-        [icon]="darkMode() ? 'pi pi-sun' : 'pi pi-moon'"
-        rounded
-        text
-      />
-
-      <span class="md:hidden">
-        <p-button
-          styleClass="mobile-menu-button"
-          (click)="openMobileMenu()"
-          aria-label="Open navigation menu"
-          icon="pi pi-bars"
-          rounded
-          text
+        <img
+          src="brand-mark-1x.png"
+          srcset="brand-mark-1x.png 1x, brand-mark-2x.png 2x, brand-mark-3x.png 3x"
+          alt=""
+          width="74"
+          height="52"
+          aria-hidden="true"
         />
-      </span>
-    </div>
-  </ng-template>
-</p-toolbar>
+        <span class="hidden font-black sm:inline">The Code Tickler</span>
+        <span
+          class="pi pi-chevron-down brandmark-menu-chevron hidden sm:inline"
+          aria-hidden="true"
+        ></span>
+      </button>
 
-@defer (when mobileMenuLoaded()) {
-  <app-mobile-nav-drawer
-    [open]="mobileMenuOpen()"
-    [navItems]="navItems"
-    (openChange)="updateMobileMenuVisibility($event)"
-    (navigate)="closeMobileMenu()"
-  />
+      @if (menuOpen()) {
+        <section
+          id="brandmark-navigation"
+          class="brandmark-menu-popout"
+          aria-label="Primary navigation"
+        >
+          <nav class="grid gap-2" aria-label="Primary navigation">
+            @for (item of navItems; track item.path) {
+              <a
+                class="brandmark-menu-link"
+                [routerLink]="item.path"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+                (click)="closeNavigation()"
+              >
+                <span [class]="item.icon" aria-hidden="true"></span>
+                <span>{{ item.label }}</span>
+              </a>
+            }
+          </nav>
+        </section>
+      }
+    </div>
+
+    <p class="current-page-label justify-self-center" aria-live="polite">
+      {{ currentPageLabel() }}
+    </p>
+
+    <p-button
+      styleClass="theme-toggle"
+      class="justify-self-end"
+      (click)="toggleTheme()"
+      [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+      [icon]="darkMode() ? 'pi pi-sun' : 'pi pi-moon'"
+      rounded
+      text
+    />
+  </div>
+</header>
+
+@if (menuOpen()) {
+  <div
+    class="navigation-scrim fixed inset-0 z-10"
+    aria-hidden="true"
+    (click)="closeNavigation()"
+  ></div>
 }

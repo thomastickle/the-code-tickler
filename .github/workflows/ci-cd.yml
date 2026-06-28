@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - development
   pull_request:
     branches:
       - main
+      - development
 
 concurrency:
   group: ci-cd-${{ github.ref }}
@@ -45,6 +47,12 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Run lint
+        run: npm run lint
 
       - name: Run unit tests with coverage
         run: npm run test:ci
@@ -102,7 +110,7 @@ jobs:
     name: Deploy frontend
     runs-on: ubuntu-latest
     needs: validate
-    if: github.event_name == 'push' && github.ref_name == 'main'
+    if: github.event_name == 'push' && (github.ref_name == 'main' || github.ref_name == 'development')
     environment: Cloudflare
 
     env:

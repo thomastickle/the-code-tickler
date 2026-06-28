@@ -1,4 +1,3 @@
-
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
 
 ## Project Stack
@@ -33,8 +32,8 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 
 ## Angular Best Practices
 
-- Always use standalone components over NgModules
-- Must NOT set `standalone: true` inside Angular decorators. It's the default in Angular v20+.
+- Use Angular's default standalone component model; do not introduce NgModules for app code unless a library integration requires one.
+- Do not set `standalone: true` inside Angular decorators. It is already the default in Angular 19+. Use `standalone: false` only for rare NgModule compatibility cases.
 - Use signals for state management
 - Implement lazy loading for feature routes
 - Do NOT use the `@HostBinding` and `@HostListener` decorators. Put host bindings inside the `host` object of the `@Component` or `@Directive` decorator instead
@@ -43,19 +42,18 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 
 ## Accessibility Requirements
 
-- It MUST pass all AXE checks.
-- It MUST follow all WCAG AA minimums, including focus management, color contrast, and ARIA attributes.
+- New UI should avoid known axe violations and be written so axe-based checks can pass when accessibility tooling is added.
+- Follow WCAG AA fundamentals: keyboard access, visible focus, sufficient color contrast, accessible labels/names, semantic structure, and valid ARIA.
 
 ### Components
 
 - Keep components small and focused on a single responsibility
-- Use `input()` and `output()` functions instead of decorators
+- Prefer `input()` and `output()` functions for new components; use decorators when needed for compatibility or clearer integration.
 - Use `computed()` for derived state
 - Set `changeDetection: ChangeDetectionStrategy.OnPush` in `@Component` decorator
-- Prefer inline templates for small components
+- Use separate `.html`, `.ts`, and `.css` files for components to keep structure, behavior, and styling easy to scan.
 - Prefer Reactive forms instead of Template-driven ones
-- Do NOT use `ngClass`, use `class` bindings instead
-- Do NOT use `ngStyle`, use `style` bindings instead
+- Prefer native `[class]` and `[style]` bindings over `ngClass` and `ngStyle`; use `ngClass` or `ngStyle` only when they clearly improve readability for complex bindings.
 - When using external templates/styles, use paths relative to the component TS file.
 
 ## State Management
@@ -81,6 +79,7 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 ## Deployment
 
 - Cloudflare Pages deployment is frontend-only and is driven by the root `.github/workflows/ci-cd.yml` workflow.
-- Pull requests target `main`; pushes to `main` validate and deploy the production build.
+- Pull requests normally target `development`; pushes to `development` validate and deploy a Cloudflare Pages preview.
+- Pushes to `main` validate and deploy the production Cloudflare Pages build.
 - Keep the build output directory as `dist/the-code-tickler/browser` unless `angular.json` output changes and the workflow is updated in the same change.
 - Preserve `public/_redirects`; it provides the SPA fallback required for client-side Angular routes on Cloudflare Pages.

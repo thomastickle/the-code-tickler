@@ -1,29 +1,38 @@
 export interface LinkItem {
-  label: string;
-  href: string;
-  icon: string;
+  label: string
+  href: string
+  icon: string
 }
 
+export type ProjectSection = 'active' | 'maintained' | 'legacy'
+
 export interface Project {
-  name: string;
-  status: string;
-  summary: string;
-  impact: string;
-  stack: string[];
-  links: LinkItem[];
+  name: string
+  status?: string
+  section: ProjectSection
+  summary: string
+  impact: string
+  stack: string[]
+  links: LinkItem[]
+}
+
+export interface ProjectSectionSummary {
+  id: ProjectSection
+  title: string
+  emptyMessage: string
 }
 
 export interface ExperienceItem {
-  period: string;
-  role: string;
-  company: string;
-  summary: string;
-  wins: string[];
+  period: string
+  role: string
+  company: string
+  summary: string
+  wins: string[]
 }
 
 export interface SkillGroup {
-  name: string;
-  skills: string[];
+  name: string
+  skills: string[]
 }
 
 export const profile = {
@@ -32,7 +41,7 @@ export const profile = {
   intro:
     'A playful brand for serious engineering: clear systems, maintainable code, and user-facing details that hold up after launch.',
   availability: 'Open to developer conversations',
-};
+}
 
 export const links: LinkItem[] = [
   {
@@ -45,76 +54,79 @@ export const links: LinkItem[] = [
     href: 'https://www.linkedin.com/in/thomas-tickle/',
     icon: 'pi pi-linkedin',
   },
-];
+]
 
 export const projects: Project[] = [
   {
-    name: 'Portfolio Platform',
-    status: 'In progress',
-    summary: 'A fast Angular and PrimeNG portfolio built for Cloudflare Pages.',
-    impact: 'Shows frontend architecture, deployment awareness, and polished product judgment.',
-    stack: ['Angular', 'PrimeNG', 'TypeScript', 'Cloudflare Pages'],
+    name: 'The Code Tickler',
+    section: 'active',
+    summary:
+      'A personal portfolio site for independent project notes, practical engineering work, and public-facing craft.',
+    impact:
+      'Keeps the frontend, deployment path, and project writing in one maintainable Angular codebase.',
+    stack: ['Angular', 'PrimeNG', 'Tailwind CSS', 'Cloudflare Pages'],
     links: [
       {
-        label: 'Site',
-        href: 'https://thecodetickler.com',
-        icon: 'pi pi-external-link',
-      },
-    ],
-  },
-  {
-    name: 'Developer Tooling Showcase',
-    status: 'Placeholder',
-    summary: 'Replace this with a tool, automation project, integration, or internal platform you built.',
-    impact: 'Describe the before-and-after: time saved, defects reduced, or decisions clarified.',
-    stack: ['TypeScript', 'APIs', 'Automation'],
-    links: [
-      {
-        label: 'Repository',
-        href: 'https://github.com/thecodetickler',
+        label: 'Source',
+        href: 'https://github.com/thomastickle/the-code-tickler',
         icon: 'pi pi-github',
       },
     ],
   },
+]
+
+export const projectSections: ProjectSectionSummary[] = [
   {
-    name: 'Production System Story',
-    status: 'Placeholder',
-    summary: 'Use this slot for a work-safe case study about scaling, reliability, or user workflow design.',
-    impact: 'Focus on ownership, tradeoffs, and the measurable result without exposing private details.',
-    stack: ['Architecture', 'Testing', 'Observability'],
-    links: [
-      {
-        label: 'Notes',
-        href: 'mailto:hello@thecodetickler.com?subject=Production%20system%20story',
-        icon: 'pi pi-send',
-      },
-    ],
+    id: 'active',
+    title: 'Active',
+    emptyMessage: 'No active independent project is published yet.',
   },
-];
+  {
+    id: 'maintained',
+    title: 'Maintained',
+    emptyMessage: 'No maintained independent projects are listed yet.',
+  },
+  {
+    id: 'legacy',
+    title: 'Legacy (No Active Maintenance)',
+    emptyMessage: 'No legacy independent projects are listed yet.',
+  },
+]
+
+export const visibleProjectStack = (project: Project): string[] => project.stack.slice(0, 4)
 
 export const experience: ExperienceItem[] = [
   {
     period: 'Recent',
     role: 'Software Developer',
     company: 'Replace with current or latest role',
-    summary: 'Builds and improves applications with a bias toward clear behavior and maintainable systems.',
-    wins: ['Turns ambiguous needs into shippable slices', 'Keeps implementation details visible and testable'],
+    summary:
+      'Builds and improves applications with a bias toward clear behavior and maintainable systems.',
+    wins: [
+      'Turns ambiguous needs into shippable slices',
+      'Keeps implementation details visible and testable',
+    ],
   },
   {
     period: 'Earlier',
     role: 'Application Engineer',
     company: 'Replace with prior team',
-    summary: 'Worked across frontend, backend, and integration boundaries to make everyday workflows smoother.',
-    wins: ['Improved internal tools and delivery habits', 'Collaborated with product and operations stakeholders'],
+    summary:
+      'Worked across frontend, backend, and integration boundaries to make everyday workflows smoother.',
+    wins: [
+      'Improved internal tools and delivery habits',
+      'Collaborated with product and operations stakeholders',
+    ],
   },
   {
     period: 'Ongoing',
     role: 'Technical Learner',
     company: 'The Code Tickler',
-    summary: 'Keeps the craft sharp through small experiments, code review, and pragmatic technology choices.',
+    summary:
+      'Keeps the craft sharp through small experiments, code review, and pragmatic technology choices.',
     wins: ['Documents decisions', 'Prefers useful abstractions over novelty'],
   },
-];
+]
 
 export const skillGroups: SkillGroup[] = [
   {
@@ -129,4 +141,4 @@ export const skillGroups: SkillGroup[] = [
     name: 'Delivery',
     skills: ['Clear planning', 'Incremental rollout', 'Code review', 'Developer tooling'],
   },
-];
+]

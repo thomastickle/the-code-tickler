@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ButtonDirective } from 'primeng/button';
-import { Card } from 'primeng/card';
+import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ButtonDirective } from 'primeng/button'
+import { Card } from 'primeng/card'
 
-import { links, profile } from '../../portfolio-data';
+import { links, profile } from '../../portfolio-data'
 
 @Component({
   selector: 'app-contact',
@@ -12,6 +12,6 @@ import { links, profile } from '../../portfolio-data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Contact {
-  protected readonly profile = profile;
-  protected readonly links = links;
+  protected readonly profile = profile
+  protected readonly links = links
 }
