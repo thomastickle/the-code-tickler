@@ -1,5 +1,5 @@
 <div class="mx-auto w-[min(1120px,calc(100%_-_2rem))] py-10 pb-6 md:py-16 md:pb-8">
-  <p class="m-0 text-[clamp(1rem,2vw,1.2rem)] leading-relaxed text-surface-400">
+  <p class="m-0 text-[clamp(1rem,2vw,1.2rem)] leading-relaxed text-[var(--muted)]">
     A living portfolio of software I’m building, maintaining, and refining under The Code Tickler
     brand. These projects include active experiments, useful tools, product ideas, and completed
     work that show how I approach design, delivery, debugging, and long-term code ownership.
@@ -27,13 +27,21 @@
               (keydown.enter)="openProjectFromKeyboard($event, project)"
               (keydown.space)="openProjectFromKeyboard($event, project)"
             >
-              <ng-template #title>{{ project.name }}</ng-template>
+              <ng-template #title>
+                <span class="project-title-line">
+                  <span class="project-title-text">{{ project.name }}</span>
+                  <span class="project-detail-cue" aria-hidden="true">
+                    <span>Details</span>
+                    <i class="pi pi-arrow-right"></i>
+                  </span>
+                </span>
+              </ng-template>
               @if (project.status) {
                 <ng-template #subtitle>{{ project.status }}</ng-template>
               }
-              <p class="text-surface-400 leading-relaxed">{{ project.summary }}</p>
+              <p class="leading-relaxed text-[var(--muted)]">{{ project.summary }}</p>
               @if (project.impact) {
-                <p class="text-surface-400 leading-relaxed">{{ project.impact }}</p>
+                <p class="leading-relaxed text-[var(--muted)]">{{ project.impact }}</p>
               }
               <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Project technologies">
                 @for (tech of visibleProjectStack(project); track tech) {
@@ -63,9 +71,7 @@
           }
         </div>
       } @else {
-        <p
-          class="m-0 rounded-lg border border-dashed border-surface-700 bg-surface-900/35 px-4 py-3 text-sm leading-relaxed text-surface-400"
-        >
+        <p class="project-empty-state m-0 rounded-lg px-4 py-3 text-sm leading-relaxed">
           {{ projectSection.emptyMessage }}
         </p>
       }

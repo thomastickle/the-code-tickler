@@ -32,6 +32,7 @@
   height: 100%;
 }
 
+:host ::ng-deep .about-card.p-card,
 :host ::ng-deep .about-card .p-card {
   height: 100%;
   border: 1px solid var(--card-border);
@@ -41,19 +42,23 @@
     color-mix(in srgb, var(--card-bg) 92%, transparent),
     color-mix(in srgb, var(--surface-alt) 78%, transparent)
   );
-  box-shadow: 0 1.4rem 3rem rgba(2, 6, 23, 0.18);
+  box-shadow: var(--card-shadow);
   backdrop-filter: blur(14px);
 }
 
+:host ::ng-deep .about-card.p-card .p-card-body,
 :host ::ng-deep .about-card .p-card-body,
+:host ::ng-deep .about-card.p-card .p-card-content,
 :host ::ng-deep .about-card .p-card-content {
   height: 100%;
 }
 
+:host ::ng-deep .about-card.p-card .p-card-body,
 :host ::ng-deep .about-card .p-card-body {
   padding: clamp(1.25rem, 2.8vw, 1.65rem);
 }
 
+:host ::ng-deep .about-card.p-card .p-card-content,
 :host ::ng-deep .about-card .p-card-content {
   padding: 0;
 }
@@ -69,11 +74,6 @@
   width: 3px;
   border-radius: 999px;
   background: linear-gradient(180deg, var(--accent), var(--accent-strong));
-}
-
-html.app-light .statement-card,
-html.app-light .capability-card {
-  box-shadow: 0 1rem 2.4rem rgba(15, 23, 42, 0.08);
 }
 
 html.app-light :host {

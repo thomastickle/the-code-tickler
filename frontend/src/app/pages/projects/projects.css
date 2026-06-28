@@ -1,3 +1,9 @@
 :host {
   display: block;
 }
+
+.project-empty-state {
+  border: 1px dashed var(--empty-state-border);
+  background: var(--empty-state-bg);
+  color: var(--muted);
+}
