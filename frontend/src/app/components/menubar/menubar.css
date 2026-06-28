@@ -14,8 +14,14 @@
   border-bottom: 1px solid var(--chrome-line);
 }
 
+.site-shell-inner {
+  grid-template-columns: minmax(3.25rem, 1fr) minmax(0, auto) minmax(2.5rem, 1fr);
+}
+
 .brandmark-menu-root {
   position: relative;
+  min-width: 3.25rem;
+  justify-self: start;
 }
 
 .brandmark-trigger {
@@ -82,9 +88,14 @@
   padding: 1rem;
   border: 1px solid var(--chrome-line);
   border-radius: 1rem;
+  background: color-mix(in srgb, var(--p-surface-950) 96%, black);
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.28);
   transform-origin: top left;
   animation: brandmark-menu-enter 160ms ease both;
+}
+
+html.app-light .brandmark-menu-popout {
+  background: color-mix(in srgb, var(--p-surface-0) 98%, white);
 }
 
 .brandmark-menu-link {

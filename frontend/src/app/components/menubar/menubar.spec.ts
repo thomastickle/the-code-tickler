@@ -37,6 +37,15 @@ describe('Menubar', () => {
     expect(element.textContent).toContain('Home')
   })
 
+  it('uses a centered header layout for the current page label', () => {
+    const element: HTMLElement = fixture.nativeElement
+    const shell = element.querySelector('.site-shell-inner')
+    const label = element.querySelector('.current-page-label')
+
+    expect(shell).toBeTruthy()
+    expect(label?.classList).toContain('justify-self-center')
+  })
+
   it('renders desktop navigation links', () => {
     component['toggleNavigation']()
     fixture.detectChanges()
