@@ -16,7 +16,7 @@
       </div>
 
       @if (projectSection.projects.length > 0) {
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           @for (project of projectSection.projects; track project.name) {
             <p-card
               class="portfolio-card project-card interactive-project-card"
