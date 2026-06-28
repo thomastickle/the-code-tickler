@@ -1,4 +1,4 @@
-<div class="mx-auto w-[min(1120px,calc(100%_-_2rem))] py-10 pb-6 md:py-16 md:pb-8">
+<div class="site-frame py-10 pb-6 md:py-16 md:pb-8">
   <p class="m-0 text-[clamp(1rem,2vw,1.2rem)] leading-relaxed text-[var(--muted)]">
     A living portfolio of software I’m building, maintaining, and refining under The Code Tickler
     brand. These projects include active experiments, useful tools, product ideas, and completed
@@ -6,7 +6,7 @@
   </p>
 </div>
 
-<div class="mx-auto grid w-[min(1120px,calc(100%_-_2rem))] gap-8 pb-10 md:pb-16 lg:pb-20">
+<div class="site-frame grid gap-8 pb-10 md:pb-16 lg:pb-20">
   @for (projectSection of projectSections(); track projectSection.id) {
     <section class="grid gap-4" [attr.aria-labelledby]="projectSection.id + '-projects-heading'">
       <div class="flex items-end justify-between gap-4 max-sm:flex-col max-sm:items-start">

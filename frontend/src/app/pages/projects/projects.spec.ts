@@ -26,6 +26,7 @@ describe('Projects', () => {
   })
 
   it('renders the compact independent-project intro', () => {
+    expect(compiled.querySelectorAll('.site-frame').length).toBeGreaterThanOrEqual(2)
     expect(compiled.textContent).toContain(
       'A living portfolio of software I’m building, maintaining, and refining under The Code Tickler brand.',
     )

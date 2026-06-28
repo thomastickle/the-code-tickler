@@ -54,6 +54,7 @@ describe('Menubar', () => {
     const label = element.querySelector('.current-page-label')
 
     expect(shell).toBeTruthy()
+    expect(shell?.classList).toContain('site-frame')
     expect(label?.classList).toContain('justify-self-center')
   })
 
