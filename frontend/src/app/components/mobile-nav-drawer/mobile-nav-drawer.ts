@@ -6,6 +6,7 @@ export interface NavItem {
   label: string
   path: string
   icon: string
+  description?: string
 }
 
 @Component({

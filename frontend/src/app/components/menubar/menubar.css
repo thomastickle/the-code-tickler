@@ -5,38 +5,41 @@
 .site-shell-bar,
 .brandmark-menu-popout {
   border-color: var(--chrome-line);
-  background: var(--chrome-bg);
   color: var(--ink);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(16px);
 }
 
 .site-shell-bar {
   border-bottom: 1px solid var(--chrome-line);
+  background: var(--chrome-bg);
 }
 
 .site-shell-inner {
-  grid-template-columns: minmax(3.25rem, 1fr) minmax(0, auto) minmax(2.5rem, 1fr);
+  width: 100%;
+  min-height: 5.5rem;
+  padding-inline: clamp(1rem, 2.5vw, 2rem);
+  background: color-mix(in srgb, var(--chrome-bg) 92%, transparent);
 }
 
 .brandmark-menu-root {
   position: relative;
-  min-width: 3.25rem;
-  justify-self: start;
+  min-width: 0;
 }
 
 .brandmark-trigger {
   display: inline-flex;
-  min-width: 3.25rem;
-  height: 3.25rem;
+  min-width: min(31rem, calc(100vw - 8rem));
+  height: 4rem;
   align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 0 0.8rem;
-  border: 1px solid var(--chrome-line);
-  border-radius: 999px;
+  justify-content: flex-start;
+  gap: 1.1rem;
+  padding: 0 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--p-primary-500) 58%, var(--chrome-line));
+  border-radius: 0.85rem;
   background: var(--button-glass);
   color: inherit;
   cursor: pointer;
+  box-shadow: 0 1rem 2.2rem rgba(2, 6, 23, 0.14);
 }
 
 .brandmark-trigger:hover,
@@ -51,7 +54,31 @@
 }
 
 .brandmark-trigger img {
-  height: 2.2rem;
+  height: 2.6rem;
+}
+
+.brandmark-trigger-copy {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+  text-align: left;
+}
+
+.brandmark-trigger-name {
+  overflow: hidden;
+  font-weight: 900;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brandmark-trigger-page {
+  color: var(--accent-strong);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .brandmark-menu-chevron {
@@ -64,29 +91,17 @@
   transform: rotate(180deg);
 }
 
-.current-page-label {
-  margin: 0;
-  color: var(--accent-strong);
-  overflow: hidden;
-  font-size: 0.78rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-overflow: ellipsis;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
 .navigation-scrim {
   background: rgba(2, 6, 23, 0.34);
 }
 
 .brandmark-menu-popout {
   position: absolute;
-  top: calc(100% + 0.45rem);
+  top: calc(100% + 0.7rem);
   left: 0;
   z-index: 30;
-  width: min(24rem, calc(100vw - 2rem));
-  padding: 1rem;
+  width: min(32rem, calc(100vw - 2rem));
+  padding: 0.85rem;
   border: 1px solid var(--chrome-line);
   border-radius: 1rem;
   background: color-mix(in srgb, var(--p-surface-950) 96%, black);
@@ -95,20 +110,37 @@
   animation: brandmark-menu-enter 160ms ease both;
 }
 
+.brandmark-menu-popout::before {
+  position: absolute;
+  top: -0.55rem;
+  left: min(11.5rem, 42%);
+  width: 1rem;
+  height: 1rem;
+  border-top: 1px solid var(--chrome-line);
+  border-left: 1px solid var(--chrome-line);
+  background: inherit;
+  content: '';
+  transform: rotate(45deg);
+}
+
 :host-context(.app-light) .brandmark-menu-popout {
   background: color-mix(in srgb, var(--p-surface-0) 98%, white);
 }
 
 .brandmark-menu-link {
   display: inline-flex;
-  min-height: 3rem;
+  position: relative;
+  min-height: 4.7rem;
   align-items: center;
-  gap: 0.75rem;
-  padding-inline: 1rem;
+  gap: 1rem;
+  padding: 0.75rem 1.15rem;
   border-radius: 0.75rem;
   color: var(--muted);
-  font-weight: 900;
   text-decoration: none;
+}
+
+.brandmark-menu-link + .brandmark-menu-link {
+  border-top: 1px solid color-mix(in srgb, var(--chrome-line) 58%, transparent);
 }
 
 .brandmark-menu-link.active,
@@ -118,12 +150,81 @@
   background: var(--nav-active-bg);
 }
 
+.brandmark-menu-link.active::before {
+  position: absolute;
+  inset-block: 1rem;
+  left: 0;
+  width: 0.2rem;
+  border-radius: 999px;
+  background: var(--p-primary-500);
+  content: '';
+}
+
+.brandmark-menu-link-icon {
+  width: 2.6rem;
+  color: currentcolor;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.brandmark-menu-link-copy {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.brandmark-menu-link-label {
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.brandmark-menu-link-description {
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
 :host ::ng-deep .theme-toggle.p-button {
-  width: 2.5rem;
-  height: 2.5rem;
+  flex: 0 0 auto;
+  width: 3.9rem;
+  height: 3.9rem;
   border: 1px solid var(--chrome-line);
   background: var(--button-glass);
   color: var(--nav-active);
+  box-shadow: 0 1rem 2.2rem rgba(2, 6, 23, 0.14);
+}
+
+@media (max-width: 640px) {
+  .site-shell-inner {
+    min-height: 5rem;
+    gap: 0.75rem;
+    padding-inline: 0.85rem;
+  }
+
+  .brandmark-trigger {
+    min-width: 0;
+    width: min(19rem, calc(100vw - 6.5rem));
+    padding-inline: 0.75rem;
+  }
+
+  .brandmark-trigger img {
+    height: 2.35rem;
+  }
+
+  .brandmark-trigger-name {
+    display: none;
+  }
+
+  .brandmark-trigger-page {
+    overflow: hidden;
+    max-width: 9rem;
+    text-overflow: ellipsis;
+  }
+
+  .brandmark-menu-popout {
+    width: min(30rem, calc(100vw - 2rem));
+  }
 }
 
 @keyframes brandmark-menu-enter {

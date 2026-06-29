@@ -23,11 +23,26 @@ export class Menubar {
   protected readonly menuOpen = signal(false)
   protected readonly currentUrl = signal(this.router.url)
   protected readonly navItems: readonly NavItem[] = [
-    { label: 'Home', path: '/', icon: 'pi pi-home' },
-    { label: 'About', path: '/about', icon: 'pi pi-user' },
-    { label: 'Projects', path: '/projects', icon: 'pi pi-briefcase' },
-    { label: 'Writing', path: '/writing', icon: 'pi pi-pencil' },
-    { label: 'Contact', path: '/contact', icon: 'pi pi-send' },
+    { label: 'Home', path: '/', icon: 'pi pi-home', description: 'Welcome back' },
+    {
+      label: 'About',
+      path: '/about',
+      icon: 'pi pi-user',
+      description: 'Background and experience',
+    },
+    {
+      label: 'Projects',
+      path: '/projects',
+      icon: 'pi pi-code',
+      description: 'Things I build and maintain',
+    },
+    {
+      label: 'Writing',
+      path: '/writing',
+      icon: 'pi pi-file',
+      description: 'Engineering notes and ideas',
+    },
+    { label: 'Contact', path: '/contact', icon: 'pi pi-envelope', description: "Let's connect" },
   ]
   protected readonly currentPageLabel = computed(() => {
     const currentPath = this.currentUrl().split('?')[0].split('#')[0]

@@ -2,3 +2,13 @@
   display: block;
   min-height: 100dvh;
 }
+
+.app-main {
+  padding-top: 7.5rem;
+}
+
+@media (max-width: 640px) {
+  .app-main {
+    padding-top: 6.75rem;
+  }
+}
