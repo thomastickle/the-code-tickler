@@ -5,8 +5,7 @@ This repository is an Angular portfolio frontend with PrimeNG, PrimeUIX themes, 
 ## Codex CLI Setup
 
 - The Codex CLI MCP source of truth is `.codex/config.toml`.
-- The configured CLI MCP servers are `angular-cli` and `primeng`.
-- `frontend/.vscode/mcp.json` is for the user's VS Code workflow only. Do not treat it as the active Codex CLI configuration.
+- The configured CLI MCP servers are `angular-cli`.
 - If MCP tools are unavailable in a session, use the installed package metadata and official Angular/PrimeNG documentation as the fallback source of truth.
 
 ## Repository Rules
