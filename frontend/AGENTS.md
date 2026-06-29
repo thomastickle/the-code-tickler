@@ -1,85 +1,79 @@
-You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
+# The Code Tickler Frontend Agent Notes
 
-## Project Stack
+This directory contains the Angular frontend for The Code Tickler portfolio site. Work here should be deliberate, accessible, and consistent with the existing Angular 21, PrimeNG 21, PrimeUIX Aura, Tailwind CSS v4, and Cloudflare Pages setup.
 
-- Angular 21 standalone components.
-- PrimeNG 21 for interactive controls and repeated UI surfaces.
-- PrimeUIX Aura theming configured through `providePrimeNG`.
-- Tailwind CSS v4 with `tailwindcss-primeui` for Prime token-backed utilities.
-- PrimeIcons for iconography.
+## Current Redesign State
 
-## PrimeNG And Tailwind Rules
+- The site is intentionally in a reset state.
+- `src/app/app.html` currently renders only `<app-menubar />`; the routed `<main>` is commented out.
+- Do not re-enable routes, rebuild page sections, restore old hero layouts, or create new landing content unless the user explicitly asks.
+- The active design target is `src/app/components/menubar`. Treat the menubar as the first component to get right before broader site work continues.
+- Keep changes narrow. If the user gives detailed design guidance, implement that guidance directly instead of reviving prior redesign assumptions.
 
-- Prefer PrimeNG components for interactive controls, navigation/chrome primitives, cards, tags, segmented choices, and repeated content surfaces.
-- Prefer standalone PrimeNG exports such as `Button`, `ButtonDirective`, `Card`, `Tag`, `Toolbar`, and `SelectButton` over NgModule imports when available.
-- Use Tailwind for page layout, spacing, typography, responsive grids, and token-backed color utilities.
-- Use Prime token-backed Tailwind utilities such as `primary-*` and `surface-*` before adding new custom color variables.
-- Keep custom CSS for brand/effect work: hero image positioning, floating code cards, background washes, pseudo-elements, and small adapters for PrimeNG-generated DOM.
-- PrimeNG theme configuration belongs in `providePrimeNG`; do not add a parallel component theme system.
-- Dark mode is class-driven through `.app-dark` and `.app-light`.
+## Stack And Source Of Truth
 
-## Agent Workflow
-
-- For Codex CLI, use the root `.codex/config.toml` MCP setup. The VS Code MCP file is not the CLI source of truth.
+- Angular 21 application configured in `angular.json`.
+- Standalone component model is the default; do not add NgModules for app code unless a library integration truly requires one.
+- PrimeNG 21 provides interactive controls, navigation/chrome primitives, cards, tags, drawers, and repeated UI surfaces.
+- PrimeUIX Aura theming is configured through `providePrimeNG` in `src/app/app.config.ts`.
+- Tailwind CSS v4 and `tailwindcss-primeui` are loaded from `src/styles.css`.
+- PrimeIcons is the icon set.
+- Codex CLI MCP configuration lives at the repository root in `.codex/config.toml`.
 - If Angular or PrimeNG MCP tools are unavailable, inspect installed packages and official docs instead of guessing.
-- Run `npm run build:production` and `npm run test:ci` after UI-impacting changes.
 
-## TypeScript Best Practices
+## Angular And TypeScript Rules
 
-- Use strict type checking
-- Prefer type inference when the type is obvious
-- Avoid the `any` type; use `unknown` when type is uncertain
+- Use strict TypeScript. Avoid `any`; use `unknown` when a type is genuinely uncertain.
+- Prefer inference when the type is obvious.
+- Use signals for local component state and `computed()` for derived state.
+- Update signals with `set` or `update`; do not use `mutate`.
+- Use `inject()` instead of constructor injection for services and framework dependencies.
+- Set `changeDetection: ChangeDetectionStrategy.OnPush` on components.
+- Do not set `standalone: true`; it is already the Angular default. Use `standalone: false` only for rare compatibility cases.
+- Do not use `@HostBinding` or `@HostListener`; put host bindings in the component or directive `host` object.
+- Prefer `input()` and `output()` for new component APIs unless decorators make an integration clearer.
+- Keep components focused, with separate `.ts`, `.html`, and `.css` files.
+- Use paths relative to the component TypeScript file for external templates and styles.
 
-## Angular Best Practices
+## Template And UI Rules
 
-- Use Angular's default standalone component model; do not introduce NgModules for app code unless a library integration requires one.
-- Do not set `standalone: true` inside Angular decorators. It is already the default in Angular 19+. Use `standalone: false` only for rare NgModule compatibility cases.
-- Use signals for state management
-- Implement lazy loading for feature routes
-- Do NOT use the `@HostBinding` and `@HostListener` decorators. Put host bindings inside the `host` object of the `@Component` or `@Directive` decorator instead
-- Use `NgOptimizedImage` for all static images.
-  - `NgOptimizedImage` does not work for inline base64 images.
+- Use native Angular control flow: `@if`, `@for`, and `@switch`.
+- Prefer native `[class]` and `[style]` bindings. Use `ngClass` or `ngStyle` only when complex bindings become clearer.
+- Do not assume browser globals such as `new Date()` are available in templates.
+- Use the async pipe for observables used in templates.
+- Prefer PrimeNG components and directives for interactive UI.
+- Prefer standalone PrimeNG exports such as `Button`, `ButtonDirective`, `Card`, `Tag`, `Toolbar`, and `SelectButton` when available.
+- Use Tailwind for layout, spacing, typography, responsive grids, and token-backed color utilities.
+- Use Prime token-backed Tailwind utilities such as `primary-*` and `surface-*` before adding custom color variables.
+- Keep custom CSS focused on brand styling, layout details, PrimeNG generated-DOM adapters, and effects that cannot be expressed cleanly with utilities.
+- Do not add a parallel theme system. Theme configuration belongs in `providePrimeNG`.
+- Dark and light mode are class-driven through `.app-dark` and `.app-light`.
 
-## Accessibility Requirements
+## Accessibility And Assets
 
-- New UI should avoid known axe violations and be written so axe-based checks can pass when accessibility tooling is added.
-- Follow WCAG AA fundamentals: keyboard access, visible focus, sufficient color contrast, accessible labels/names, semantic structure, and valid ARIA.
+- New UI should be keyboard-accessible and written so axe-based checks can pass when accessibility tooling is added.
+- Follow WCAG AA basics: visible focus, sufficient contrast, accessible names, semantic structure, and valid ARIA.
+- Use icon-only buttons only when they have clear accessible labels.
+- Preserve responsive behavior down to a 320px viewport.
+- Use `NgOptimizedImage` for static Angular-managed images when practical.
+- Do not use `NgOptimizedImage` for inline base64 images.
 
-### Components
+## Verification
 
-- Keep components small and focused on a single responsibility
-- Prefer `input()` and `output()` functions for new components; use decorators when needed for compatibility or clearer integration.
-- Use `computed()` for derived state
-- Set `changeDetection: ChangeDetectionStrategy.OnPush` in `@Component` decorator
-- Use separate `.html`, `.ts`, and `.css` files for components to keep structure, behavior, and styling easy to scan.
-- Prefer Reactive forms instead of Template-driven ones
-- Prefer native `[class]` and `[style]` bindings over `ngClass` and `ngStyle`; use `ngClass` or `ngStyle` only when they clearly improve readability for complex bindings.
-- When using external templates/styles, use paths relative to the component TS file.
+- Run commands from this `frontend/` directory.
+- For UI-impacting changes, run:
+  - `npm run format:check`
+  - `npm run lint`
+  - `npm run test:ci`
+  - `npm run build:production`
+- For quick local development, `npm start` serves the app at `http://localhost:4200/`.
+- Instruction-only edits do not require frontend verification.
 
-## State Management
+## Deployment Constraints
 
-- Use signals for local component state
-- Use `computed()` for derived state
-- Keep state transformations pure and predictable
-- Do NOT use `mutate` on signals, use `update` or `set` instead
-
-## Templates
-
-- Keep templates simple and avoid complex logic
-- Use native control flow (`@if`, `@for`, `@switch`) instead of `*ngIf`, `*ngFor`, `*ngSwitch`
-- Use the async pipe to handle observables
-- Do not assume globals like (`new Date()`) are available.
-
-## Services
-
-- Design services around a single responsibility
-- Use the `providedIn: 'root'` option for singleton services
-- Use the `inject()` function instead of constructor injection
-
-## Deployment
-
-- Cloudflare Pages deployment is frontend-only and is driven by the root `.github/workflows/ci-cd.yml` workflow.
-- Pull requests normally target `development`; pushes to `development` validate and deploy a Cloudflare Pages preview.
-- Pushes to `main` validate and deploy the production Cloudflare Pages build.
-- Keep the build output directory as `dist/the-code-tickler/browser` unless `angular.json` output changes and the workflow is updated in the same change.
-- Preserve `public/_redirects`; it provides the SPA fallback required for client-side Angular routes on Cloudflare Pages.
+- Deployment is frontend-only and driven by the root `.github/workflows/ci-cd.yml` workflow.
+- Pull requests to `main` and `development` are validated by CI.
+- Pushes to `development` deploy a Cloudflare Pages preview.
+- Pushes to `main` deploy the production Cloudflare Pages build.
+- Keep the production output path as `dist/the-code-tickler/browser` unless `angular.json` and CI/CD are updated together.
+- Preserve `public/_redirects`; it provides the SPA fallback for client-side Angular routes on Cloudflare Pages.

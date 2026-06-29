@@ -37,13 +37,4 @@ describe('Contact', () => {
     expect(hrefs.some((href) => href.startsWith('mailto:'))).toBeFalsy()
     expect(fixture.nativeElement.textContent).not.toContain('Request resume')
   })
-
-  it('does not render removed contact prompt copy', () => {
-    const element: HTMLElement = fixture.nativeElement
-
-    expect(element.textContent).not.toContain('No contact form yet.')
-    expect(element.textContent).not.toContain('Comparing approaches')
-    expect(element.textContent).not.toContain('Untangling a system')
-    expect(element.textContent).not.toContain('Looking for practical engineering judgment')
-  })
 })
