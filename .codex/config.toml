@@ -5,6 +5,6 @@
 command = "npx"
 args = ["-y", "@angular/cli", "mcp"]
 
-[mcp_servers.primeng]
-command = "npx"
-args = ["-y", "@primeng/mcp"]
+#[mcp_servers.primeng]
+#command = "npx"
+#args = ["-y", "@primeng/mcp"]
