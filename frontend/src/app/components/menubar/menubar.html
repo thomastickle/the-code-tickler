@@ -1,5 +1,14 @@
-<header class="site-shell-bar sticky top-0 z-20">
-  <div class="site-shell-inner site-frame grid items-center gap-4 py-3">
+<header class="site-shell-bar fixed inset-x-0 top-0 z-50">
+  <div class="site-shell-inner flex items-center gap-4 py-3">
+    <p-button
+      styleClass="theme-toggle"
+      (click)="toggleTheme()"
+      [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+      [icon]="darkMode() ? 'pi pi-sun' : 'pi pi-moon'"
+      rounded
+      text
+    />
+
     <div class="brandmark-menu-root">
       <button
         type="button"
@@ -11,13 +20,20 @@
       >
         <img
           src="brandmark/brand-mark-1x.webp"
-          srcset="brandmark/brand-mark-1x.webp 1x, brandmark/brand-mark-2x.webp 2x, brandmark/brand-mark-3x.webp 3x"
+          srcset="
+            brandmark/brand-mark-1x.webp 1x,
+            brandmark/brand-mark-2x.webp 2x,
+            brandmark/brand-mark-3x.webp 3x
+          "
           alt=""
           width="74"
           height="52"
           aria-hidden="true"
         />
-        <span class="hidden font-black sm:inline">The Code Tickler</span>
+        <span class="brandmark-trigger-copy">
+          <span class="brandmark-trigger-name">The Code Tickler</span>
+          <span class="brandmark-trigger-page">{{ currentPageLabel() }}</span>
+        </span>
         <span
           class="pi pi-chevron-down brandmark-menu-chevron hidden sm:inline"
           aria-hidden="true"
@@ -39,28 +55,21 @@
                 [routerLinkActiveOptions]="{ exact: item.path === '/' }"
                 (click)="closeNavigation()"
               >
-                <span [class]="item.icon" aria-hidden="true"></span>
-                <span>{{ item.label }}</span>
+                <span
+                  class="brandmark-menu-link-icon"
+                  [class]="item.icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="brandmark-menu-link-copy">
+                  <span class="brandmark-menu-link-label">{{ item.label }}</span>
+                  <span class="brandmark-menu-link-description">{{ item.description }}</span>
+                </span>
               </a>
             }
           </nav>
         </section>
       }
     </div>
-
-    <p class="current-page-label justify-self-center" aria-live="polite">
-      {{ currentPageLabel() }}
-    </p>
-
-    <p-button
-      styleClass="theme-toggle"
-      class="justify-self-end"
-      (click)="toggleTheme()"
-      [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
-      [icon]="darkMode() ? 'pi pi-sun' : 'pi pi-moon'"
-      rounded
-      text
-    />
   </div>
 </header>
 

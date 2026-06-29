@@ -33,40 +33,69 @@ describe('Menubar', () => {
     expect(element.querySelector('.pi-bars')).toBeNull()
   })
 
-  it('renders the current page label', () => {
+  it('uses WebP brandmark assets for the menu trigger', () => {
     const element: HTMLElement = fixture.nativeElement
+    const brandmark = element.querySelector('.brandmark-trigger img') as HTMLImageElement
 
-    expect(element.textContent).toContain('Home')
+    expect(brandmark?.getAttribute('src')).toBe('brandmark/brand-mark-1x.webp')
+    expect(brandmark?.getAttribute('srcset')).toContain('brandmark/brand-mark-2x.webp 2x')
   })
 
-  it('uses Projects as the current page label for project detail routes', () => {
+  it('uses a full-width fixed header with theme toggle before the brand trigger', () => {
+    const element: HTMLElement = fixture.nativeElement
+    const header = element.querySelector('.site-shell-bar')
+    const shell = element.querySelector('.site-shell-inner')
+    const firstControl = shell?.querySelector('.theme-toggle')
+    const secondControl = shell?.querySelector('.brandmark-trigger')
+
+    expect(header?.classList).toContain('fixed')
+    expect(header?.classList).toContain('inset-x-0')
+    expect(header?.classList).toContain('z-50')
+    expect(shell).toBeTruthy()
+    expect(shell?.classList).not.toContain('site-frame')
+    expect(firstControl).toBeTruthy()
+    expect(secondControl).toBeTruthy()
+    expect(element.querySelector('.current-page-label')).toBeNull()
+  })
+
+  it('renders the current page cue inside the brand trigger', () => {
+    const element: HTMLElement = fixture.nativeElement
+    const trigger = element.querySelector('.brandmark-trigger')
+    const pageCue = trigger?.querySelector('.brandmark-trigger-page')
+
+    expect(element.querySelector('.current-page-label')).toBeNull()
+    expect(pageCue?.textContent).toContain('Home')
+  })
+
+  it('uses Projects as the brand trigger cue for project detail routes', () => {
     component['currentUrl'].set('/projects/the-code-tickler')
     fixture.detectChanges()
 
     const element: HTMLElement = fixture.nativeElement
 
-    expect(element.querySelector('.current-page-label')?.textContent).toContain('Projects')
+    expect(element.querySelector('.brandmark-trigger-page')?.textContent).toContain('Projects')
   })
 
-  it('uses a centered header layout for the current page label', () => {
-    const element: HTMLElement = fixture.nativeElement
-    const shell = element.querySelector('.site-shell-inner')
-    const label = element.querySelector('.current-page-label')
-
-    expect(shell).toBeTruthy()
-    expect(shell?.classList).toContain('site-frame')
-    expect(label?.classList).toContain('justify-self-center')
-  })
-
-  it('renders desktop navigation links', () => {
+  it('renders navigation links with descriptions', () => {
     component['toggleNavigation']()
     fixture.detectChanges()
 
     const element: HTMLElement = fixture.nativeElement
     const labels = ['Home', 'About', 'Projects', 'Writing', 'Contact']
+    const descriptions = [
+      'Welcome back',
+      'Background and experience',
+      'Things I build and maintain',
+      'Engineering notes and ideas',
+      "Let's connect",
+    ]
 
     for (const label of labels) {
       expect(element.textContent).toContain(label)
+    }
+
+    for (const description of descriptions) {
+      expect(element.textContent).toContain(description)
     }
   })
 
@@ -78,7 +107,7 @@ describe('Menubar', () => {
 
     expect(element.querySelector('.brandmark-trigger')).toBeTruthy()
     expect(element.querySelector('.brandmark-menu-popout')).toBeTruthy()
-    expect(element.querySelector('.current-page-label')?.textContent).toContain('Home')
+    expect(element.querySelector('.current-page-label')).toBeNull()
     expect(element.textContent).not.toContain('Currently viewing')
   })
 
