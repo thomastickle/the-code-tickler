@@ -1,5 +1,72 @@
-<header class="">
+<header class="menubar-shell">
+  <nav class="menubar-panel" aria-label="Primary navigation">
+    <a class="brand-link" routerLink="/" aria-label="The Code Tickler home">
+      <img
+        class="brandmark"
+        src="brandmark/brand-mark-1x.webp"
+        srcset="
+          brandmark/brand-mark-1x.webp 1x,
+          brandmark/brand-mark-2x.webp 2x,
+          brandmark/brand-mark-3x.webp 3x
+        "
+        width="74"
+        height="52"
+        alt=""
+        aria-hidden="true"
+      />
+      <span class="brand-name">The Code Tickler</span>
+    </a>
 
+    <div class="menubar-spacer" aria-hidden="true"></div>
+
+    <div class="desktop-links" aria-label="Primary pages">
+      @for (item of navItems; track item.path) {
+        <a
+          class="nav-link"
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          {{ item.label }}
+        </a>
+      }
+    </div>
+
+    <p-button
+      styleClass="mobile-menu-button"
+      icon="pi pi-bars"
+      text
+      rounded
+      severity="secondary"
+      ariaLabel="Open navigation menu"
+      (click)="openMobileMenu()"
+    />
+
+    <div class="theme-switch-wrap" aria-hidden="false">
+      <span class="theme-endpoint theme-endpoint-dark" aria-hidden="true">
+        <i class="pi pi-moon"></i>
+      </span>
+      <span class="theme-endpoint theme-endpoint-light" aria-hidden="true">
+        <i class="pi pi-sun"></i>
+      </span>
+      <p-toggleswitch
+        class="theme-switch"
+        inputId="site-theme-toggle"
+        [ngModel]="lightMode()"
+        (ngModelChange)="setLightMode($event)"
+        [ariaLabel]="lightMode() ? 'Switch to dark mode' : 'Switch to light mode'"
+      >
+        <ng-template #handle let-checked="checked">
+          <i [class]="checked ? 'pi pi-sun' : 'pi pi-moon'" aria-hidden="true"></i>
+        </ng-template>
+      </p-toggleswitch>
+    </div>
+  </nav>
 </header>
 
-
+<app-mobile-nav-drawer
+  [open]="mobileMenuOpen()"
+  [navItems]="navItems"
+  (openChange)="setMobileMenuOpen($event)"
+  (navigate)="closeMobileMenu()"
+/>

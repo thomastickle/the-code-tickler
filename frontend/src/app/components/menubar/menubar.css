@@ -2,239 +2,357 @@
   display: block;
 }
 
-.site-shell-bar,
-.brandmark-menu-popout {
-  border-color: var(--chrome-line);
-  color: var(--ink);
-  backdrop-filter: blur(16px);
-}
-
-.site-shell-bar {
-  border-bottom: 1px solid var(--chrome-line);
-  background: var(--chrome-bg);
-}
-
-.site-shell-inner {
+.menubar-shell {
   width: 100%;
-  min-height: 5.5rem;
-  padding-inline: clamp(1rem, 2.5vw, 2rem);
-  background: color-mix(in srgb, var(--chrome-bg) 92%, transparent);
+  padding-block: clamp(0.75rem, 2vw, 1.15rem);
 }
 
-.brandmark-menu-root {
-  position: relative;
-  min-width: 0;
-}
-
-.brandmark-trigger {
-  display: inline-flex;
-  min-width: min(31rem, calc(100vw - 8rem));
-  height: 4rem;
+.menubar-panel {
+  display: flex;
+  width: min(90vw, 112rem);
+  min-height: 5rem;
   align-items: center;
-  justify-content: flex-start;
-  gap: 1.1rem;
-  padding: 0 1.2rem;
-  border: 1px solid color-mix(in srgb, var(--p-primary-500) 58%, var(--chrome-line));
-  border-radius: 0.85rem;
-  background: var(--button-glass);
-  color: inherit;
-  cursor: pointer;
-  box-shadow: 0 1rem 2.2rem rgba(2, 6, 23, 0.14);
+  gap: clamp(0.75rem, 1.8vw, 1.5rem);
+  margin-inline: auto;
+  padding: 0.85rem clamp(1rem, 2.5vw, 2.25rem);
+  border: 1px solid color-mix(in srgb, #38bdf8 54%, var(--p-primary-500));
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg, rgba(4, 10, 35, 0.94), rgba(2, 6, 23, 0.9)), var(--chrome-bg);
+  color: var(--ink);
+  box-shadow:
+    0 0 0 1px rgba(59, 130, 246, 0.12),
+    0 0 1.35rem rgba(34, 211, 238, 0.2),
+    0 0.65rem 2.25rem rgba(76, 29, 149, 0.28),
+    inset 0 0 1.5rem rgba(37, 99, 235, 0.14);
+  backdrop-filter: blur(18px);
 }
 
-.brandmark-trigger:hover,
-.brandmark-trigger:focus-visible {
-  color: var(--nav-active);
-  background: var(--nav-active-bg);
-}
-
-.brandmark-trigger img {
-  width: auto;
-  filter: drop-shadow(0 0 14px rgba(139, 92, 246, 0.52));
-}
-
-.brandmark-trigger img {
-  height: 2.6rem;
-}
-
-.brandmark-trigger-copy {
-  display: grid;
-  gap: 0.15rem;
+.brand-link {
+  display: inline-flex;
   min-width: 0;
-  text-align: left;
+  align-items: center;
+  gap: 0.9rem;
+  color: var(--nav-active);
+  text-decoration: none;
 }
 
-.brandmark-trigger-name {
+.brand-link:hover,
+.brand-link:focus-visible {
+  color: #ffffff;
+}
+
+.brandmark {
+  width: auto;
+  height: clamp(2.5rem, 4vw, 3.25rem);
+  filter: drop-shadow(0 0 0.45rem rgba(34, 211, 238, 0.55))
+    drop-shadow(0 0 0.85rem rgba(139, 92, 246, 0.72));
+}
+
+.brand-name {
   overflow: hidden;
-  font-weight: 900;
+  font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+  font-weight: 800;
+  line-height: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.brandmark-trigger-page {
-  color: var(--accent-strong);
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  line-height: 1;
-  text-transform: uppercase;
-  white-space: nowrap;
+.menubar-spacer {
+  flex: 1 1 auto;
+  min-width: 1rem;
 }
 
-.brandmark-menu-chevron {
-  margin-left: auto;
-  color: var(--muted);
-  transition: transform 160ms ease;
-}
-
-.brandmark-trigger[aria-expanded='true'] .brandmark-menu-chevron {
-  transform: rotate(180deg);
-}
-
-.navigation-scrim {
-  background: rgba(2, 6, 23, 0.34);
-}
-
-.brandmark-menu-popout {
-  position: absolute;
-  top: calc(100% + 0.7rem);
-  left: 0;
-  z-index: 30;
-  width: min(32rem, calc(100vw - 2rem));
-  padding: 0.85rem;
-  border: 1px solid var(--chrome-line);
-  border-radius: 1rem;
-  background: color-mix(in srgb, var(--p-surface-950) 96%, black);
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.28);
-  transform-origin: top left;
-  animation: brandmark-menu-enter 160ms ease both;
-}
-
-.brandmark-menu-popout::before {
-  position: absolute;
-  top: -0.55rem;
-  left: min(11.5rem, 42%);
-  width: 1rem;
-  height: 1rem;
-  border-top: 1px solid var(--chrome-line);
-  border-left: 1px solid var(--chrome-line);
-  background: inherit;
-  content: '';
-  transform: rotate(45deg);
-}
-
-:host-context(.app-light) .brandmark-menu-popout {
-  background: color-mix(in srgb, var(--p-surface-0) 98%, white);
-}
-
-.brandmark-menu-link {
+.desktop-links {
   display: inline-flex;
-  position: relative;
-  min-height: 4.7rem;
   align-items: center;
-  gap: 1rem;
-  padding: 0.75rem 1.15rem;
-  border-radius: 0.75rem;
-  color: var(--muted);
-  text-decoration: none;
+  gap: clamp(1rem, 3.8vw, 3.75rem);
 }
 
-.brandmark-menu-link + .brandmark-menu-link {
-  border-top: 1px solid color-mix(in srgb, var(--chrome-line) 58%, transparent);
-}
-
-.brandmark-menu-link.active,
-.brandmark-menu-link:hover,
-.brandmark-menu-link:focus-visible {
-  color: var(--nav-active);
-  background: var(--nav-active-bg);
-}
-
-.brandmark-menu-link.active::before {
-  position: absolute;
-  inset-block: 1rem;
-  left: 0;
-  width: 0.2rem;
-  border-radius: 999px;
-  background: var(--p-primary-500);
-  content: '';
-}
-
-.brandmark-menu-link-icon {
-  width: 2.6rem;
-  color: currentcolor;
-  font-size: 1.8rem;
-  text-align: center;
-}
-
-.brandmark-menu-link-copy {
-  display: grid;
-  gap: 0.25rem;
-  min-width: 0;
-}
-
-.brandmark-menu-link-label {
+.nav-link {
+  position: relative;
+  color: color-mix(in srgb, var(--ink) 82%, transparent);
   font-size: 1rem;
-  font-weight: 900;
-}
-
-.brandmark-menu-link-description {
-  color: var(--muted);
-  font-size: 0.92rem;
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    color 160ms ease,
+    text-shadow 160ms ease;
 }
 
-:host ::ng-deep .theme-toggle.p-button {
-  flex: 0 0 auto;
-  width: 3.9rem;
-  height: 3.9rem;
-  border: 1px solid var(--chrome-line);
-  background: var(--button-glass);
+.nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.65rem;
+  left: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #38bdf8, var(--p-primary-400));
+  box-shadow: 0 0 0.75rem rgba(139, 92, 246, 0.62);
+  content: '';
+  opacity: 0;
+  transform: scaleX(0.4);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible,
+.nav-link.active {
   color: var(--nav-active);
-  box-shadow: 0 1rem 2.2rem rgba(2, 6, 23, 0.14);
+  text-shadow: 0 0 0.8rem rgba(125, 211, 252, 0.28);
 }
 
-@media (max-width: 640px) {
-  .site-shell-inner {
-    min-height: 5rem;
-    gap: 0.75rem;
-    padding-inline: 0.85rem;
+.nav-link.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+:host ::ng-deep .mobile-menu-button.p-button {
+  display: none;
+  flex: 0 0 auto;
+  width: 2.85rem;
+  height: 2.85rem;
+  border: 1px solid color-mix(in srgb, var(--chrome-line) 80%, var(--p-primary-400));
+  color: var(--nav-active);
+}
+
+.theme-switch-wrap {
+  position: relative;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 5.15rem;
+  height: 2.55rem;
+}
+
+.theme-endpoint {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  width: 1.65rem;
+  height: 1.65rem;
+  place-items: center;
+  border-radius: 999px;
+  color: color-mix(in srgb, var(--ink) 54%, transparent);
+  pointer-events: none;
+}
+
+.theme-endpoint .pi {
+  font-size: 0.83rem;
+}
+
+.theme-endpoint-dark {
+  left: 0.45rem;
+}
+
+.theme-endpoint-light {
+  right: 0.45rem;
+}
+
+:host-context(.app-dark) .theme-endpoint-dark,
+:host-context(.app-light) .theme-endpoint-light {
+  color: transparent;
+}
+
+:host-context(.app-dark) .theme-endpoint-light,
+:host-context(.app-light) .theme-endpoint-dark {
+  color: color-mix(in srgb, var(--muted) 72%, transparent);
+}
+
+:host ::ng-deep .theme-switch.p-toggleswitch {
+  --p-toggleswitch-width: 5.15rem;
+  --p-toggleswitch-height: 2.55rem;
+  --p-toggleswitch-gap: 0.28rem;
+  --p-toggleswitch-handle-size: 1.95rem;
+  --p-toggleswitch-border-radius: 999px;
+  --p-toggleswitch-handle-border-radius: 999px;
+  --p-toggleswitch-slide-duration: 180ms;
+  --p-toggleswitch-transition-duration: 180ms;
+  --p-toggleswitch-border-width: 1px;
+  --p-toggleswitch-border-color: color-mix(in srgb, var(--p-primary-400) 72%, #38bdf8);
+  --p-toggleswitch-checked-border-color: color-mix(in srgb, var(--p-primary-400) 62%, #38bdf8);
+  --p-toggleswitch-hover-border-color: color-mix(in srgb, #38bdf8 68%, var(--p-primary-400));
+  --p-toggleswitch-checked-hover-border-color: color-mix(
+    in srgb,
+    #38bdf8 68%,
+    var(--p-primary-400)
+  );
+  --p-toggleswitch-background: color-mix(in srgb, var(--p-primary-950) 72%, #020617);
+  --p-toggleswitch-hover-background: color-mix(in srgb, var(--p-primary-900) 76%, #020617);
+  --p-toggleswitch-checked-background: color-mix(in srgb, var(--p-primary-100) 62%, #ffffff);
+  --p-toggleswitch-checked-hover-background: color-mix(in srgb, var(--p-primary-200) 58%, #ffffff);
+  --p-toggleswitch-handle-background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.98),
+    rgba(88, 28, 135, 0.9)
+  );
+  --p-toggleswitch-handle-hover-background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 1),
+    rgba(109, 40, 217, 0.96)
+  );
+  --p-toggleswitch-handle-checked-background: linear-gradient(135deg, #ffffff, #dbeafe);
+  --p-toggleswitch-handle-checked-hover-background: linear-gradient(135deg, #ffffff, #bfdbfe);
+  --p-toggleswitch-handle-color: #ffffff;
+  --p-toggleswitch-handle-hover-color: #ffffff;
+  --p-toggleswitch-handle-checked-color: #7c3aed;
+  --p-toggleswitch-handle-checked-hover-color: #6d28d9;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+:host ::ng-deep .theme-switch .p-toggleswitch-slider {
+  position: relative;
+  box-shadow:
+    inset 0 0 1rem rgba(59, 130, 246, 0.32),
+    0 0 1rem rgba(139, 92, 246, 0.42);
+  overflow: hidden;
+}
+
+:host ::ng-deep .theme-switch .p-toggleswitch-slider::before {
+  position: absolute;
+  inset: 0.2rem;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--p-primary-950) 82%, #020617) 0%,
+    color-mix(in srgb, var(--p-primary-700) 54%, #0f172a) 48%,
+    color-mix(in srgb, var(--p-primary-100) 62%, #ffffff) 100%
+  );
+  content: '';
+  opacity: 0.7;
+}
+
+:host ::ng-deep .theme-switch .p-toggleswitch.p-toggleswitch-checked .p-toggleswitch-slider {
+  box-shadow:
+    inset 0 0 0.75rem rgba(124, 58, 237, 0.12),
+    0 0 1rem rgba(34, 211, 238, 0.26);
+}
+
+:host ::ng-deep .theme-switch .p-toggleswitch-handle {
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 0 0.85rem rgba(139, 92, 246, 0.5),
+    0 0.18rem 0.45rem rgba(0, 0, 0, 0.26);
+}
+
+:host ::ng-deep .theme-switch .p-toggleswitch-handle .pi {
+  font-size: 0.9rem;
+}
+
+:host ::ng-deep .theme-switch .p-toggleswitch.p-toggleswitch-checked .p-toggleswitch-handle {
+  box-shadow:
+    0 0 0 1px rgba(124, 58, 237, 0.2),
+    0 0 0.75rem rgba(34, 211, 238, 0.36),
+    0 0.18rem 0.45rem rgba(15, 23, 42, 0.16);
+}
+
+:host-context(.app-light) .menubar-panel {
+  border-color: color-mix(in srgb, var(--p-primary-500) 48%, #0891b2);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(239, 246, 255, 0.84)), var(--chrome-bg);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.76),
+    0 0 1.15rem rgba(14, 165, 233, 0.16),
+    0 0.65rem 2.1rem rgba(15, 23, 42, 0.1),
+    inset 0 0 1.15rem rgba(124, 58, 237, 0.08);
+}
+
+:host-context(.app-light) .brand-link,
+:host-context(.app-light) .nav-link:hover,
+:host-context(.app-light) .nav-link:focus-visible,
+:host-context(.app-light) .nav-link.active {
+  color: #0f172a;
+}
+
+:host-context(.app-light) .nav-link {
+  color: color-mix(in srgb, #0f172a 76%, transparent);
+}
+
+:host-context(.app-light) ::ng-deep .theme-switch.p-toggleswitch {
+  --p-toggleswitch-background: color-mix(in srgb, var(--p-primary-900) 70%, #0f172a);
+  --p-toggleswitch-hover-background: color-mix(in srgb, var(--p-primary-800) 74%, #0f172a);
+  --p-toggleswitch-checked-background: color-mix(in srgb, var(--p-primary-100) 70%, #ffffff);
+  --p-toggleswitch-checked-hover-background: color-mix(in srgb, var(--p-primary-200) 64%, #ffffff);
+}
+
+:host-context(.app-light) ::ng-deep .theme-switch .p-toggleswitch-slider {
+  box-shadow:
+    inset 0 0 0.8rem rgba(124, 58, 237, 0.12),
+    0 0 0.75rem rgba(14, 165, 233, 0.22);
+}
+
+@media (max-width: 900px) {
+  .menubar-panel {
+    width: min(94vw, 52rem);
   }
 
-  .brandmark-trigger {
-    min-width: 0;
-    width: min(19rem, calc(100vw - 6.5rem));
-    padding-inline: 0.75rem;
-  }
-
-  .brandmark-trigger img {
-    height: 2.35rem;
-  }
-
-  .brandmark-trigger-name {
+  .desktop-links {
     display: none;
   }
 
-  .brandmark-trigger-page {
-    overflow: hidden;
-    max-width: 9rem;
-    text-overflow: ellipsis;
-  }
-
-  .brandmark-menu-popout {
-    width: min(30rem, calc(100vw - 2rem));
+  :host ::ng-deep .mobile-menu-button.p-button {
+    display: inline-flex;
   }
 }
 
-@keyframes brandmark-menu-enter {
-  from {
-    opacity: 0;
-    transform: translateY(-0.35rem) scale(0.98);
+@media (max-width: 520px) {
+  .menubar-shell {
+    padding-block: 0.65rem;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  .menubar-panel {
+    width: min(94vw, calc(100vw - 1rem));
+    min-height: 4.35rem;
+    gap: 0.55rem;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .brand-link {
+    gap: 0.55rem;
+  }
+
+  .brandmark {
+    height: 2.35rem;
+  }
+
+  .brand-name {
+    max-width: min(12rem, 38vw);
+    font-size: 1.05rem;
+  }
+
+  .menubar-spacer {
+    min-width: 0;
+  }
+
+  :host ::ng-deep .theme-switch.p-toggleswitch {
+    --p-toggleswitch-width: 4.55rem;
+    --p-toggleswitch-height: 2.3rem;
+    --p-toggleswitch-gap: 0.25rem;
+    --p-toggleswitch-handle-size: 1.8rem;
+  }
+
+  .theme-switch-wrap {
+    width: 4.55rem;
+    height: 2.3rem;
+  }
+
+  .theme-endpoint {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .theme-endpoint-dark {
+    left: 0.4rem;
+  }
+
+  .theme-endpoint-light {
+    right: 0.4rem;
   }
 }

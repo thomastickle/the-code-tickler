@@ -49,6 +49,15 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - Do not add a parallel theme system. Theme configuration belongs in `providePrimeNG`.
 - Dark and light mode are class-driven through `.app-dark` and `.app-light`.
 
+## Menubar Rules
+
+- Treat `docs/frontend/design/menubar.md` as the source of truth for menubar design decisions.
+- Preserve the established menubar layout: brandmark and "The Code Tickler" home link on the left, empty center, Projects/Writing/About/Contact links on desktop, mobile drawer collapse on narrow screens, and the theme toggle at the far right.
+- The theme toggle uses PrimeNG `ToggleSwitch`; dark mode is left/off and light mode is right/on.
+- Style the toggle with PrimeNG token variables so handle alignment and horizontal travel remain correct.
+- Keep the toggle background tied to the site's purple Prime tokens, with cyan only as a secondary glow/accent.
+- Preserve theme persistence through the `the-code-tickler-theme` localStorage key.
+
 ## Accessibility And Assets
 
 - New UI should be keyboard-accessible and written so axe-based checks can pass when accessibility tooling is added.
