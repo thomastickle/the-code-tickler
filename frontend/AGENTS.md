@@ -18,6 +18,7 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - PrimeUIX Aura theming is configured through `providePrimeNG` in `src/app/app.config.ts`.
 - Tailwind CSS v4 and `tailwindcss-primeui` are loaded from `src/styles.css`.
 - PrimeIcons is the icon set.
+- Track PrimeNG fit problems in `../docs/frontend/primeng-fit.md`; use it to decide when PrimeNG should be avoided or removed.
 - Codex CLI MCP configuration lives at the repository root in `.codex/config.toml`.
 - If Angular or PrimeNG MCP tools are unavailable, inspect installed packages and official docs instead of guessing.
 
@@ -43,6 +44,8 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - Use the async pipe for observables used in templates.
 - Prefer PrimeNG components and directives for interactive UI.
 - Prefer standalone PrimeNG exports such as `Button`, `ButtonDirective`, `Card`, `Tag`, `Toolbar`, and `SelectButton` when available.
+- Use native HTML plus focused CSS for brand-critical or reference-matched controls when PrimeNG generated DOM, tokens, or state styling prevent a close visual match.
+- When PrimeNG gets in the way, update `../docs/frontend/primeng-fit.md` with the issue and decision before repeating similar workarounds.
 - Use Tailwind for layout, spacing, typography, responsive grids, and token-backed color utilities.
 - Use Prime token-backed Tailwind utilities such as `primary-*` and `surface-*` before adding custom color variables.
 - Keep custom CSS focused on brand styling, layout details, PrimeNG generated-DOM adapters, and effects that cannot be expressed cleanly with utilities.
@@ -53,9 +56,12 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 
 - Treat `docs/frontend/design/menubar.md` as the source of truth for menubar design decisions.
 - Preserve the established menubar layout: brandmark and "The Code Tickler" home link on the left, empty center, Projects/Writing/About/Contact links on desktop, mobile drawer collapse on narrow screens, and the theme toggle at the far right.
-- The theme toggle uses PrimeNG `ToggleSwitch`; dark mode is left/off and light mode is right/on.
-- Style the toggle with PrimeNG token variables so handle alignment and horizontal travel remain correct.
-- Keep the toggle background tied to the site's purple Prime tokens, with cyan only as a secondary glow/accent.
+- The theme toggle is a native accessible `button` with `role="switch"` so it can closely match the sample image; do not replace it with PrimeNG `ToggleSwitch` unless the design changes.
+- Light mode is left/off and dark mode is right/on, matching the sample image.
+- Keep the toggle border thin, fading from almost black/navy on the left toward blue/pink/purple on the right; the selected dark-state moon should be white in a dark right-side area.
+- Keep the toggle thumb matte. The color strength belongs in the thin gradient border and dark pill background, not in a glowing thumb or handle.
+- The moon glyph is a custom CSS-filled crescent with the bright arc on the left and cutout opening toward the right; do not use `pi pi-moon` for the selected moon because the PrimeIcons outline shape does not match the sample.
+- Preserve the custom switch layering: outer pill/background, static endpoint icons, and moving thumb. This was chosen because the PrimeNG `ToggleSwitch` generated DOM made the sample geometry difficult to match closely.
 - Preserve theme persistence through the `the-code-tickler-theme` localStorage key.
 
 ## Accessibility And Assets

@@ -18,21 +18,25 @@
 - Clicking on the brandmark or text "The Code Tickler" should return the user to the home page.
 - Do not include Home as a right-side nav item; the brand link is the home affordance.
 - The rightmost element should be a toggle switch between the default dark mode and light mode. The site should remember the user's choice there.
-- The theme toggle should read left-to-right: dark mode on the left/off side, light mode on the right/on side.
+- The theme toggle should match the sample direction: light mode on the left/off side and dark mode on the right/on side.
 - On narrow screens, collapse the page links into a mobile menu button while keeping the brand and theme toggle visible.
 
 ## Theme
 
 - The menubar should have a glowing edge / shadow to help differentiate it from the items behind.
 - The target feel is a clean future / retro future glass panel with blue and purple neon edges.
-- The theme toggle background should incorporate the site's purple Prime tokens, with cyan used as a secondary glow/accent rather than the dominant color.
+- The theme toggle background should stay dark and quiet; the color accent belongs primarily on the border.
+- The theme toggle border should read like the original sample: a thin pill edge that moves from almost black/navy on the left through blue and pink into the site's purple on the right.
+- In dark mode, the selected moon sits on the right and is white inside a matte dark thumb. Use a filled crescent moon shape, not an outline icon; the bright arc should sit on the left with the cutout opening toward the right. The thumb should not glow. The left side keeps only a small subdued-white sun indicator.
 - Light mode should keep the same structure and affordances while using restrained lighter surfaces.
 
 ## Implementation Notes
 
 - The component lives at `frontend/src/app/components/menubar`.
-- Use PrimeNG `ToggleSwitch` for the theme control, not a hand-rolled switch.
-- Style the switch using PrimeNG toggle token variables such as `--p-toggleswitch-width`, `--p-toggleswitch-height`, `--p-toggleswitch-gap`, and `--p-toggleswitch-handle-size`; avoid raw size overrides that break handle travel.
+- Use a native accessible `button` with `role="switch"` for the theme control; this is intentionally custom so it can closely match `menubar-example.png`.
+- Keep the switch visually close to the sample: small dark pill, thin gradient border, subdued sun left, white moon in the right selected area, and no glow on the moving thumb.
+- Build the switch as separate visual layers: the outer pill/background, static endpoint icons, and a moving thumb. This keeps the sample-like geometry controllable without fighting generated component DOM.
+- Render the moon as a custom CSS-filled crescent so the selected icon matches the sample more closely than the PrimeIcons outline moon.
 - Persist the theme preference under `the-code-tickler-theme`.
 - Apply theme classes to `document.documentElement` as `.app-dark` and `.app-light`.
 - Reuse `MobileNavDrawer` for collapsed mobile navigation.

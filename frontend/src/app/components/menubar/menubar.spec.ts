@@ -52,15 +52,20 @@ describe('Menubar', () => {
   })
 
   it('defaults to dark mode and stores the preference', () => {
-    const switchInput = fixture.nativeElement.querySelector(
-      '#site-theme-toggle',
-    ) as HTMLInputElement
+    const themeSwitch = fixture.nativeElement.querySelector('.theme-switch') as HTMLButtonElement
 
     expect(document.documentElement.classList).toContain('app-dark')
     expect(document.documentElement.classList).not.toContain('app-light')
     expect(localStorage.getItem('the-code-tickler-theme')).toBe('dark')
-    expect(switchInput.checked).toBe(false)
-    expect(switchInput.getAttribute('aria-label')).toBe('Switch to light mode')
+    expect(themeSwitch.getAttribute('aria-checked')).toBe('true')
+    expect(themeSwitch.getAttribute('aria-label')).toBe('Switch to light mode')
+  })
+
+  it('uses a custom filled moon glyph in dark mode', () => {
+    const element: HTMLElement = fixture.nativeElement
+
+    expect(element.querySelector('.theme-switch-thumb .theme-icon-moon')).not.toBeNull()
+    expect(element.querySelector('.theme-switch-thumb .pi-moon')).toBeNull()
   })
 
   it('restores a saved light theme preference', async () => {
@@ -70,13 +75,14 @@ describe('Menubar', () => {
     lightFixture.detectChanges()
     await lightFixture.whenStable()
 
-    const switchInput = lightFixture.nativeElement.querySelector(
-      '#site-theme-toggle',
-    ) as HTMLInputElement
+    const themeSwitch = lightFixture.nativeElement.querySelector(
+      '.theme-switch',
+    ) as HTMLButtonElement
 
     expect(document.documentElement.classList).toContain('app-light')
     expect(document.documentElement.classList).not.toContain('app-dark')
-    expect(switchInput.getAttribute('aria-label')).toBe('Switch to dark mode')
+    expect(themeSwitch.getAttribute('aria-checked')).toBe('false')
+    expect(themeSwitch.getAttribute('aria-label')).toBe('Switch to dark mode')
   })
 
   it('persists theme changes from the toggle switch', async () => {

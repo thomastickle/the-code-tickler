@@ -42,25 +42,28 @@
       (click)="openMobileMenu()"
     />
 
-    <div class="theme-switch-wrap" aria-hidden="false">
+    <button
+      type="button"
+      class="theme-switch"
+      role="switch"
+      [attr.aria-checked]="darkMode()"
+      [attr.aria-label]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+      (click)="toggleTheme()"
+    >
       <span class="theme-endpoint theme-endpoint-dark" aria-hidden="true">
-        <i class="pi pi-moon"></i>
+        <span class="theme-icon theme-icon-moon"></span>
       </span>
       <span class="theme-endpoint theme-endpoint-light" aria-hidden="true">
         <i class="pi pi-sun"></i>
       </span>
-      <p-toggleswitch
-        class="theme-switch"
-        inputId="site-theme-toggle"
-        [ngModel]="lightMode()"
-        (ngModelChange)="setLightMode($event)"
-        [ariaLabel]="lightMode() ? 'Switch to dark mode' : 'Switch to light mode'"
-      >
-        <ng-template #handle let-checked="checked">
-          <i [class]="checked ? 'pi pi-sun' : 'pi pi-moon'" aria-hidden="true"></i>
-        </ng-template>
-      </p-toggleswitch>
-    </div>
+      <span class="theme-switch-thumb" aria-hidden="true">
+        @if (darkMode()) {
+          <span class="theme-icon theme-icon-moon"></span>
+        } @else {
+          <i class="pi pi-sun"></i>
+        }
+      </span>
+    </button>
   </nav>
 </header>
 
