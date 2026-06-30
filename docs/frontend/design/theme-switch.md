@@ -14,13 +14,30 @@
 - `[checkedActionLabel]`: accessible action label used when `checked` is `true`; defaults to `Switch to light mode`.
 - `[uncheckedActionLabel]`: accessible action label used when `checked` is `false`; defaults to `Switch to dark mode`.
 
+## Usage
+
+Use `ThemeSwitch` as a controlled component. The parent owns the state and handles persistence or document-level theme classes.
+
+```html
+<app-theme-switch [checked]="darkMode()" (checkedChange)="setDarkMode($event)" />
+```
+
+```ts
+protected readonly darkMode = signal(true)
+
+protected setDarkMode(isDark: boolean): void {
+  this.darkMode.set(isDark)
+}
+```
+
 ## Visual Contract
 
 - Light/off sits on the left; dark/on sits on the right.
-- The outer pill carries the color accent through a thin border gradient.
+- The outer pill uses a crisp blue-gray border around the full toggle, with violet/pink accent concentrated on the right curve.
+- Render the right-edge accent as a separate masked ring layer, not as the same background layer as the track fill. This keeps the curved edges cleaner and closer to the sample.
 - The moving thumb stays matte and does not glow.
 - Sun and moon are CSS shapes, not icon-font glyphs.
-- The moon is a filled crescent with the bright arc on the left and the cutout opening toward the right.
+- The moon is a filled crescent with the bright arc on the left and the cutout opening toward the upper-right.
 
 ## Styling
 
@@ -28,7 +45,8 @@ Tune the component through CSS custom properties on `app-theme-switch` rather th
 
 - `--theme-switch-width`
 - `--theme-switch-height`
-- `--theme-switch-border-gradient`
+- `--theme-switch-border-color`
+- `--theme-switch-edge-accent`
 - `--theme-switch-track-bg`
 - `--theme-switch-thumb-size`
 - `--theme-switch-thumb-gap`

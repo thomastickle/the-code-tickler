@@ -1,7 +1,6 @@
 import { DOCUMENT } from '@angular/common'
 import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core'
 import { RouterLink, RouterLinkActive } from '@angular/router'
-import { Button } from 'primeng/button'
 
 import { MobileNavDrawer, type NavItem } from '../mobile-nav-drawer/mobile-nav-drawer'
 import { ThemeSwitch } from '../theme-switch/theme-switch'
@@ -11,7 +10,7 @@ type ThemePreference = 'dark' | 'light'
 
 @Component({
   selector: 'app-menubar',
-  imports: [Button, MobileNavDrawer, RouterLink, RouterLinkActive, ThemeSwitch],
+  imports: [MobileNavDrawer, RouterLink, RouterLinkActive, ThemeSwitch],
   templateUrl: './menubar.html',
   styleUrl: './menubar.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,10 +20,10 @@ export class Menubar {
   protected readonly darkMode = signal(this.readThemePreference() !== 'light')
   protected readonly mobileMenuOpen = signal(false)
   protected readonly navItems: readonly NavItem[] = [
-    { label: 'Projects', path: '/projects', icon: 'pi pi-code' },
-    { label: 'Writing', path: '/writing', icon: 'pi pi-file-edit' },
-    { label: 'About', path: '/about', icon: 'pi pi-user' },
-    { label: 'Contact', path: '/contact', icon: 'pi pi-envelope' },
+    { label: 'Projects', path: '/projects' },
+    { label: 'Writing', path: '/writing' },
+    { label: 'About', path: '/about' },
+    { label: 'Contact', path: '/contact' },
   ]
 
   constructor() {

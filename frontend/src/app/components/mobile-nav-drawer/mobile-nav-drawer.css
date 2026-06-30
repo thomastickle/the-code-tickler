@@ -2,26 +2,86 @@
   display: contents;
 }
 
-:host ::ng-deep .mobile-nav-drawer.p-drawer {
+.mobile-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(2, 4, 17, 0.58);
+  backdrop-filter: blur(4px);
+}
+
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 51;
   width: min(22rem, calc(100vw - 2rem));
-  border-left-width: 1px;
-  border-left-style: solid;
-  border-left-color: var(--chrome-line);
+  padding: 1.25rem;
+  border-left: 1px solid var(--chrome-line);
   background: var(--surface);
   color: var(--ink);
+  box-shadow: -1rem 0 2.5rem rgba(2, 4, 17, 0.45);
   backdrop-filter: blur(18px);
 }
 
-:host ::ng-deep .mobile-nav-drawer .p-drawer-header {
-  padding: 1.25rem 1.25rem 0.75rem;
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
 }
 
-:host ::ng-deep .mobile-nav-drawer .p-drawer-title {
+.mobile-nav-title {
+  margin: 0;
+  font-size: 1.05rem;
   font-weight: 900;
+  line-height: 1;
 }
 
-:host ::ng-deep .mobile-nav-drawer .p-drawer-content {
-  padding: 0.75rem 1.25rem 1.25rem;
+.mobile-nav-close {
+  display: grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  place-items: center;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--chrome-line) 80%, var(--p-primary-400));
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.mobile-nav-close span,
+.mobile-nav-close span::after {
+  display: block;
+  width: 1rem;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  content: '';
+}
+
+.mobile-nav-close span {
+  transform: rotate(45deg);
+}
+
+.mobile-nav-close span::after {
+  transform: rotate(90deg);
+}
+
+.mobile-nav {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.mobile-nav-link {
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: var(--muted);
+  font-weight: 900;
+  text-decoration: none;
 }
 
 .mobile-nav-link.active,
