@@ -5,6 +5,7 @@ import { Writing } from './writing'
 describe('Writing', () => {
   let component: Writing
   let fixture: ComponentFixture<Writing>
+  let element: HTMLElement
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -13,33 +14,44 @@ describe('Writing', () => {
 
     fixture = TestBed.createComponent(Writing)
     component = fixture.componentInstance
+    fixture.detectChanges()
     await fixture.whenStable()
+    element = fixture.nativeElement as HTMLElement
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
   })
 
-  it('renders shared writing posts', () => {
-    fixture.detectChanges()
-
-    const element: HTMLElement = fixture.nativeElement
-
-    expect(element.textContent).toContain('How I review code')
-    expect(element.textContent).toContain('Angular patterns worth keeping')
-    expect(element.textContent).toContain('Small tools, real leverage')
+  it('renders the redesigned writing hero and topic rail', () => {
+    expect(element.textContent).toContain('Notes from')
+    expect(element.textContent).toContain('the Workbench')
+    expect(element.textContent).toContain('Explore Topics')
+    expect(element.textContent).toContain('Architecture')
+    expect(element.textContent).toContain('Platform Strategy')
   })
 
-  it('renders the engineering notes intro without a separate eyebrow', () => {
-    fixture.detectChanges()
+  it('renders featured and planned note previews', () => {
+    expect(element.textContent).toContain('Featured Note')
+    expect(element.textContent).toContain('Designing for Change: Modular Monoliths Done Right')
+    expect(element.textContent).toContain('SLOs That Matter')
+    expect(element.textContent).toContain('Technical Leadership Without Authority')
+    expect(element.textContent).toContain('Planned feature note')
+  })
 
-    const element: HTMLElement = fixture.nativeElement
+  it('renders recent field note previews', () => {
+    expect(element.textContent).toContain('Recent Field Notes')
+    expect(element.textContent).toContain('Observability as a Product, Not a Project')
+    expect(element.textContent).toContain('Runbooks That People Actually Use')
+    expect(element.textContent).toContain('Building Feedback Loops into Delivery')
+  })
 
-    expect(element.querySelector('.eyebrow')).toBeNull()
-    expect(element.querySelector('h1')?.textContent).toContain('Engineering Notes')
-    expect(element.textContent).not.toContain('Notes from the workbench')
-    expect(element.textContent).toContain(
-      'Practical writing about building, debugging, modernizing, and operating software.',
-    )
+  it('keeps the subscribe panel visual-only', () => {
+    const input = element.querySelector<HTMLInputElement>('.subscribe-preview input')
+    const button = element.querySelector<HTMLButtonElement>('.subscribe-preview button')
+
+    expect(element.textContent).toContain('Stay in the Loop')
+    expect(input?.disabled).toBe(true)
+    expect(button?.disabled).toBe(true)
   })
 })
