@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">The Code Tickler {feather} brandmark</title>
+  <desc id="desc">A stylized feather between curly braces, drawn in blue and violet neon gradients.</desc>
+  <defs>
+    <linearGradient id="braceGradient" x1="126" y1="170" x2="898" y2="854" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#31D3FF"/>
+      <stop offset="0.46" stop-color="#5A8CFF"/>
+      <stop offset="1" stop-color="#B65CFF"/>
+    </linearGradient>
+    <linearGradient id="featherGradient" x1="355" y1="812" x2="690" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3EDBFF"/>
+      <stop offset="0.5" stop-color="#6D7BFF"/>
+      <stop offset="1" stop-color="#C06BFF"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(512 512) rotate(90) scale(438)">
+      <stop offset="0" stop-color="#714DFF" stop-opacity="0.55"/>
+      <stop offset="0.62" stop-color="#2EAFFF" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.19 0 0 0 0 0.55 0 0 0 0 1 0 0 0 0.65 0" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <circle cx="512" cy="512" r="430" fill="url(#glow)" opacity="0.72"/>
+  <g filter="url(#softGlow)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M341 164C263 164 253 217 253 267V349C253 392 228 412 187 412M187 612C228 612 253 632 253 675V757C253 807 263 860 341 860" stroke="url(#braceGradient)" stroke-width="42"/>
+    <path d="M683 164C761 164 771 217 771 267V349C771 392 796 412 837 412M837 612C796 612 771 632 771 675V757C771 807 761 860 683 860" stroke="url(#braceGradient)" stroke-width="42"/>
+    <path d="M436 812C505 610 593 389 706 208C603 253 512 331 459 436C419 516 407 622 436 812Z" fill="url(#featherGradient)" fill-opacity="0.18" stroke="url(#featherGradient)" stroke-width="30"/>
+    <path d="M437 810C505 620 590 395 704 209" stroke="#D8ECFF" stroke-width="14" opacity="0.88"/>
+    <path d="M486 650C538 629 594 594 645 540" stroke="url(#featherGradient)" stroke-width="15" opacity="0.9"/>
+    <path d="M507 575C558 553 616 510 667 455" stroke="url(#featherGradient)" stroke-width="14" opacity="0.9"/>
+    <path d="M531 503C585 478 641 434 684 383" stroke="url(#featherGradient)" stroke-width="13" opacity="0.86"/>
+    <path d="M455 714C492 709 541 692 592 655" stroke="url(#featherGradient)" stroke-width="12" opacity="0.72"/>
+  </g>
+</svg>

@@ -1,0 +1,86 @@
+:host {
+  --hero-visual-size: clamp(18rem, 34vw, 27rem);
+
+  display: block;
+  width: min(100%, var(--hero-visual-size));
+  justify-self: end;
+}
+
+.contact-visual {
+  position: relative;
+  aspect-ratio: 1;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--contact-line-strong);
+  border-radius: clamp(1rem, 3vw, 1.8rem);
+  background:
+    linear-gradient(180deg, rgba(9, 12, 48, 0.12), rgba(5, 10, 35, 0.84)),
+    url('/backgrounds/noise-stars.svg') center / 58rem auto repeat,
+    #070a20;
+  box-shadow:
+    0 0 0 1px rgba(26, 167, 255, 0.22),
+    0 0 2rem rgba(156, 77, 255, 0.34),
+    inset 0 0 3rem rgba(26, 167, 255, 0.1);
+  container-type: inline-size;
+  isolation: isolate;
+}
+
+.contact-visual::before {
+  position: absolute;
+  inset: 18% -34% -7%;
+  z-index: 0;
+  background: url('/backgrounds/retro-grid-horizon.svg') center bottom / 150% auto no-repeat;
+  content: '';
+  filter: saturate(1.25) brightness(1.35);
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+.contact-visual::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(2, 4, 17, 0) 0%,
+      rgba(2, 4, 17, 0.02) 46%,
+      rgba(2, 4, 17, 0.32) 100%
+    ),
+    radial-gradient(circle at 50% 39%, rgba(80, 141, 255, 0.24), transparent 35%),
+    radial-gradient(circle at 50% 49%, rgba(156, 77, 255, 0.24), transparent 48%);
+  content: '';
+  pointer-events: none;
+}
+
+.mark-stage {
+  position: absolute;
+  inset: 6% 7% 27%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+}
+
+.hero-mark {
+  width: min(78cqw, 23rem);
+  overflow: visible;
+  filter: drop-shadow(0 0 1.2rem rgba(26, 167, 255, 0.72))
+    drop-shadow(0 0 2.5rem rgba(156, 77, 255, 0.62));
+}
+
+@container (max-width: 23rem) {
+  .mark-stage {
+    inset: 7% 8% 29%;
+  }
+
+  .hero-mark {
+    width: 75cqw;
+  }
+}
+
+@media (max-width: 1120px) {
+  :host {
+    display: none;
+  }
+}

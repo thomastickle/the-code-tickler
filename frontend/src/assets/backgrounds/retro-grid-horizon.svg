@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="900" viewBox="0 0 1920 900" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Retro future grid horizon</title>
+  <desc id="desc">A transparent blue and violet perspective grid background.</desc>
+  <defs>
+    <linearGradient id="g" x1="120" y1="320" x2="1800" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#2EDBFF"/><stop offset="0.55" stop-color="#627AFF"/><stop offset="1" stop-color="#B75BFF"/></linearGradient>
+    <radialGradient id="h" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(960 500) rotate(90) scale(340 800)"><stop stop-color="#7E4CFF" stop-opacity="0.28"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1920" height="900" fill="transparent"/>
+  <ellipse cx="960" cy="505" rx="720" ry="260" fill="url(#h)"/>
+  <g stroke="url(#g)" stroke-width="2" opacity="0.34">
+    <path d="M80 840H1840"/><path d="M160 780H1760"/><path d="M250 720H1670"/><path d="M360 660H1560"/><path d="M500 600H1420"/><path d="M680 540H1240"/><path d="M860 500H1060"/>
+    <path d="M960 500V880"/><path d="M860 502L700 880"/><path d="M1060 502L1220 880"/><path d="M770 510L440 880"/><path d="M1150 510L1480 880"/><path d="M680 525L190 880"/><path d="M1240 525L1730 880"/>
+  </g>
+  <path d="M150 507C210 476 258 490 315 463C374 434 424 437 479 473C555 522 626 443 692 470C742 491 793 508 850 480C907 452 956 458 1005 486C1080 530 1144 454 1216 473C1285 491 1344 528 1411 486C1480 443 1532 456 1591 486C1645 514 1702 490 1770 510" stroke="url(#g)" stroke-width="3" opacity="0.26"/>
+</svg>

@@ -5,9 +5,11 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 ## Current Redesign State
 
 - The site is intentionally in a reset state.
-- `src/app/app.html` currently renders only `<app-menubar />`; the routed `<main>` is commented out.
-- Do not re-enable routes, rebuild page sections, restore old hero layouts, or create new landing content unless the user explicitly asks.
-- The active design target is `src/app/components/menubar`. Treat the menubar as the first component to get right before broader site work continues.
+- `src/app/app.html` renders `<app-menubar />` plus the routed `<main>` again so page-by-page redesign work can continue.
+- Do not restore old page sections, old hero layouts, or unrelated landing content unless the user explicitly asks.
+- The finished menubar is the established site chrome. Current page work should build under it without changing its design unless requested.
+- The accepted page baseline is `/contact`; treat `docs/frontend/design/contact.md` as the source of truth for that page.
+- For new page work, create or update a matching document in `../docs/frontend/design/` before committing the page.
 - Keep changes narrow. If the user gives detailed design guidance, implement that guidance directly instead of reviving prior redesign assumptions.
 
 ## Stack And Source Of Truth
@@ -51,6 +53,7 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - Keep custom CSS focused on brand styling, layout details, PrimeNG generated-DOM adapters, and effects that cannot be expressed cleanly with utilities.
 - Do not add a parallel theme system. Theme configuration belongs in `providePrimeNG`.
 - Dark and light mode are class-driven through `.app-dark` and `.app-light`.
+- Use page-prefixed class names for page-specific visual components. Avoid generic names such as `.hero-visual` unless the intent is to share global behavior; the contact hero visual was broken by an unrelated global `.hero-visual` minimum height.
 
 ## Menubar Rules
 
@@ -66,6 +69,17 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - The sun and moon glyphs are custom CSS shapes. The moon is a filled crescent with the bright arc on the left and cutout opening toward the upper-right; do not use `pi pi-moon` for the selected moon because the PrimeIcons outline shape does not match the sample.
 - Preserve the custom switch layering: outer pill/background, static endpoint icons, and moving thumb. This was chosen because the PrimeNG `ToggleSwitch` generated DOM made the sample geometry difficult to match closely.
 - Preserve theme persistence through the `the-code-tickler-theme` localStorage key.
+
+## Contact Page Rules
+
+- Treat `docs/frontend/design/contact.md` as the source of truth for the contact page.
+- Recreate `sample/new-design/Contact.png` with live Angular templates and CSS, not as a screenshot background.
+- Let the contact page inherit the shared site background; do not add a page-wide background image.
+- Keep the contact hero visual in `src/app/pages/contact/contact-hero-visual`; it owns the relative mark/grid composition, two-column scaling behavior, and hiding at the hero-collapse breakpoint.
+- Do not use the global `.hero-visual` class inside the contact hero visual. The global home-page rule includes a large minimum height and breaks the contact component's square sizing.
+- Keep the contact form honest until a backend exists. It may open a `mailto:` draft, but it must not show a fake server-side success state.
+- Use the promoted SVG assets under `src/assets/brandmark` and `src/assets/backgrounds` for contained visual elements only.
+- PrimeIcons may be used for contact-page content icons. The PrimeNG-free rule applies to menubar chrome, not this page.
 
 ## Accessibility And Assets
 
