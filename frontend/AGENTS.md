@@ -9,6 +9,7 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - Do not restore old page sections, old hero layouts, or unrelated landing content unless the user explicitly asks.
 - The finished menubar is the established site chrome. Current page work should build under it without changing its design unless requested.
 - The accepted page baseline is `/contact`; treat `docs/frontend/design/contact.md` as the source of truth for that page.
+- The active page design target is `/writing`; treat `../docs/frontend/design/writing.md` as the source of truth for this branch.
 - For new page work, create or update a matching document in `../docs/frontend/design/` before committing the page.
 - Keep changes narrow. If the user gives detailed design guidance, implement that guidance directly instead of reviving prior redesign assumptions.
 
@@ -80,6 +81,14 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - Keep the contact form honest until a backend exists. It may open a `mailto:` draft, but it must not show a fake server-side success state.
 - Use the promoted SVG assets under `src/assets/brandmark` and `src/assets/backgrounds` for contained visual elements only.
 - PrimeIcons may be used for contact-page content icons. The PrimeNG-free rule applies to menubar chrome, not this page.
+
+## Writing Page Rules
+
+- Treat `../docs/frontend/design/writing.md` as the source of truth for the writing page.
+- Recreate `sample/new-design/Writing.png` with live Angular templates and CSS, not as a screenshot background.
+- Treat writing entries as planned notes or previews unless the user confirms published content.
+- Do not link cards to missing `/writing/:slug` routes yet.
+- Keep the subscribe panel visual-only until a backend exists; do not show fake success or imply a real subscription.
 
 ## Accessibility And Assets
 

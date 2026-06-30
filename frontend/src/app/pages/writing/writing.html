@@ -1,30 +1,150 @@
-<section class="site-frame py-10 pb-4 md:py-16 md:pb-4 lg:py-20 lg:pb-4">
-  <h1
-    class="m-0 max-w-[18ch] text-[clamp(2.6rem,8vw,5.5rem)] font-black leading-[0.92] drop-shadow-[0_0_34px_rgba(139,92,246,0.26)] max-sm:text-[3.2rem]"
-  >
-    Engineering Notes
-  </h1>
-  <p class="max-w-[74rem] text-[clamp(1.05rem,2.2vw,1.35rem)] leading-relaxed text-[var(--muted)]">
-    Practical writing about building, debugging, modernizing, and operating software. These posts
-    capture lessons learned, technical experiments, project notes, and ideas from the ongoing work
-    behind The Code Tickler.
-  </p>
-</section>
+<section class="writing-page" aria-labelledby="writing-title">
+  <div class="writing-shell">
+    <aside class="writing-sidebar" aria-label="Writing navigation">
+      <section class="sidebar-panel" aria-labelledby="topics-title">
+        <h2 id="topics-title">Explore Topics</h2>
+        <div class="topic-list">
+          @for (topic of topics; track topic.title) {
+            <button type="button" class="topic-button" [class.active]="topic.active">
+              <span class="sidebar-icon" aria-hidden="true">
+                <i [class]="topic.icon"></i>
+              </span>
+              <span>
+                <strong>{{ topic.title }}</strong>
+                <small>{{ topic.summary }}</small>
+              </span>
+            </button>
+          }
+        </div>
+      </section>
 
-<section
-  class="site-frame grid grid-cols-1 gap-4 pb-10 md:grid-cols-2 md:pb-16 lg:pb-20 xl:grid-cols-4"
-  aria-label="Writing list"
->
-  @for (post of posts; track post.title) {
-    <p-card class="portfolio-card">
-      <ng-template #title>{{ post.title }}</ng-template>
-      <ng-template #subtitle>{{ post.date }}</ng-template>
-      <p class="leading-relaxed text-[var(--muted)]">{{ post.summary }}</p>
-      <div class="mt-4 flex flex-wrap items-center gap-3">
-        @for (tag of post.tags; track tag) {
-          <p-tag [value]="tag" rounded />
-        }
-      </div>
-    </p-card>
-  }
+      <section class="sidebar-panel" aria-labelledby="filters-title">
+        <h2 id="filters-title">Filters</h2>
+        <div class="filter-list">
+          @for (filter of filters; track filter.label) {
+            <button type="button" class="filter-button" [class.active]="filter.active">
+              <span aria-hidden="true">
+                <i [class]="filter.icon"></i>
+              </span>
+              <strong>{{ filter.label }}</strong>
+              <small>{{ filter.summary }}</small>
+            </button>
+          }
+        </div>
+      </section>
+
+      <section class="sidebar-panel" aria-labelledby="tags-title">
+        <h2 id="tags-title">Popular Tags</h2>
+        <div class="tag-cloud" aria-label="Popular tags">
+          @for (tag of popularTags; track tag) {
+            <span>{{ tag }}</span>
+          }
+        </div>
+      </section>
+
+      <section class="subscribe-panel" aria-labelledby="subscribe-title">
+        <h2 id="subscribe-title">Stay in the Loop</h2>
+        <p>New notes, distilled. No spam. Just signal.</p>
+        <div class="subscribe-preview" aria-label="Newsletter signup preview">
+          <input type="email" placeholder="Enter your email" disabled />
+          <button type="button" disabled>Subscribe</button>
+        </div>
+      </section>
+    </aside>
+
+    <main class="writing-content">
+      <section class="writing-hero" aria-label="Writing overview">
+        <div class="hero-copy">
+          <p class="writing-eyebrow">Writing</p>
+          <h1 id="writing-title">
+            Notes from
+            <span>the Workbench</span>
+          </h1>
+          <p class="hero-summary">
+            Deep dives, patterns, and field notes on software architecture, reliability, delivery,
+            and technical leadership. Written for engineers who build systems that matter and lead
+            teams that do the same.
+          </p>
+        </div>
+
+        <figure class="writing-visual" aria-label="The Code Tickler writing mark">
+          <img src="brandmark/the-code-tickler-mark.svg" alt="" aria-hidden="true" />
+        </figure>
+      </section>
+
+      <section class="featured-note" aria-labelledby="featured-note-title">
+        <p class="section-kicker">Featured Note</p>
+        <div class="featured-art" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <article class="featured-copy">
+          <p>{{ featuredNote.category }}</p>
+          <h2 id="featured-note-title">{{ featuredNote.title }}</h2>
+          <p>{{ featuredNote.summary }}</p>
+          <div class="note-meta" aria-label="Featured note status">
+            <span>
+              <i class="pi pi-calendar" aria-hidden="true"></i>
+              {{ featuredNote.meta }}
+            </span>
+            <span>
+              <i class="pi pi-clock" aria-hidden="true"></i>
+              {{ featuredNote.readTime }}
+            </span>
+          </div>
+        </article>
+      </section>
+
+      <section class="notes-section" aria-labelledby="all-notes-title">
+        <header class="section-heading">
+          <h2 id="all-notes-title">All Notes</h2>
+          <span>Sort by: Newest</span>
+        </header>
+
+        <div class="notes-grid">
+          @for (note of notes; track note.title) {
+            <article class="note-card">
+              <span class="note-icon" aria-hidden="true">
+                <i [class]="note.icon"></i>
+              </span>
+              <p class="note-category">{{ note.category }}</p>
+              <h3>{{ note.title }}</h3>
+              <p>{{ note.summary }}</p>
+              <div class="note-meta" aria-label="Note status">
+                <span>
+                  <i class="pi pi-calendar" aria-hidden="true"></i>
+                  {{ note.meta }}
+                </span>
+                <span>
+                  <i class="pi pi-clock" aria-hidden="true"></i>
+                  {{ note.readTime }}
+                </span>
+              </div>
+              <div class="tag-row" aria-label="Note tags">
+                @for (tag of note.tags; track tag) {
+                  <span>{{ tag }}</span>
+                }
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+
+      <section class="field-notes" aria-labelledby="field-notes-title">
+        <h2 id="field-notes-title">Recent Field Notes</h2>
+        <div class="field-note-grid">
+          @for (fieldNote of fieldNotes; track fieldNote.title) {
+            <article class="field-note-row">
+              <i class="pi pi-file" aria-hidden="true"></i>
+              <h3>{{ fieldNote.title }}</h3>
+              <span>{{ fieldNote.meta }}</span>
+              <span>{{ fieldNote.readTime }}</span>
+              <i class="pi pi-arrow-right" aria-hidden="true"></i>
+            </article>
+          }
+        </div>
+      </section>
+    </main>
+  </div>
 </section>
