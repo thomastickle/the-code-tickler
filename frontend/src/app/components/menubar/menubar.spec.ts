@@ -65,7 +65,6 @@ describe('Menubar', () => {
     const element: HTMLElement = fixture.nativeElement
 
     expect(element.querySelector('.theme-switch-thumb .theme-icon-moon')).not.toBeNull()
-    expect(element.querySelector('.theme-switch-thumb .pi-moon')).toBeNull()
   })
 
   it('restores a saved light theme preference', async () => {

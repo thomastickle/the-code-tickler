@@ -31,4 +31,4 @@ Counted issues: 1
 
 ## Related Observations
 
-- 2026-06-30: The PrimeIcons `pi pi-moon` glyph was not counted as a PrimeNG fit issue because it was an icon asset mismatch rather than component friction. The menubar uses a custom CSS-filled crescent for the selected dark-mode moon.
+- 2026-06-30: The PrimeIcons `pi pi-moon` glyph was not counted as a PrimeNG fit issue because it was an icon asset mismatch rather than component friction. The reusable `ThemeSwitch` uses custom CSS sun and moon shapes so the extracted control does not depend on PrimeIcons.
