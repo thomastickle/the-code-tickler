@@ -1,22 +1,39 @@
-<p-drawer
-  styleClass="mobile-nav-drawer"
-  header="Navigation"
-  position="right"
-  [visible]="open()"
-  (visibleChange)="openChange.emit($event)"
-  [blockScroll]="true"
->
-  <nav class="mobile-nav grid gap-2" aria-label="Mobile navigation">
-    @for (item of navItems(); track item.path) {
-      <a
-        class="mobile-nav-link rounded-lg px-4 py-3 font-black text-[var(--muted)] no-underline"
-        [routerLink]="item.path"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-        (click)="navigate.emit()"
+@if (open()) {
+  <div class="mobile-nav-backdrop" aria-hidden="true" (click)="close()"></div>
+
+  <aside
+    id="mobile-navigation-drawer"
+    class="mobile-nav-drawer"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="mobile-navigation-title"
+    tabindex="-1"
+    (keydown.escape)="close()"
+  >
+    <header class="mobile-nav-header">
+      <h2 id="mobile-navigation-title" class="mobile-nav-title">Navigation</h2>
+      <button
+        type="button"
+        class="mobile-nav-close"
+        aria-label="Close navigation menu"
+        (click)="close()"
       >
-        {{ item.label }}
-      </a>
-    }
-  </nav>
-</p-drawer>
+        <span aria-hidden="true"></span>
+      </button>
+    </header>
+
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      @for (item of navItems(); track item.path) {
+        <a
+          class="mobile-nav-link"
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+          (click)="navigateToItem()"
+        >
+          {{ item.label }}
+        </a>
+      }
+    </nav>
+  </aside>
+}

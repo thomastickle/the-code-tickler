@@ -15,11 +15,11 @@ describe('MobileNavDrawer', () => {
     fixture = TestBed.createComponent(MobileNavDrawer)
     fixture.componentRef.setInput('open', true)
     fixture.componentRef.setInput('navItems', [
-      { label: 'Home', path: '/', icon: 'pi pi-home' },
-      { label: 'About', path: '/about', icon: 'pi pi-user' },
-      { label: 'Projects', path: '/projects', icon: 'pi pi-briefcase' },
-      { label: 'Writing', path: '/writing', icon: 'pi pi-pencil' },
-      { label: 'Contact', path: '/contact', icon: 'pi pi-send' },
+      { label: 'Home', path: '/' },
+      { label: 'About', path: '/about' },
+      { label: 'Projects', path: '/projects' },
+      { label: 'Writing', path: '/writing' },
+      { label: 'Contact', path: '/contact' },
     ])
     fixture.detectChanges()
     await fixture.whenStable()
@@ -35,6 +35,25 @@ describe('MobileNavDrawer', () => {
     for (const label of ['Home', 'About', 'Projects', 'Writing', 'Contact']) {
       expect(element.textContent).toContain(label)
     }
+  })
+
+  it('does not render the drawer when closed', () => {
+    fixture.componentRef.setInput('open', false)
+    fixture.detectChanges()
+
+    expect(fixture.nativeElement.querySelector('.mobile-nav-drawer')).toBeNull()
+  })
+
+  it('emits openChange when closed from the close button', () => {
+    const openChangeSpy = vi.fn()
+    fixture.componentInstance.openChange.subscribe(openChangeSpy)
+    const closeButton = fixture.nativeElement.querySelector(
+      '.mobile-nav-close',
+    ) as HTMLButtonElement
+
+    closeButton.click()
+
+    expect(openChangeSpy).toHaveBeenCalledWith(false)
   })
 
   it('emits navigate when a mobile link is clicked', () => {

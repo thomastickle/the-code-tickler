@@ -56,12 +56,14 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 
 - Treat `docs/frontend/design/menubar.md` as the source of truth for menubar design decisions.
 - Treat `docs/frontend/design/theme-switch.md` as the source of truth for the reusable theme switch API and styling variables.
+- Treat `docs/frontend/design/mobile-nav-drawer.md` as the source of truth for the native mobile drawer.
 - Preserve the established menubar layout: brandmark and "The Code Tickler" home link on the left, empty center, Projects/Writing/About/Contact links on desktop, mobile drawer collapse on narrow screens, and the theme toggle at the far right.
+- The menubar chrome is PrimeNG-free by design. Do not use PrimeNG `Button`, `Drawer`, `ToggleSwitch`, or PrimeIcons in `menubar`, `mobile-nav-drawer`, or `theme-switch`.
 - The theme toggle is implemented by `src/app/components/theme-switch`. Keep it reusable, native, CSS-variable driven, and independent of PrimeNG/PrimeIcons so it can be copied into other projects.
 - Light mode is left/off and dark mode is right/on, matching the sample image.
 - Keep the toggle border thin, fading from almost black/navy on the left toward blue/pink/purple on the right; the selected dark-state moon should be white in a dark right-side area.
 - Keep the toggle thumb matte. The color strength belongs in the thin gradient border and dark pill background, not in a glowing thumb or handle.
-- The sun and moon glyphs are custom CSS shapes. The moon is a filled crescent with the bright arc on the left and cutout opening toward the right; do not use `pi pi-moon` for the selected moon because the PrimeIcons outline shape does not match the sample.
+- The sun and moon glyphs are custom CSS shapes. The moon is a filled crescent with the bright arc on the left and cutout opening toward the upper-right; do not use `pi pi-moon` for the selected moon because the PrimeIcons outline shape does not match the sample.
 - Preserve the custom switch layering: outer pill/background, static endpoint icons, and moving thumb. This was chosen because the PrimeNG `ToggleSwitch` generated DOM made the sample geometry difficult to match closely.
 - Preserve theme persistence through the `the-code-tickler-theme` localStorage key.
 

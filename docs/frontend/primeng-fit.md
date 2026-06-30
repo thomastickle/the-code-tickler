@@ -32,3 +32,4 @@ Counted issues: 1
 ## Related Observations
 
 - 2026-06-30: The PrimeIcons `pi pi-moon` glyph was not counted as a PrimeNG fit issue because it was an icon asset mismatch rather than component friction. The reusable `ThemeSwitch` uses custom CSS sun and moon shapes so the extracted control does not depend on PrimeIcons.
+- 2026-06-30: PrimeNG `Button` and `Drawer` were removed from the menubar/mobile drawer after the menubar chrome was clarified as PrimeNG-free. This is a component-boundary decision rather than a new counted fit issue.

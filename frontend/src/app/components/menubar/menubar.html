@@ -32,15 +32,16 @@
       }
     </div>
 
-    <p-button
-      styleClass="mobile-menu-button"
-      icon="pi pi-bars"
-      text
-      rounded
-      severity="secondary"
-      ariaLabel="Open navigation menu"
+    <button
+      type="button"
+      class="mobile-menu-button"
+      aria-label="Open navigation menu"
+      aria-controls="mobile-navigation-drawer"
+      [attr.aria-expanded]="mobileMenuOpen()"
       (click)="openMobileMenu()"
-    />
+    >
+      <span class="mobile-menu-icon" aria-hidden="true"></span>
+    </button>
 
     <app-theme-switch [checked]="darkMode()" (checkedChange)="setDarkMode($event)" />
   </nav>
