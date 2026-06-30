@@ -1,0 +1,23 @@
+<button
+  type="button"
+  class="theme-switch"
+  role="switch"
+  [class.is-checked]="checked()"
+  [attr.aria-checked]="checked()"
+  [attr.aria-label]="ariaLabel()"
+  (click)="toggle()"
+>
+  <span class="theme-endpoint theme-endpoint-light" aria-hidden="true">
+    <span class="theme-icon theme-icon-sun"></span>
+  </span>
+  <span class="theme-endpoint theme-endpoint-dark" aria-hidden="true">
+    <span class="theme-icon theme-icon-moon"></span>
+  </span>
+  <span class="theme-switch-thumb" aria-hidden="true">
+    @if (checked()) {
+      <span class="theme-icon theme-icon-moon"></span>
+    } @else {
+      <span class="theme-icon theme-icon-sun"></span>
+    }
+  </span>
+</button>

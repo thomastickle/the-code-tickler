@@ -4,13 +4,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router'
 import { Button } from 'primeng/button'
 
 import { MobileNavDrawer, type NavItem } from '../mobile-nav-drawer/mobile-nav-drawer'
+import { ThemeSwitch } from '../theme-switch/theme-switch'
 
 const themePreferenceKey = 'the-code-tickler-theme'
 type ThemePreference = 'dark' | 'light'
 
 @Component({
   selector: 'app-menubar',
-  imports: [Button, MobileNavDrawer, RouterLink, RouterLinkActive],
+  imports: [Button, MobileNavDrawer, RouterLink, RouterLinkActive, ThemeSwitch],
   templateUrl: './menubar.html',
   styleUrl: './menubar.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -35,8 +36,8 @@ export class Menubar {
     })
   }
 
-  protected toggleTheme(): void {
-    this.darkMode.update((isDark) => !isDark)
+  protected setDarkMode(isDark: boolean): void {
+    this.darkMode.set(isDark)
   }
 
   protected openMobileMenu(): void {

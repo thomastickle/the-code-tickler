@@ -32,11 +32,13 @@
 
 ## Implementation Notes
 
-- The component lives at `frontend/src/app/components/menubar`.
-- Use a native accessible `button` with `role="switch"` for the theme control; this is intentionally custom so it can closely match `menubar-example.png`.
+- The menubar component lives at `frontend/src/app/components/menubar`.
+- The reusable theme switch lives at `frontend/src/app/components/theme-switch`.
+- Detailed theme switch API and portability notes live in `docs/frontend/design/theme-switch.md`.
+- Use the `ThemeSwitch` component for the theme control. It renders a native accessible `button` with `role="switch"` and stays intentionally custom so it can closely match `menubar-example.png`.
 - Keep the switch visually close to the sample: small dark pill, thin gradient border, subdued sun left, white moon in the right selected area, and no glow on the moving thumb.
 - Build the switch as separate visual layers: the outer pill/background, static endpoint icons, and a moving thumb. This keeps the sample-like geometry controllable without fighting generated component DOM.
-- Render the moon as a custom CSS-filled crescent so the selected icon matches the sample more closely than the PrimeIcons outline moon.
+- Render the sun and moon as CSS shapes inside `ThemeSwitch`; do not require PrimeIcons for the extracted control.
 - Persist the theme preference under `the-code-tickler-theme`.
 - Apply theme classes to `document.documentElement` as `.app-dark` and `.app-light`.
 - Reuse `MobileNavDrawer` for collapsed mobile navigation.
