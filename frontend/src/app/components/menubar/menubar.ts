@@ -1,9 +1,7 @@
 import { DOCUMENT } from '@angular/common'
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core'
-import { FormsModule } from '@angular/forms'
+import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core'
 import { RouterLink, RouterLinkActive } from '@angular/router'
 import { Button } from 'primeng/button'
-import { ToggleSwitch } from 'primeng/toggleswitch'
 
 import { MobileNavDrawer, type NavItem } from '../mobile-nav-drawer/mobile-nav-drawer'
 
@@ -12,7 +10,7 @@ type ThemePreference = 'dark' | 'light'
 
 @Component({
   selector: 'app-menubar',
-  imports: [Button, FormsModule, MobileNavDrawer, RouterLink, RouterLinkActive, ToggleSwitch],
+  imports: [Button, MobileNavDrawer, RouterLink, RouterLinkActive],
   templateUrl: './menubar.html',
   styleUrl: './menubar.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,7 +18,6 @@ type ThemePreference = 'dark' | 'light'
 export class Menubar {
   private readonly document = inject(DOCUMENT)
   protected readonly darkMode = signal(this.readThemePreference() !== 'light')
-  protected readonly lightMode = computed(() => !this.darkMode())
   protected readonly mobileMenuOpen = signal(false)
   protected readonly navItems: readonly NavItem[] = [
     { label: 'Projects', path: '/projects', icon: 'pi pi-code' },
@@ -38,8 +35,8 @@ export class Menubar {
     })
   }
 
-  protected setLightMode(isLight: boolean): void {
-    this.darkMode.set(!isLight)
+  protected toggleTheme(): void {
+    this.darkMode.update((isDark) => !isDark)
   }
 
   protected openMobileMenu(): void {

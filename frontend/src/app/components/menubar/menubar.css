@@ -118,139 +118,123 @@
   color: var(--nav-active);
 }
 
-.theme-switch-wrap {
+.theme-switch {
   position: relative;
-  display: grid;
+  display: inline-grid;
   flex: 0 0 auto;
-  place-items: center;
-  width: 5.15rem;
-  height: 2.55rem;
+  width: 4.45rem;
+  height: 2.05rem;
+  align-items: center;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(#050715, #050715) padding-box,
+    linear-gradient(90deg, #111827 0%, #253b73 42%, #7c3aed 78%, #a855f7 100%) border-box;
+  color: inherit;
+  cursor: pointer;
+  box-shadow:
+    inset 0 0 0.7rem rgba(2, 4, 17, 0.82),
+    0 0 0.45rem rgba(139, 92, 246, 0.18);
+}
+
+.theme-switch:hover,
+.theme-switch:focus-visible {
+  background:
+    linear-gradient(#07091a, #07091a) padding-box,
+    linear-gradient(90deg, #111827 0%, #2c4a91 42%, #8b5cf6 78%, #c084fc 100%) border-box;
 }
 
 .theme-endpoint {
   position: absolute;
   z-index: 1;
   display: grid;
-  width: 1.65rem;
-  height: 1.65rem;
+  width: 1.2rem;
+  height: 1.2rem;
   place-items: center;
   border-radius: 999px;
-  color: color-mix(in srgb, var(--ink) 54%, transparent);
   pointer-events: none;
 }
 
 .theme-endpoint .pi {
-  font-size: 0.83rem;
+  font-size: 0.82rem;
 }
 
-.theme-endpoint-dark {
-  left: 0.45rem;
+.theme-icon {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.theme-icon-moon {
+  --moon-cutout: #050715;
+  position: relative;
+  width: 0.82rem;
+  height: 0.82rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.theme-icon-moon::after {
+  position: absolute;
+  top: 0.02rem;
+  right: -0.18rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: inherit;
+  background: var(--moon-cutout);
+  content: '';
 }
 
 .theme-endpoint-light {
-  right: 0.45rem;
+  left: 0.6rem;
+  color: rgba(255, 255, 255, 0.46);
 }
 
-:host-context(.app-dark) .theme-endpoint-dark,
-:host-context(.app-light) .theme-endpoint-light {
-  color: transparent;
+.theme-endpoint-dark {
+  right: 0.6rem;
+  color: rgba(255, 255, 255, 0.5);
 }
 
-:host-context(.app-dark) .theme-endpoint-light,
-:host-context(.app-light) .theme-endpoint-dark {
-  color: color-mix(in srgb, var(--muted) 72%, transparent);
-}
-
-:host ::ng-deep .theme-switch.p-toggleswitch {
-  --p-toggleswitch-width: 5.15rem;
-  --p-toggleswitch-height: 2.55rem;
-  --p-toggleswitch-gap: 0.28rem;
-  --p-toggleswitch-handle-size: 1.95rem;
-  --p-toggleswitch-border-radius: 999px;
-  --p-toggleswitch-handle-border-radius: 999px;
-  --p-toggleswitch-slide-duration: 180ms;
-  --p-toggleswitch-transition-duration: 180ms;
-  --p-toggleswitch-border-width: 1px;
-  --p-toggleswitch-border-color: color-mix(in srgb, var(--p-primary-400) 72%, #38bdf8);
-  --p-toggleswitch-checked-border-color: color-mix(in srgb, var(--p-primary-400) 62%, #38bdf8);
-  --p-toggleswitch-hover-border-color: color-mix(in srgb, #38bdf8 68%, var(--p-primary-400));
-  --p-toggleswitch-checked-hover-border-color: color-mix(
-    in srgb,
-    #38bdf8 68%,
-    var(--p-primary-400)
-  );
-  --p-toggleswitch-background: color-mix(in srgb, var(--p-primary-950) 72%, #020617);
-  --p-toggleswitch-hover-background: color-mix(in srgb, var(--p-primary-900) 76%, #020617);
-  --p-toggleswitch-checked-background: color-mix(in srgb, var(--p-primary-100) 62%, #ffffff);
-  --p-toggleswitch-checked-hover-background: color-mix(in srgb, var(--p-primary-200) 58%, #ffffff);
-  --p-toggleswitch-handle-background: linear-gradient(
-    135deg,
-    rgba(15, 23, 42, 0.98),
-    rgba(88, 28, 135, 0.9)
-  );
-  --p-toggleswitch-handle-hover-background: linear-gradient(
-    135deg,
-    rgba(15, 23, 42, 1),
-    rgba(109, 40, 217, 0.96)
-  );
-  --p-toggleswitch-handle-checked-background: linear-gradient(135deg, #ffffff, #dbeafe);
-  --p-toggleswitch-handle-checked-hover-background: linear-gradient(135deg, #ffffff, #bfdbfe);
-  --p-toggleswitch-handle-color: #ffffff;
-  --p-toggleswitch-handle-hover-color: #ffffff;
-  --p-toggleswitch-handle-checked-color: #7c3aed;
-  --p-toggleswitch-handle-checked-hover-color: #6d28d9;
+.theme-switch-thumb {
   position: absolute;
-  inset: 0;
-  z-index: 2;
-}
-
-:host ::ng-deep .theme-switch .p-toggleswitch-slider {
-  position: relative;
-  box-shadow:
-    inset 0 0 1rem rgba(59, 130, 246, 0.32),
-    0 0 1rem rgba(139, 92, 246, 0.42);
-  overflow: hidden;
-}
-
-:host ::ng-deep .theme-switch .p-toggleswitch-slider::before {
-  position: absolute;
-  inset: 0.2rem;
-  border-radius: inherit;
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--p-primary-950) 82%, #020617) 0%,
-    color-mix(in srgb, var(--p-primary-700) 54%, #0f172a) 48%,
-    color-mix(in srgb, var(--p-primary-100) 62%, #ffffff) 100%
-  );
-  content: '';
-  opacity: 0.7;
-}
-
-:host ::ng-deep .theme-switch .p-toggleswitch.p-toggleswitch-checked .p-toggleswitch-slider {
-  box-shadow:
-    inset 0 0 0.75rem rgba(124, 58, 237, 0.12),
-    0 0 1rem rgba(34, 211, 238, 0.26);
-}
-
-:host ::ng-deep .theme-switch .p-toggleswitch-handle {
   z-index: 2;
   display: grid;
+  width: 1.58rem;
+  height: 1.58rem;
   place-items: center;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.2),
-    0 0 0.85rem rgba(139, 92, 246, 0.5),
-    0 0.18rem 0.45rem rgba(0, 0, 0, 0.26);
+  border-radius: 999px;
+  background: #070914;
+  color: #ffffff;
+  box-shadow: 0 0.12rem 0.32rem rgba(0, 0, 0, 0.34);
+  transform: translateX(2.55rem);
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
 }
 
-:host ::ng-deep .theme-switch .p-toggleswitch-handle .pi {
-  font-size: 0.9rem;
+.theme-switch-thumb .pi {
+  font-size: 1rem;
 }
 
-:host ::ng-deep .theme-switch .p-toggleswitch.p-toggleswitch-checked .p-toggleswitch-handle {
-  box-shadow:
-    0 0 0 1px rgba(124, 58, 237, 0.2),
-    0 0 0.75rem rgba(34, 211, 238, 0.36),
-    0 0.18rem 0.45rem rgba(15, 23, 42, 0.16);
+.theme-switch-thumb .theme-icon-moon {
+  --moon-cutout: #070914;
+  width: 0.98rem;
+  height: 0.98rem;
+}
+
+.theme-switch-thumb .theme-icon-moon::after {
+  top: 0.02rem;
+  right: -0.22rem;
+  width: 0.94rem;
+  height: 0.94rem;
+}
+
+:host-context(.app-light) .theme-switch-thumb {
+  background: color-mix(in srgb, var(--p-primary-100) 62%, #ffffff);
+  color: var(--p-primary-700);
+  transform: translateX(0.27rem);
 }
 
 :host-context(.app-light) .menubar-panel {
@@ -273,19 +257,6 @@
 
 :host-context(.app-light) .nav-link {
   color: color-mix(in srgb, #0f172a 76%, transparent);
-}
-
-:host-context(.app-light) ::ng-deep .theme-switch.p-toggleswitch {
-  --p-toggleswitch-background: color-mix(in srgb, var(--p-primary-900) 70%, #0f172a);
-  --p-toggleswitch-hover-background: color-mix(in srgb, var(--p-primary-800) 74%, #0f172a);
-  --p-toggleswitch-checked-background: color-mix(in srgb, var(--p-primary-100) 70%, #ffffff);
-  --p-toggleswitch-checked-hover-background: color-mix(in srgb, var(--p-primary-200) 64%, #ffffff);
-}
-
-:host-context(.app-light) ::ng-deep .theme-switch .p-toggleswitch-slider {
-  box-shadow:
-    inset 0 0 0.8rem rgba(124, 58, 237, 0.12),
-    0 0 0.75rem rgba(14, 165, 233, 0.22);
 }
 
 @media (max-width: 900px) {
@@ -331,28 +302,26 @@
     min-width: 0;
   }
 
-  :host ::ng-deep .theme-switch.p-toggleswitch {
-    --p-toggleswitch-width: 4.55rem;
-    --p-toggleswitch-height: 2.3rem;
-    --p-toggleswitch-gap: 0.25rem;
-    --p-toggleswitch-handle-size: 1.8rem;
-  }
-
-  .theme-switch-wrap {
-    width: 4.55rem;
-    height: 2.3rem;
-  }
-
-  .theme-endpoint {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .theme-endpoint-dark {
+  .theme-endpoint-light {
     left: 0.4rem;
   }
 
-  .theme-endpoint-light {
+  .theme-endpoint-dark {
     right: 0.4rem;
+  }
+
+  .theme-switch {
+    width: 4.2rem;
+    height: 2rem;
+  }
+
+  .theme-switch-thumb {
+    width: 1.52rem;
+    height: 1.52rem;
+    transform: translateX(2.4rem);
+  }
+
+  :host-context(.app-light) .theme-switch-thumb {
+    transform: translateX(0.23rem);
   }
 }
