@@ -18,10 +18,13 @@ The detailed menubar direction lives in `docs/frontend/design/menubar.md`. It es
 #### Contact
 The detailed contact-page direction lives in `docs/frontend/design/contact.md`. It extends the menubar language into the first page body: near-black navy background, CSS-native subtle star/noise texture and retro grid lines inside contained visuals, glass panels, blue/violet/purple accents, and honest frontend-only form behavior until a backend exists.
 
+#### Projects
+The detailed projects-page direction lives in `docs/frontend/design/projects.md`. It adapts the current contact/writing language into a project dashboard and native detail route: shared `site-*` glass primitives, real project data only, honest empty states, compact stack tags, and no promoted non-brandmark artwork.
+
 #### Writing
-The detailed writing-page direction lives in `docs/frontend/design/writing.md`. It adapts the contact language into an engineering-notes page: desktop topic rail, a compact `writing-mini-hero` quill icon beside the title area, planned-note previews, compact field-note rows, and a visual-only subscribe panel until a backend exists.
+The detailed writing-page direction lives in `docs/frontend/design/writing.md`. It adapts the contact language into an engineering-notes page: desktop topic rail, planned-note previews, compact field-note rows, and a visual-only subscribe panel until a backend exists.
 
 #### Page implementation rules
 Page-specific visual components should use page-prefixed internal class names instead of generic global names. The contact hero visual intentionally uses `contact-visual` because the existing global `.hero-visual` rule is tuned for the home page and can leak layout constraints into other pages.
 
-Build new pages from the established menubar/contact language: shared near-black navy background, constrained content aligned to the menubar width, dark glass panels, restrained blue/violet/purple accents, and no page-wide mockup images. Use `sample_&_raw_assets/` images as references only; keep raw assets ignored and promote only production-ready, app-used assets into `frontend/src/assets`.
+Build new pages from the established menubar/contact language: shared near-black navy background, constrained content aligned to the menubar width, dark glass panels, restrained blue/violet/purple accents, and no page-wide mockup images. Put reusable visual primitives in `frontend/src/styles.css` under `site-*` classes, and keep route styles focused on layout and sizing. Use `sample_&_raw_assets/` images as references only; keep raw assets ignored and keep production app assets limited to brandmarks unless a future art pass explicitly promotes page artwork.

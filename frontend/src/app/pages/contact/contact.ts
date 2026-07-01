@@ -3,8 +3,6 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 import { RouterLink } from '@angular/router'
 
-import { ContactHeroVisual } from './contact-hero-visual/contact-hero-visual'
-
 type ContactTopicId =
   | 'modernization'
   | 'reliability'
@@ -38,7 +36,7 @@ interface ContactTopic {
 
 @Component({
   selector: 'app-contact',
-  imports: [ContactHeroVisual, ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './contact.html',
   styleUrl: './contact.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

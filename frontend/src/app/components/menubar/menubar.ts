@@ -22,7 +22,6 @@ export class Menubar {
   protected readonly navItems: readonly NavItem[] = [
     { label: 'Projects', path: '/projects' },
     { label: 'Writing', path: '/writing' },
-    { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },
   ]
 

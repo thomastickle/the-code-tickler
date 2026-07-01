@@ -31,14 +31,11 @@
 }
 
 .contact-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(18rem, clamp(18rem, 34vw, 27rem));
-  gap: clamp(1.5rem, 3vw, 4rem);
-  align-items: start;
   padding-block: clamp(0.35rem, 1vw, 1rem) clamp(2rem, 3.5vw, 3.5rem);
 }
 
 .hero-copy {
+  width: min(100%, 76rem);
   min-width: 0;
 }
 
@@ -93,6 +90,7 @@ h1 span {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
+  max-width: 68rem;
   margin-top: clamp(1.45rem, 3vw, 2.35rem);
 }
 
@@ -515,17 +513,63 @@ textarea:focus {
   background: rgba(255, 255, 255, 0.78);
 }
 
+:host-context(.app-light) .contact-eyebrow,
+:host-context(.app-light) .contact-panel > h2,
+:host-context(.app-light) .topics-panel > h2 {
+  color: #0369a1;
+}
+
+:host-context(.app-light) h1 span {
+  background: linear-gradient(92deg, #0369a1 0%, #4f46e5 52%, #7e22ce 100%);
+  background-clip: text;
+  color: transparent;
+}
+
 :host-context(.app-light) input,
 :host-context(.app-light) select,
 :host-context(.app-light) textarea {
-  background: rgba(255, 255, 255, 0.84);
+  border-color: #7899c4;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+:host-context(.app-light) input::placeholder,
+:host-context(.app-light) textarea::placeholder {
+  color: #64748b;
+}
+
+:host-context(.app-light) input:focus,
+:host-context(.app-light) select:focus,
+:host-context(.app-light) textarea:focus {
+  border-color: #6d28d9;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.18);
+}
+
+:host-context(.app-light) .method-value {
+  color: #6d28d9 !important;
+}
+
+:host-context(.app-light) .method-arrow,
+:host-context(.app-light) .focus-icon,
+:host-context(.app-light) .method-icon,
+:host-context(.app-light) .topic-icon,
+:host-context(.app-light) .contact-callout i {
+  color: #6d28d9;
+}
+
+:host-context(.app-light) .tag-row span {
+  border-color: rgba(109, 40, 217, 0.28);
+  color: #6d28d9;
+}
+
+:host-context(.app-light) .contact-callout strong,
+:host-context(.app-light) .contact-footer a:hover,
+:host-context(.app-light) .contact-footer a:focus-visible {
+  color: #1d4ed8;
 }
 
 @media (max-width: 1120px) {
-  .contact-hero {
-    grid-template-columns: 1fr;
-  }
-
   .contact-columns {
     grid-template-columns: 1fr;
   }

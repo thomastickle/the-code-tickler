@@ -7,11 +7,6 @@ export const routes: Routes = [
     title: 'The Code Tickler | Developer Portfolio',
   },
   {
-    path: 'about',
-    loadComponent: () => import('./pages/about/about').then((module) => module.About),
-    title: 'About | The Code Tickler',
-  },
-  {
     path: 'projects',
     loadComponent: () => import('./pages/projects/projects').then((module) => module.Projects),
     title: 'Projects | The Code Tickler',

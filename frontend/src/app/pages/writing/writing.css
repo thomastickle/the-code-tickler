@@ -264,67 +264,6 @@ h1 span {
   line-height: 1.68;
 }
 
-.writing-mini-hero {
-  position: relative;
-  display: grid;
-  width: clamp(7.25rem, 10vw, 10rem);
-  aspect-ratio: 1;
-  margin: 0;
-  place-items: center;
-  align-self: start;
-  border: 1px solid rgba(91, 150, 255, 0.2);
-  border-radius: 0.7rem;
-  background:
-    radial-gradient(circle at 34% 24%, rgba(117, 219, 255, 0.18), transparent 38%),
-    linear-gradient(145deg, rgba(9, 23, 62, 0.72), rgba(3, 10, 31, 0.44));
-  box-shadow:
-    0 1rem 2.2rem rgba(0, 0, 0, 0.18),
-    inset 0 0 1.5rem rgba(26, 167, 255, 0.06);
-  isolation: isolate;
-}
-
-.writing-mini-hero::before {
-  position: absolute;
-  inset: 0.5rem;
-  z-index: 0;
-  border-radius: 0.45rem;
-  background:
-    radial-gradient(circle at 22% 24%, rgba(255, 255, 255, 0.42) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 72% 34%, rgba(117, 219, 255, 0.34) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 58% 72%, rgba(210, 93, 255, 0.3) 0 1px, transparent 1.5px);
-  background-size:
-    4.7rem 4.7rem,
-    5.8rem 5.8rem,
-    6.5rem 6.5rem;
-  content: '';
-  opacity: 0.55;
-}
-
-.writing-mini-hero::after {
-  position: absolute;
-  inset: auto 0.85rem 0.8rem;
-  z-index: 1;
-  height: 30%;
-  background:
-    repeating-linear-gradient(90deg, rgba(117, 219, 255, 0.32) 0 1px, transparent 1px 0.82rem),
-    repeating-linear-gradient(0deg, rgba(156, 77, 255, 0.26) 0 1px, transparent 1px 0.7rem);
-  content: '';
-  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.72), transparent 88%);
-  opacity: 0.62;
-  transform: perspective(5rem) rotateX(58deg);
-  transform-origin: center bottom;
-}
-
-.writing-mini-hero img {
-  position: relative;
-  z-index: 2;
-  width: 82%;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 0 0.95rem rgba(26, 167, 255, 0.5))
-    drop-shadow(0 0 1.45rem rgba(156, 77, 255, 0.4));
-}
-
 .featured-note {
   display: grid;
   grid-template-columns: minmax(14rem, 0.42fr) minmax(0, 0.58fr);
@@ -581,10 +520,6 @@ h1 span {
 
   .writing-hero {
     grid-template-columns: 1fr;
-  }
-
-  .writing-mini-hero {
-    display: none;
   }
 
   .notes-grid {

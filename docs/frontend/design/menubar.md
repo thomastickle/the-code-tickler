@@ -15,7 +15,7 @@
 - The brandmark image should be placed on the left side of the menubar.
 - Immediately to the right of the brandmark image should be the text "The Code Tickler".
 - The middle of the menubar is empty.
-- The right side of the menubar has a set of options which link out to other pages. Use Projects, Writing, About, and Contact.
+- The right side of the menubar has a set of options which link out to other pages. Use Projects, Writing, and Contact. Do not include About while that content is being folded into the home page.
 - Clicking on the brandmark or text "The Code Tickler" should return the user to the home page.
 - Do not include Home as a right-side nav item; the brand link is the home affordance.
 - The rightmost element should be a toggle switch between the default dark mode and light mode. The site should remember the user's choice there.

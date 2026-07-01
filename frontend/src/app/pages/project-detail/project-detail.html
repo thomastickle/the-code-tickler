@@ -1,116 +1,114 @@
 @if (project(); as project) {
-  <section class="project-detail-hero site-frame py-10 md:py-16">
-    <a pButton routerLink="/projects" severity="secondary" outlined>
-      <span class="pi pi-arrow-left" aria-hidden="true"></span>
-      <span>Projects</span>
-    </a>
+  <section class="project-detail-page site-page" aria-labelledby="project-detail-title">
+    <div class="project-detail-shell site-shell">
+      <a class="project-back-link site-back-link" routerLink="/projects">
+        <span class="pi pi-arrow-left" aria-hidden="true"></span>
+        <span>Projects</span>
+      </a>
 
-    <div class="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.36fr)] lg:items-start">
-      <div>
-        <p class="eyebrow">Project detail</p>
-        <h1
-          class="m-0 max-w-[14ch] text-[clamp(2.5rem,7vw,5rem)] font-black leading-none drop-shadow-[0_0_34px_rgba(139,92,246,0.22)]"
-        >
-          {{ project.name }}
-        </h1>
-        <p
-          class="max-w-3xl text-[clamp(1.05rem,2.2vw,1.35rem)] leading-relaxed text-[var(--muted)]"
-        >
-          {{ project.summary }}
-        </p>
-      </div>
-
-      <p-card class="portfolio-card detail-meta-card">
-        <h2 class="m-0 text-lg">Project stack</h2>
-        <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Project stack">
-          @for (tech of visibleProjectStack(project); track tech) {
-            <p-tag [value]="tech" rounded />
-          }
+      <section class="project-detail-hero" aria-label="Project overview">
+        <div class="project-detail-copy">
+          <p class="site-eyebrow">Project detail</p>
+          <h1 id="project-detail-title" class="project-detail-title site-hero-title">
+            {{ project.name }}
+          </h1>
+          <p class="site-summary">{{ project.summary }}</p>
         </div>
-        <div class="mt-6 flex flex-wrap items-center gap-3">
-          @for (link of project.links; track link.label) {
-            <a pButton [href]="link.href" target="_blank" rel="noopener" outlined>
-              <span [class]="link.icon" aria-hidden="true"></span>
-              <span>{{ link.label }}</span>
-            </a>
-          }
-        </div>
-      </p-card>
-    </div>
-  </section>
 
-  <section
-    class="site-frame grid gap-6 pb-10 md:pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.42fr)] lg:pb-20"
-    aria-label="Project narrative"
-  >
-    <div class="grid gap-4">
-      <p-card class="portfolio-card detail-card">
-        <h2 class="m-0 text-[clamp(1.6rem,3vw,2.25rem)] leading-tight">What this project is</h2>
-        <div class="mt-5 grid gap-4">
-          @for (paragraph of project.detail.blurb; track paragraph) {
-            <p class="m-0 leading-relaxed text-[var(--muted)]">{{ paragraph }}</p>
-          }
-        </div>
-      </p-card>
-
-      <p-card class="portfolio-card detail-card">
-        <h2 class="m-0 text-[clamp(1.6rem,3vw,2.25rem)] leading-tight">Related writing</h2>
-        @if (relatedWriting().length > 0) {
-          <div class="mt-5 grid gap-4">
-            @for (post of relatedWriting(); track post.slug) {
-              <article class="related-writing-item">
-                <p class="eyebrow m-0">{{ post.date }}</p>
-                <h3 class="m-0 mt-2 text-xl">{{ post.title }}</h3>
-                <p class="m-0 mt-3 leading-relaxed text-[var(--muted)]">{{ post.summary }}</p>
-                <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Writing tags">
-                  @for (tag of post.tags; track tag) {
-                    <p-tag [value]="tag" severity="secondary" rounded />
-                  }
-                </div>
-              </article>
+        <aside class="project-stack-panel site-panel" aria-labelledby="project-stack-heading">
+          <h2 id="project-stack-heading" class="site-section-kicker">Project stack</h2>
+          <div class="project-stack" aria-label="Project stack">
+            @for (tech of visibleProjectStack(project); track tech) {
+              <span class="site-chip">{{ tech }}</span>
             }
           </div>
-        } @else {
-          <p class="m-0 mt-5 leading-relaxed text-[var(--muted)]">
-            No related writing is attached to this project yet.
-          </p>
-        }
-      </p-card>
+
+          @if (project.links.length > 0) {
+            <div class="project-links" aria-label="Project links">
+              @for (link of project.links; track link.label) {
+                <a class="site-action-link" [href]="link.href" target="_blank" rel="noopener">
+                  <span [class]="link.icon" aria-hidden="true"></span>
+                  <span>{{ link.label }}</span>
+                </a>
+              }
+            </div>
+          }
+        </aside>
+      </section>
+
+      <section class="project-detail-grid" aria-label="Project narrative">
+        <div class="project-detail-main">
+          <article class="detail-panel site-panel">
+            <h2>What this project is</h2>
+            <div class="detail-copy">
+              @for (paragraph of project.detail.blurb; track paragraph) {
+                <p>{{ paragraph }}</p>
+              }
+            </div>
+          </article>
+
+          <article class="detail-panel site-panel">
+            <h2>Related writing</h2>
+            @if (relatedWriting().length > 0) {
+              <div class="related-writing-list">
+                @for (post of relatedWriting(); track post.slug) {
+                  <article class="related-writing-item">
+                    <p class="site-card-kicker">{{ post.date }}</p>
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.summary }}</p>
+                    <div class="project-tags" aria-label="Writing tags">
+                      @for (tag of post.tags; track tag) {
+                        <span class="site-chip">{{ tag }}</span>
+                      }
+                    </div>
+                  </article>
+                }
+              </div>
+            } @else {
+              <p class="detail-empty site-empty-state">
+                No related writing is attached to this project yet.
+              </p>
+            }
+          </article>
+        </div>
+
+        <aside class="project-detail-aside" aria-label="Project notes">
+          <section class="detail-panel site-panel">
+            <h2>Highlights</h2>
+            <ul class="site-list">
+              @for (highlight of project.detail.highlights; track highlight) {
+                <li>{{ highlight }}</li>
+              }
+            </ul>
+          </section>
+
+          <section class="detail-panel site-panel">
+            <h2>Ownership notes</h2>
+            <ul class="site-list">
+              @for (note of project.detail.ownershipNotes; track note) {
+                <li>{{ note }}</li>
+              }
+            </ul>
+          </section>
+        </aside>
+      </section>
     </div>
-
-    <aside class="grid gap-4" aria-label="Project notes">
-      <p-card class="portfolio-card detail-card">
-        <h2 class="m-0 text-xl">Highlights</h2>
-        <ul class="detail-list mt-5">
-          @for (highlight of project.detail.highlights; track highlight) {
-            <li>{{ highlight }}</li>
-          }
-        </ul>
-      </p-card>
-
-      <p-card class="portfolio-card detail-card">
-        <h2 class="m-0 text-xl">Ownership notes</h2>
-        <ul class="detail-list mt-5">
-          @for (note of project.detail.ownershipNotes; track note) {
-            <li>{{ note }}</li>
-          }
-        </ul>
-      </p-card>
-    </aside>
   </section>
 } @else {
-  <section class="mx-auto w-[min(760px,calc(100%_-_2rem))] py-16 md:py-24">
-    <p-card class="portfolio-card detail-card">
-      <p class="eyebrow">Project not found</p>
-      <h1 class="m-0 text-[clamp(2.25rem,6vw,4rem)] leading-none">No project lives here yet.</h1>
-      <p class="max-w-2xl leading-relaxed text-[var(--muted)]">
-        The project detail you opened is not available. Return to the projects list to see the
-        currently published work.
-      </p>
-      <a pButton routerLink="/projects" outlined>
-        <span class="pi pi-arrow-left" aria-hidden="true"></span>
-        <span>Back to projects</span>
-      </a>
-    </p-card>
+  <section class="project-detail-page site-page" aria-labelledby="project-not-found-title">
+    <div class="project-not-found-shell site-shell">
+      <article class="project-not-found site-panel">
+        <p class="site-eyebrow">Project not found</p>
+        <h1 id="project-not-found-title" class="site-hero-title">No project lives here yet.</h1>
+        <p class="site-summary">
+          The project detail you opened is not available. Return to the projects list to see the
+          currently published work.
+        </p>
+        <a class="project-back-link site-back-link" routerLink="/projects">
+          <span class="pi pi-arrow-left" aria-hidden="true"></span>
+          <span>Back to projects</span>
+        </a>
+      </article>
+    </div>
   </section>
 }

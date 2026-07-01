@@ -47,6 +47,17 @@ describe('ProjectDetail', () => {
     expect(element.textContent).toContain('Project stack')
   })
 
+  it('uses native glass surfaces instead of PrimeNG detail cards', async () => {
+    await createComponent('the-code-tickler')
+
+    const element: HTMLElement = fixture.nativeElement
+
+    expect(element.querySelector('.project-detail-page')).toBeTruthy()
+    expect(element.querySelectorAll('.site-panel').length).toBeGreaterThanOrEqual(4)
+    expect(element.querySelector('p-card')).toBeNull()
+    expect(element.querySelector('p-tag')).toBeNull()
+  })
+
   it('renders related writing tied to The Code Tickler', async () => {
     await createComponent('the-code-tickler')
 
