@@ -74,18 +74,20 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 ## Contact Page Rules
 
 - Treat `docs/frontend/design/contact.md` as the source of truth for the contact page.
-- Recreate `sample/new-design/Contact.png` with live Angular templates and CSS, not as a screenshot background.
+- Recreate `sample_&_raw_assets/Second Pass/overall_look/Contact.png` with live Angular templates and CSS, not as a screenshot background.
 - Let the contact page inherit the shared site background; do not add a page-wide background image.
 - Keep the contact hero visual in `src/app/pages/contact/contact-hero-visual`; it owns the relative mark/grid composition, two-column scaling behavior, and hiding at the hero-collapse breakpoint.
 - Do not use the global `.hero-visual` class inside the contact hero visual. The global home-page rule includes a large minimum height and breaks the contact component's square sizing.
 - Keep the contact form honest until a backend exists. It may open a `mailto:` draft, but it must not show a fake server-side success state.
-- Use the promoted SVG assets under `src/assets/brandmark` and `src/assets/backgrounds` for contained visual elements only.
+- Keep raw/reference assets in the ignored `sample_&_raw_assets/` directory. Copy only production-ready, app-used assets into `src/assets`.
+- Use CSS-native gradients, star/noise effects, and grid-line layers for contained contact visuals unless a future production asset pass explicitly promotes new files.
 - PrimeIcons may be used for contact-page content icons. The PrimeNG-free rule applies to menubar chrome, not this page.
 
 ## Writing Page Rules
 
 - Treat `../docs/frontend/design/writing.md` as the source of truth for the writing page.
-- Recreate `sample/new-design/Writing.png` with live Angular templates and CSS, not as a screenshot background.
+- Recreate `sample_&_raw_assets/Second Pass/overall_look/Writing.png` with live Angular templates and CSS, not as a screenshot background.
+- Treat `src/assets/writing/writing-mini-hero/writing-quill-clean-*.webp` as the production writing art. The `writing-mini-hero` is a compact title-adjacent icon, not a full hero image or large panel illustration.
 - Treat writing entries as planned notes or previews unless the user confirms published content.
 - Do not link cards to missing `/writing/:slug` routes yet.
 - Keep the subscribe panel visual-only until a backend exists; do not show fake success or imply a real subscription.

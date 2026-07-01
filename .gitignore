@@ -32,6 +32,7 @@ yarn-error.log
 
 # Miscellaneous
 .wrangler/
+sample_&_raw_assets/
 frontend/.angular/cache/
 frontend/test-results/
 .sass-cache/

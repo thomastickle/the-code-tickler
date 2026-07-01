@@ -7,14 +7,16 @@ This repository contains The Code Tickler portfolio frontend. It is an Angular 2
 - Frontend application work lives under `frontend/`.
 - Read `frontend/AGENTS.md` before changing Angular, CSS, frontend tests, assets, or frontend package/config files.
 - Root-level work is limited to repository documentation, CI/CD, Codex configuration, and shared project notes unless the user says otherwise.
-- Leave the untracked `sample/` image directory alone unless the user explicitly asks for it.
+- Leave the ignored `sample_&_raw_assets/` directory as local reference/raw material unless
+  the user explicitly asks for it. Only copy production-ready, app-used assets into
+  `frontend/src/assets`.
 
 ## Current Redesign State
 
-- The site is intentionally reset for a careful redesign.
-- `frontend/src/app/app.html` currently keeps only the menubar active.
-- Do not re-enable routed page content, rebuild landing sections, or restore previous page layouts unless the user explicitly asks.
-- The immediate redesign focus is the menubar. Treat broader page work as out of scope until the menubar direction is nailed down.
+- The site is intentionally being rebuilt page by page after a reset.
+- `frontend/src/app/app.html` renders the finished menubar plus routed page content.
+- Do not restore old page sections, old hero layouts, or unrelated landing content unless the user explicitly asks.
+- The menubar is established site chrome. The accepted page baseline is `/contact`, and the active page design target is `/writing`.
 
 ## Codex CLI Setup
 
