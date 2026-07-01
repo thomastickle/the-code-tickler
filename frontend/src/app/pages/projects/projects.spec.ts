@@ -26,7 +26,10 @@ describe('Projects', () => {
   })
 
   it('renders the compact independent-project intro', () => {
-    expect(compiled.querySelectorAll('.site-frame').length).toBeGreaterThanOrEqual(2)
+    expect(compiled.querySelector('.projects-page')).toBeTruthy()
+    expect(compiled.querySelector('.projects-hero')).toBeTruthy()
+    expect(compiled.textContent).toContain('Projects that move')
+    expect(compiled.textContent).toContain('systems forward.')
     expect(compiled.textContent).toContain(
       'A living portfolio of software I’m building, maintaining, and refining under The Code Tickler brand.',
     )
@@ -36,7 +39,7 @@ describe('Projects', () => {
   })
 
   it('shows The Code Tickler under the active section eyebrow', () => {
-    const sections = Array.from(compiled.querySelectorAll('section'))
+    const sections = Array.from(compiled.querySelectorAll('.projects-section'))
     const activeSection = sections.find((section) => section.textContent?.includes('Active'))
 
     expect(compiled.textContent).not.toContain('Currently working on')
@@ -51,6 +54,8 @@ describe('Projects', () => {
   it('does not render placeholder project content', () => {
     expect(compiled.textContent).not.toContain('Developer Tooling Showcase')
     expect(compiled.textContent).not.toContain('Production System Story')
+    expect(compiled.textContent).not.toContain('Platform Modernization')
+    expect(compiled.textContent).not.toContain('Observability by Design')
     expect(compiled.textContent).not.toContain('Placeholder')
   })
 
@@ -82,8 +87,20 @@ describe('Projects', () => {
     expect(navigateSpy).toHaveBeenCalledWith(['/projects', 'the-code-tickler'])
   })
 
+  it('opens The Code Tickler detail from keyboard activation', () => {
+    const router = TestBed.inject(Router)
+    const navigateSpy = vi.spyOn(router, 'navigate').mockResolvedValue(true)
+    const projectCard = compiled.querySelector(
+      '[aria-label="Open project details for The Code Tickler"]',
+    )
+
+    projectCard?.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
+
+    expect(navigateSpy).toHaveBeenCalledWith(['/projects', 'the-code-tickler'])
+  })
+
   it('keeps empty maintained and legacy sections visible without project cards', () => {
-    const sections = Array.from(compiled.querySelectorAll('section'))
+    const sections = Array.from(compiled.querySelectorAll('.projects-section'))
     const maintainedSection = sections.find((section) =>
       section.textContent?.includes('Maintained'),
     )
@@ -95,7 +112,7 @@ describe('Projects', () => {
       'No maintained independent projects are listed yet.',
     )
     expect(legacySection?.textContent).toContain('No legacy independent projects are listed yet.')
-    expect(maintainedSection?.querySelector('p-card')).toBeNull()
-    expect(legacySection?.querySelector('p-card')).toBeNull()
+    expect(maintainedSection?.querySelector('.project-card')).toBeNull()
+    expect(legacySection?.querySelector('.project-card')).toBeNull()
   })
 })

@@ -16,7 +16,6 @@ describe('MobileNavDrawer', () => {
     fixture.componentRef.setInput('open', true)
     fixture.componentRef.setInput('navItems', [
       { label: 'Home', path: '/' },
-      { label: 'About', path: '/about' },
       { label: 'Projects', path: '/projects' },
       { label: 'Writing', path: '/writing' },
       { label: 'Contact', path: '/contact' },
@@ -32,9 +31,11 @@ describe('MobileNavDrawer', () => {
   it('renders all mobile navigation links', () => {
     const element: HTMLElement = fixture.nativeElement
 
-    for (const label of ['Home', 'About', 'Projects', 'Writing', 'Contact']) {
+    for (const label of ['Home', 'Projects', 'Writing', 'Contact']) {
       expect(element.textContent).toContain(label)
     }
+
+    expect(element.textContent).not.toContain('About')
   })
 
   it('does not render the drawer when closed', () => {

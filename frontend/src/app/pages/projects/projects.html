@@ -1,80 +1,123 @@
-<div class="site-frame py-10 pb-6 md:py-16 md:pb-8">
-  <p class="m-0 text-[clamp(1rem,2vw,1.2rem)] leading-relaxed text-[var(--muted)]">
-    A living portfolio of software I’m building, maintaining, and refining under The Code Tickler
-    brand. These projects include active experiments, useful tools, product ideas, and completed
-    work that show how I approach design, delivery, debugging, and long-term code ownership.
-  </p>
-</div>
-
-<div class="site-frame grid gap-8 pb-10 md:pb-16 lg:pb-20">
-  @for (projectSection of projectSections(); track projectSection.id) {
-    <section class="grid gap-4" [attr.aria-labelledby]="projectSection.id + '-projects-heading'">
-      <div class="flex items-end justify-between gap-4 max-sm:flex-col max-sm:items-start">
-        <h2 [id]="projectSection.id + '-projects-heading'" class="eyebrow m-0">
-          {{ projectSection.title }}
-        </h2>
+<section class="projects-page site-page" aria-labelledby="projects-title">
+  <div class="projects-shell site-shell">
+    <section class="projects-hero" aria-label="Projects overview">
+      <div class="projects-hero-copy">
+        <p class="site-eyebrow">Projects</p>
+        <h1 id="projects-title" class="projects-title site-hero-title">
+          Projects that move
+          <span class="site-gradient-text">systems forward.</span>
+        </h1>
+        <p class="site-summary">
+          A living portfolio of software I’m building, maintaining, and refining under The Code
+          Tickler brand. These projects show how I approach design, delivery, debugging, and
+          long-term code ownership.
+        </p>
       </div>
 
-      @if (projectSection.projects.length > 0) {
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          @for (project of projectSection.projects; track project.name) {
-            <p-card
-              class="portfolio-card project-card interactive-project-card"
-              role="link"
-              tabindex="0"
-              [attr.aria-label]="'Open project details for ' + project.name"
-              (click)="openProject(project)"
-              (keydown.enter)="openProjectFromKeyboard($event, project)"
-              (keydown.space)="openProjectFromKeyboard($event, project)"
-            >
-              <ng-template #title>
-                <span class="project-title-line">
-                  <span class="project-title-text">{{ project.name }}</span>
-                  <span class="project-detail-cue" aria-hidden="true">
-                    <span>Details</span>
-                    <i class="pi pi-arrow-right"></i>
-                  </span>
-                </span>
-              </ng-template>
-              @if (project.status) {
-                <ng-template #subtitle>{{ project.status }}</ng-template>
-              }
-              <p class="leading-relaxed text-[var(--muted)]">{{ project.summary }}</p>
-              @if (project.impact) {
-                <p class="leading-relaxed text-[var(--muted)]">{{ project.impact }}</p>
-              }
-              <div class="mt-4 flex flex-wrap items-center gap-3" aria-label="Project technologies">
-                @for (tech of visibleProjectStack(project); track tech) {
-                  <p-tag [value]="tech" rounded />
-                }
-              </div>
-              <ng-template #footer>
-                <div class="flex flex-wrap items-center gap-3">
-                  @for (link of project.links; track link.label) {
-                    <a
-                      pButton
-                      [href]="link.href"
-                      target="_blank"
-                      rel="noopener"
-                      outlined
-                      (click)="$event.stopPropagation()"
-                      (keydown.enter)="$event.stopPropagation()"
-                      (keydown.space)="$event.stopPropagation()"
-                    >
-                      <span [class]="link.icon" aria-hidden="true"></span>
-                      <span>{{ link.label }}</span>
-                    </a>
-                  }
-                </div>
-              </ng-template>
-            </p-card>
-          }
-        </div>
-      } @else {
-        <p class="project-empty-state m-0 rounded-lg px-4 py-3 text-sm leading-relaxed">
-          {{ projectSection.emptyMessage }}
-        </p>
-      }
+      <div class="projects-stat-grid" aria-label="Project portfolio summary">
+        @for (stat of projectStats(); track stat.label) {
+          <article class="projects-stat-card site-card-surface">
+            <span class="projects-stat-icon site-icon-surface" aria-hidden="true">
+              <i [class]="stat.icon"></i>
+            </span>
+            <span>
+              <strong>{{ stat.value }}</strong>
+              <small>{{ stat.label }}</small>
+            </span>
+          </article>
+        }
+      </div>
     </section>
-  }
-</div>
+
+    <div class="projects-sections">
+      @for (projectSection of projectSections(); track projectSection.id) {
+        <section
+          class="projects-section site-panel"
+          [attr.aria-labelledby]="projectSection.id + '-projects-heading'"
+        >
+          <header class="projects-section-header">
+            <div>
+              <p class="site-section-kicker">{{ projectSection.title }}</p>
+              <h2 [id]="projectSection.id + '-projects-heading'">
+                {{ projectSection.projects.length }}
+                {{ projectSection.projects.length === 1 ? 'project' : 'projects' }} listed
+              </h2>
+            </div>
+            <span class="site-section-meta">{{ projectSection.id }}</span>
+          </header>
+
+          @if (projectSection.projects.length > 0) {
+            <div class="projects-grid">
+              @for (project of projectSection.projects; track project.name) {
+                <article
+                  class="project-card site-card-surface site-interactive-surface"
+                  role="link"
+                  tabindex="0"
+                  [attr.aria-label]="'Open project details for ' + project.name"
+                  (click)="openProject(project)"
+                  (keydown.enter)="openProjectFromKeyboard($event, project)"
+                  (keydown.space)="openProjectFromKeyboard($event, project)"
+                >
+                  <header class="project-card-header">
+                    <span class="project-icon site-icon-surface" aria-hidden="true">
+                      <i class="pi pi-code"></i>
+                    </span>
+                    <span class="project-card-title">
+                      @if (project.status) {
+                        <small class="site-card-kicker">{{ project.status }}</small>
+                      } @else {
+                        <small class="site-card-kicker">{{ projectSection.title }}</small>
+                      }
+                      <strong>{{ project.name }}</strong>
+                    </span>
+                    <span class="project-detail-cue" aria-hidden="true">
+                      <span>Details</span>
+                      <i class="pi pi-arrow-right"></i>
+                    </span>
+                  </header>
+
+                  <p class="project-summary">{{ project.summary }}</p>
+                  @if (project.impact) {
+                    <div class="project-impact">
+                      <span>Impact</span>
+                      <p>{{ project.impact }}</p>
+                    </div>
+                  }
+
+                  <div class="project-stack" aria-label="Project technologies">
+                    @for (tech of visibleProjectStack(project); track tech) {
+                      <span class="site-chip">{{ tech }}</span>
+                    }
+                  </div>
+
+                  @if (project.links.length > 0) {
+                    <footer class="project-links" aria-label="Project links">
+                      @for (link of project.links; track link.label) {
+                        <a
+                          class="site-action-link"
+                          [href]="link.href"
+                          target="_blank"
+                          rel="noopener"
+                          (click)="$event.stopPropagation()"
+                          (keydown.enter)="$event.stopPropagation()"
+                          (keydown.space)="$event.stopPropagation()"
+                        >
+                          <span [class]="link.icon" aria-hidden="true"></span>
+                          <span>{{ link.label }}</span>
+                        </a>
+                      }
+                    </footer>
+                  }
+                </article>
+              }
+            </div>
+          } @else {
+            <p class="site-empty-state">
+              {{ projectSection.emptyMessage }}
+            </p>
+          }
+        </section>
+      }
+    </div>
+  </div>
+</section>

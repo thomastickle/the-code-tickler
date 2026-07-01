@@ -38,17 +38,17 @@ describe('Menubar', () => {
     expect(brandmark.getAttribute('srcset')).toContain('brandmark/brand-mark-2x.webp 2x')
   })
 
-  it('renders four desktop nav links without a Home nav item', () => {
+  it('renders three desktop nav links without a Home nav item', () => {
     const element: HTMLElement = fixture.nativeElement
     const links = Array.from(element.querySelectorAll('.desktop-links .nav-link'))
 
     expect(links.map((link) => link.textContent?.trim())).toEqual([
       'Projects',
       'Writing',
-      'About',
       'Contact',
     ])
     expect(links.some((link) => link.textContent?.trim() === 'Home')).toBe(false)
+    expect(links.some((link) => link.textContent?.trim() === 'About')).toBe(false)
   })
 
   it('defaults to dark mode and stores the preference', () => {

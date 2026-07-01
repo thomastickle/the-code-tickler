@@ -9,6 +9,7 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - Do not restore old page sections, old hero layouts, or unrelated landing content unless the user explicitly asks.
 - The finished menubar is the established site chrome. Current page work should build under it without changing its design unless requested.
 - The accepted page baseline is `/contact`; treat `docs/frontend/design/contact.md` as the source of truth for that page.
+- The projects page follows `../docs/frontend/design/projects.md`.
 - The active page design target is `/writing`; treat `../docs/frontend/design/writing.md` as the source of truth for this branch.
 - For new page work, create or update a matching document in `../docs/frontend/design/` before committing the page.
 - Keep changes narrow. If the user gives detailed design guidance, implement that guidance directly instead of reviving prior redesign assumptions.
@@ -55,13 +56,14 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - Do not add a parallel theme system. Theme configuration belongs in `providePrimeNG`.
 - Dark and light mode are class-driven through `.app-dark` and `.app-light`.
 - Use page-prefixed class names for page-specific visual components. Avoid generic names such as `.hero-visual` unless the intent is to share global behavior; the contact hero visual was broken by an unrelated global `.hero-visual` minimum height.
+- Use global `site-*` classes in `src/styles.css` for reusable page primitives such as shells, glass panels, cards, chips, links, icons, hero titles, summaries, and empty states. Keep route CSS focused on layout and page-specific sizing.
 
 ## Menubar Rules
 
 - Treat `docs/frontend/design/menubar.md` as the source of truth for menubar design decisions.
 - Treat `docs/frontend/design/theme-switch.md` as the source of truth for the reusable theme switch API and styling variables.
 - Treat `docs/frontend/design/mobile-nav-drawer.md` as the source of truth for the native mobile drawer.
-- Preserve the established menubar layout: brandmark and "The Code Tickler" home link on the left, empty center, Projects/Writing/About/Contact links on desktop, mobile drawer collapse on narrow screens, and the theme toggle at the far right.
+- Preserve the established menubar layout: brandmark and "The Code Tickler" home link on the left, empty center, Projects/Writing/Contact links on desktop, mobile drawer collapse on narrow screens, and the theme toggle at the far right.
 - The menubar chrome is PrimeNG-free by design. Do not use PrimeNG `Button`, `Drawer`, `ToggleSwitch`, or PrimeIcons in `menubar`, `mobile-nav-drawer`, or `theme-switch`.
 - The theme toggle is implemented by `src/app/components/theme-switch`. Keep it reusable, native, CSS-variable driven, and independent of PrimeNG/PrimeIcons so it can be copied into other projects.
 - Light mode is left/off and dark mode is right/on, matching the sample image.
@@ -76,21 +78,23 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - Treat `docs/frontend/design/contact.md` as the source of truth for the contact page.
 - Recreate `sample_&_raw_assets/Second Pass/overall_look/Contact.png` with live Angular templates and CSS, not as a screenshot background.
 - Let the contact page inherit the shared site background; do not add a page-wide background image.
-- Keep the contact hero visual in `src/app/pages/contact/contact-hero-visual`; it owns the relative mark/grid composition, two-column scaling behavior, and hiding at the hero-collapse breakpoint.
-- Do not use the global `.hero-visual` class inside the contact hero visual. The global home-page rule includes a large minimum height and breaks the contact component's square sizing.
 - Keep the contact form honest until a backend exists. It may open a `mailto:` draft, but it must not show a fake server-side success state.
-- Keep raw/reference assets in the ignored `sample_&_raw_assets/` directory. Copy only production-ready, app-used assets into `src/assets`.
-- Use CSS-native gradients, star/noise effects, and grid-line layers for contained contact visuals unless a future production asset pass explicitly promotes new files.
+- Keep raw/reference assets in the ignored `sample_&_raw_assets/` directory. Keep production app assets limited to brandmarks unless a future art pass explicitly promotes page artwork.
 - PrimeIcons may be used for contact-page content icons. The PrimeNG-free rule applies to menubar chrome, not this page.
 
 ## Writing Page Rules
 
 - Treat `../docs/frontend/design/writing.md` as the source of truth for the writing page.
 - Recreate `sample_&_raw_assets/Second Pass/overall_look/Writing.png` with live Angular templates and CSS, not as a screenshot background.
-- Treat `src/assets/writing/writing-mini-hero/writing-quill-clean-*.webp` as the production writing art. The `writing-mini-hero` is a compact title-adjacent icon, not a full hero image or large panel illustration.
 - Treat writing entries as planned notes or previews unless the user confirms published content.
 - Do not link cards to missing `/writing/:slug` routes yet.
 - Keep the subscribe panel visual-only until a backend exists; do not show fake success or imply a real subscription.
+
+## Projects Page Rules
+
+- Treat `../docs/frontend/design/projects.md` as the source of truth for the projects index and project detail route.
+- Keep project and project-detail surfaces native and glass-styled through shared `site-*` primitives. Avoid PrimeNG card/tag/button DOM on these route surfaces unless a future decision explicitly reverses this.
+- Keep the projects index and detail route honest to `portfolio-data.ts`; do not add mock project cards or invented detail content from reference art.
 
 ## Accessibility And Assets
 
