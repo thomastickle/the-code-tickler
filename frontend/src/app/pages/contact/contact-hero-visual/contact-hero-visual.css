@@ -15,9 +15,16 @@
   border: 1px solid var(--contact-line-strong);
   border-radius: clamp(1rem, 3vw, 1.8rem);
   background:
-    linear-gradient(180deg, rgba(9, 12, 48, 0.12), rgba(5, 10, 35, 0.84)),
-    url('/backgrounds/noise-stars.svg') center / 58rem auto repeat,
-    #070a20;
+    radial-gradient(circle at 20% 19%, rgba(255, 255, 255, 0.4) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 77% 24%, rgba(117, 219, 255, 0.3) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 58% 62%, rgba(210, 93, 255, 0.24) 0 1px, transparent 1.5px),
+    linear-gradient(180deg, rgba(9, 12, 48, 0.12), rgba(5, 10, 35, 0.84)), #070a20;
+  background-size:
+    7.4rem 7.4rem,
+    9.1rem 9.1rem,
+    10.4rem 10.4rem,
+    auto,
+    auto;
   box-shadow:
     0 0 0 1px rgba(26, 167, 255, 0.22),
     0 0 2rem rgba(156, 77, 255, 0.34),
@@ -28,13 +35,24 @@
 
 .contact-visual::before {
   position: absolute;
-  inset: 18% -34% -7%;
+  inset: 43% -36% -8%;
   z-index: 0;
-  background: url('/backgrounds/retro-grid-horizon.svg') center bottom / 150% auto no-repeat;
+  background:
+    linear-gradient(
+      90deg,
+      transparent calc(50% - 1px),
+      rgba(117, 219, 255, 0.42) 50%,
+      transparent calc(50% + 1px)
+    ),
+    repeating-linear-gradient(90deg, rgba(117, 219, 255, 0.3) 0 1px, transparent 1px 2.75rem),
+    repeating-linear-gradient(0deg, rgba(156, 77, 255, 0.34) 0 1px, transparent 1px 1.25rem);
   content: '';
   filter: saturate(1.25) brightness(1.35);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.88), transparent 92%);
   opacity: 0.95;
   pointer-events: none;
+  transform: perspective(18rem) rotateX(64deg);
+  transform-origin: center bottom;
 }
 
 .contact-visual::after {

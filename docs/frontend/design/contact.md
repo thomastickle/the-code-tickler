@@ -2,7 +2,7 @@
 
 ## Visual Target
 
-- `sample/new-design/Contact.png` is the current visual reference for `/contact`.
+- `sample_&_raw_assets/Second Pass/overall_look/Contact.png` is the current visual reference for `/contact`.
 - Recreate the composition with live HTML/CSS, not by using the mockup image as a background.
 - The page is dark-first and inherits the shared near-black navy site background. Do not add a page-wide background image.
 - Use glass panels and restrained blue/violet/purple glow for the page-specific treatment.
@@ -20,7 +20,7 @@
   - Implement the hero image as a dedicated `ContactHeroVisual` component so its layers scale independently from the page text.
   - Use the `{ feather }` brandmark as a foreground layer in a square bordered glass panel.
   - Keep the braces fully visible and the feather optically centered between them.
-  - Keep the grid as a separate lower panel layer so the mark floats above it.
+  - Keep the CSS grid as a separate lower panel layer so the mark floats above it.
   - Pull the grid toward the bottom of the panel so it reads like an infinite floor.
   - Scale the visual inside the two-column hero only; hide it when the hero collapses at `1120px` and below instead of placing it below the hero copy.
   - Keep the component's internal panel class distinct from global `.hero-visual` styles. The global home-page rule sets a large minimum height and can break the square contact visual if reused.
@@ -42,14 +42,11 @@
 
 ## Assets
 
-- Contact page assets promoted from the mockup package live under `frontend/src/assets`:
-  - `brandmark/the-code-tickler-mark.svg`
-  - `brandmark/brand-mark-1x.webp`, `brandmark/brand-mark-2x.webp`, and `brandmark/brand-mark-3x.webp`
-  - `backgrounds/retro-grid-horizon.svg`
-  - `backgrounds/noise-stars.svg`
-- The untracked `sample/` directory remains reference-only and should not be treated as production assets.
-- The contact route should not apply the grid or noise assets as a page-wide background; reserve them for contained visual elements only if needed.
-- Known limitation: the hero mark/grid is an approximation built from current available SVG/CSS assets. Do not over-tune it until the asset set is updated.
+- Raw/reference assets stay ignored under `sample_&_raw_assets/` and should not be treated as production assets.
+- Only production-ready, app-used files should be copied into `frontend/src/assets`.
+- The contact route should not apply grid, star, or noise treatments as a page-wide background; reserve CSS-native gradient/star/grid layers for contained visual elements only.
+- The deleted SVG background and brandmark files are no longer app dependencies. Do not reference them from contact markup, CSS, or docs.
+- Known limitation: the hero mark/grid is an approximation built from inline SVG and CSS layers. Do not over-tune it until the asset set is updated.
 
 ## Implementation Notes
 
