@@ -55,6 +55,8 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - Keep custom CSS focused on brand styling, layout details, PrimeNG generated-DOM adapters, and effects that cannot be expressed cleanly with utilities.
 - Do not add a parallel theme system. Theme configuration belongs in `providePrimeNG`.
 - Dark and light mode are class-driven through `.app-dark` and `.app-light`.
+- Theme defaults follow the browser/OS `prefers-color-scheme` setting until the user manually toggles the switch.
+- Manual theme choices are stored as JSON under `the-code-tickler-theme` with `version`, `value`, `selectedAt`, and `lastSeenAt`; expire them after 182 days since `lastSeenAt` and support legacy raw `dark` / `light` values.
 - Use page-prefixed class names for page-specific visual components. Avoid generic names such as `.hero-visual` unless the intent is to share global behavior; the contact hero visual was broken by an unrelated global `.hero-visual` minimum height.
 - Use global `site-*` classes in `src/styles.css` for reusable page primitives such as shells, glass panels, cards, chips, links, icons, hero titles, summaries, and empty states. Keep route CSS focused on layout and page-specific sizing.
 
@@ -71,7 +73,7 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - Keep the toggle thumb matte. The color strength belongs in the thin gradient border and dark pill background, not in a glowing thumb or handle.
 - The sun and moon glyphs are custom CSS shapes. The moon is a filled crescent with the bright arc on the left and cutout opening toward the upper-right; do not use `pi pi-moon` for the selected moon because the PrimeIcons outline shape does not match the sample.
 - Preserve the custom switch layering: outer pill/background, static endpoint icons, and moving thumb. This was chosen because the PrimeNG `ToggleSwitch` generated DOM made the sample geometry difficult to match closely.
-- Preserve theme persistence through the `the-code-tickler-theme` localStorage key.
+- Preserve theme persistence through the `the-code-tickler-theme` localStorage key, but only write that key after manual user selection. System/default mode must not create storage.
 
 ## Contact Page Rules
 

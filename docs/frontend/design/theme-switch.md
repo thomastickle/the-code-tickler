@@ -30,6 +30,14 @@ protected setDarkMode(isDark: boolean): void {
 }
 ```
 
+## Theme Ownership
+
+- `ThemeSwitch` does not read storage, call `matchMedia`, or apply document classes.
+- The menubar owns `.app-dark` / `.app-light`, the `the-code-tickler-theme` localStorage key, and browser/OS defaulting.
+- With no active manual preference, the menubar follows `prefers-color-scheme` and does not write storage.
+- Manual choices are stored as JSON with `version`, `value`, `selectedAt`, and `lastSeenAt`, and expire after 182 days since `lastSeenAt`.
+- Legacy raw `dark` / `light` values remain valid and are upgraded by the menubar on the next visit.
+
 ## Visual Contract
 
 - Light/off sits on the left; dark/on sits on the right.
