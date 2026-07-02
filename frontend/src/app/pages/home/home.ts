@@ -17,7 +17,7 @@ import {
   selector: 'app-home',
   imports: [Button, ButtonDirective, Card, RouterLink, Tag],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {

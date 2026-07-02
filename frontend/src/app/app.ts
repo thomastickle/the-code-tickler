@@ -7,7 +7,7 @@ import { Menubar } from './components/menubar/menubar'
   selector: 'app-root',
   imports: [Menubar, RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {}

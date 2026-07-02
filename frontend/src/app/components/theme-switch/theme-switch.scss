@@ -31,24 +31,24 @@
   box-shadow:
     inset 0 0 0.7rem rgba(2, 4, 17, 0.82),
     0.14rem 0 0.48rem rgba(168, 85, 247, 0.26);
-}
 
-.theme-switch::before {
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: var(--theme-switch-edge-accent);
-  content: '';
-  pointer-events: none;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
+  &::before {
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--theme-switch-edge-accent);
+    content: '';
+    pointer-events: none;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
 }
 
 .theme-endpoint {
@@ -72,8 +72,7 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-.theme-icon-moon,
-.theme-icon-sun {
+:is(.theme-icon-moon, .theme-icon-sun) {
   display: block;
 }
 
@@ -82,22 +81,22 @@
   width: 0.9rem;
   height: 0.9rem;
   border-radius: 999px;
-}
 
-.theme-icon-sun::before {
-  position: absolute;
-  inset: 0.26rem;
-  border-radius: inherit;
-  background: currentColor;
-  content: '';
-}
+  &::before {
+    position: absolute;
+    inset: 0.26rem;
+    border-radius: inherit;
+    background: currentColor;
+    content: '';
+  }
 
-.theme-icon-sun::after {
-  position: absolute;
-  inset: 0.04rem;
-  background: repeating-conic-gradient(currentColor 0deg 10deg, transparent 10deg 45deg);
-  content: '';
-  mask: radial-gradient(circle, transparent 0 0.3rem, #000 0.31rem 0.45rem, transparent 0.46rem);
+  &::after {
+    position: absolute;
+    inset: 0.04rem;
+    background: repeating-conic-gradient(currentColor 0deg 10deg, transparent 10deg 45deg);
+    content: '';
+    mask: radial-gradient(circle, transparent 0 0.3rem, #000 0.31rem 0.45rem, transparent 0.46rem);
+  }
 }
 
 .theme-icon-moon {
@@ -110,17 +109,17 @@
   border-radius: 999px;
   background: currentColor;
   transform: rotate(-18deg);
-}
 
-.theme-icon-moon::after {
-  position: absolute;
-  top: 0.02rem;
-  right: -0.18rem;
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: inherit;
-  background: var(--moon-cutout);
-  content: '';
+  &::after {
+    position: absolute;
+    top: 0.02rem;
+    right: -0.18rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: inherit;
+    background: var(--moon-cutout);
+    content: '';
+  }
 }
 
 .theme-switch-thumb {
@@ -136,23 +135,22 @@
   box-shadow: 0 0.12rem 0.32rem rgba(0, 0, 0, 0.34);
   transform: translate(var(--theme-switch-thumb-gap), -50%);
   transition: transform 180ms ease;
-}
 
-.theme-switch-thumb .theme-icon-sun,
-.theme-switch-thumb .theme-icon-moon {
-  width: 0.98rem;
-  height: 0.98rem;
-}
+  :is(.theme-icon-sun, .theme-icon-moon) {
+    width: 0.98rem;
+    height: 0.98rem;
+  }
 
-.theme-switch-thumb .theme-icon-moon {
-  --moon-cutout: var(--theme-switch-checked-thumb-bg);
-}
+  .theme-icon-moon {
+    --moon-cutout: var(--theme-switch-checked-thumb-bg);
 
-.theme-switch-thumb .theme-icon-moon::after {
-  top: 0.02rem;
-  right: -0.22rem;
-  width: 0.94rem;
-  height: 0.94rem;
+    &::after {
+      top: 0.02rem;
+      right: -0.22rem;
+      width: 0.94rem;
+      height: 0.94rem;
+    }
+  }
 }
 
 .theme-switch.is-checked .theme-switch-thumb {

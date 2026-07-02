@@ -22,7 +22,7 @@ import { ChangeDetectionStrategy, Component, computed, input, output } from '@an
 @Component({
   selector: 'app-theme-switch',
   templateUrl: './theme-switch.html',
-  styleUrl: './theme-switch.css',
+  styleUrl: './theme-switch.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThemeSwitch {

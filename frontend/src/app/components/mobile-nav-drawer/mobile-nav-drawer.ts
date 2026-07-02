@@ -20,7 +20,7 @@ export interface NavItem {
   selector: 'app-mobile-nav-drawer',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './mobile-nav-drawer.html',
-  styleUrl: './mobile-nav-drawer.css',
+  styleUrl: './mobile-nav-drawer.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MobileNavDrawer implements OnDestroy {

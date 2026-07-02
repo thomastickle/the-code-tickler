@@ -53,19 +53,14 @@
   border-radius: 999px;
 }
 
-.focus-item h2,
-.topic-card h3 {
+:is(.focus-item h2, .topic-card h3) {
   margin: 0;
   color: var(--site-text);
   font-size: 1rem;
   line-height: 1.25;
 }
 
-.focus-item p,
-.topic-card p,
-.method-copy span,
-.mail-note,
-.contact-footer {
+:is(.focus-item p, .topic-card p, .method-copy span, .mail-note, .contact-footer) {
   margin: 0;
   color: var(--site-muted);
 }
@@ -83,8 +78,7 @@
   margin-top: 1rem;
 }
 
-.contact-panel,
-.topics-panel {
+:is(.contact-panel, .topics-panel) {
   padding: clamp(1.2rem, 2vw, 1.75rem);
 }
 
@@ -113,8 +107,7 @@
   font-size: 1.75rem;
 }
 
-.method-icon .pi,
-.topic-icon .pi {
+:is(.method-icon, .topic-icon) .pi {
   font-size: inherit;
   line-height: 1;
 }
@@ -123,17 +116,17 @@
   display: grid;
   min-width: 0;
   gap: 0.16rem;
-}
 
-.method-copy strong {
-  color: var(--site-text);
-  font-size: 1rem;
-}
+  strong {
+    color: var(--site-text);
+    font-size: 1rem;
+  }
 
-.method-copy span {
-  overflow-wrap: anywhere;
-  font-size: 0.9rem;
-  line-height: 1.35;
+  span {
+    overflow-wrap: anywhere;
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
 }
 
 .method-value {
@@ -188,13 +181,13 @@ textarea.site-field-surface {
   width: fit-content;
   color: var(--site-muted);
   font-size: 0.95rem;
-}
 
-.checkbox-field input {
-  width: 1.35rem;
-  height: 1.35rem;
-  min-height: auto;
-  accent-color: var(--site-purple);
+  input {
+    width: 1.35rem;
+    height: 1.35rem;
+    min-height: auto;
+    accent-color: var(--site-purple);
+  }
 }
 
 .form-actions {
@@ -239,20 +232,20 @@ textarea.site-field-surface {
   min-height: 13.5rem;
   flex-direction: column;
   padding: 1rem;
-}
 
-.topic-icon {
-  width: 2.7rem;
-  height: 2.7rem;
-  margin-bottom: 0.9rem;
-  border-radius: 0.55rem;
-  font-size: 1.6rem;
-}
+  p {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
 
-.topic-card p {
-  margin-top: 0.75rem;
-  font-size: 0.9rem;
-  line-height: 1.55;
+  .topic-icon {
+    width: 2.7rem;
+    height: 2.7rem;
+    margin-bottom: 0.9rem;
+    border-radius: 0.55rem;
+    font-size: 1.6rem;
+  }
 }
 
 .tag-row {
@@ -266,26 +259,26 @@ textarea.site-field-surface {
 .contact-callout {
   margin-top: 1.45rem;
   padding: 1.25rem;
-}
 
-.contact-callout i {
-  color: var(--site-purple-soft);
-  font-size: 2rem;
-  transform: rotate(-18deg);
-}
+  i {
+    color: var(--site-purple-soft);
+    font-size: 2rem;
+    transform: rotate(-18deg);
+  }
 
-.contact-callout p {
-  margin: 0;
-  color: var(--site-muted);
-  font-size: 1.05rem;
-  line-height: 1.45;
-}
+  p {
+    margin: 0;
+    color: var(--site-muted);
+    font-size: 1.05rem;
+    line-height: 1.45;
+  }
 
-.contact-callout strong {
-  display: block;
-  color: var(--site-blue);
-  font-size: 1.2rem;
-  font-weight: 800;
+  strong {
+    display: block;
+    color: var(--site-blue);
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
 }
 
 .contact-footer {
@@ -297,36 +290,34 @@ textarea.site-field-surface {
   margin-top: 1rem;
   border-top: 1px solid color-mix(in srgb, var(--site-line-soft) 78%, transparent);
   font-size: 0.9rem;
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    justify-content: end;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: inherit;
+    text-decoration: none;
+
+    &:is(:hover, :focus-visible) {
+      color: #ffffff;
+    }
+  }
+}
+
+:host-context(.app-light) .contact-footer a:is(:hover, :focus-visible) {
+  color: #1d4ed8;
 }
 
 .footer-brand img {
   width: 3.3rem;
   filter: drop-shadow(0 0 0.65rem rgba(156, 77, 255, 0.5));
-}
-
-.contact-footer nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 2rem;
-  justify-content: end;
-}
-
-.contact-footer a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  color: inherit;
-  text-decoration: none;
-}
-
-.contact-footer a:hover,
-.contact-footer a:focus-visible {
-  color: #ffffff;
-}
-
-:host-context(.app-light) .contact-footer a:hover,
-:host-context(.app-light) .contact-footer a:focus-visible {
-  color: #1d4ed8;
 }
 
 @media (max-width: 1120px) {
@@ -345,20 +336,15 @@ textarea.site-field-surface {
     padding-top: 1rem;
   }
 
-  .focus-grid,
-  .form-row,
-  .topic-grid,
-  .contact-footer {
+  :is(.focus-grid, .form-row, .topic-grid, .contact-footer) {
     grid-template-columns: 1fr;
   }
 
-  .contact-columns,
-  .topics-panel {
+  :is(.contact-columns, .topics-panel) {
     margin-top: 0.75rem;
   }
 
-  .form-actions,
-  .contact-callout {
+  :is(.form-actions, .contact-callout) {
     align-items: stretch;
     flex-direction: column;
   }
@@ -377,8 +363,7 @@ textarea.site-field-surface {
     font-size: clamp(2.35rem, 16vw, 3.2rem);
   }
 
-  .contact-panel,
-  .topics-panel {
+  :is(.contact-panel, .topics-panel) {
     padding: 1rem;
   }
 
@@ -386,8 +371,7 @@ textarea.site-field-surface {
     grid-template-columns: auto minmax(0, 1fr);
   }
 
-  .method-arrow,
-  .status-dot {
+  :is(.method-arrow, .status-dot) {
     grid-column: 2;
   }
 }

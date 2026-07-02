@@ -38,7 +38,7 @@ interface ContactTopic {
   selector: 'app-contact',
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './contact.html',
-  styleUrl: './contact.css',
+  styleUrl: './contact.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Contact {

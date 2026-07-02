@@ -33,7 +33,7 @@ interface FieldNote {
 @Component({
   selector: 'app-writing',
   templateUrl: './writing.html',
-  styleUrl: './writing.css',
+  styleUrl: './writing.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Writing {

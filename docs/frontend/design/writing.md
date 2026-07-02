@@ -33,7 +33,7 @@
 ## Implementation Notes
 
 - Component: `frontend/src/app/pages/writing`.
-- Use native Angular markup with shared `site-*` primitives for shells, hero text, glass panels, cards, chips, icons, fields, and actions. Keep writing CSS focused on route-specific layout, sidebar behavior, note grids, and the contained feature art.
+- Use native Angular markup with shared `site-*` primitives for shells, hero text, glass panels, cards, chips, icons, fields, and actions. Keep writing SCSS focused on route-specific layout, sidebar behavior, note grids, and the contained feature art.
 - Keep class names page-prefixed (`writing-*`, `note-*`, `field-note-*`, `sidebar-*`) and avoid generic global names such as `.hero-visual`.
 - PrimeIcons are acceptable for writing-page content icons.
 - Raw/reference assets stay ignored under `sample_&_raw_assets/`. Keep production app assets limited to brandmarks unless a future art pass explicitly promotes page artwork.

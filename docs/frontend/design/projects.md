@@ -34,8 +34,8 @@
 
 - Component: `frontend/src/app/pages/projects`.
 - Detail component: `frontend/src/app/pages/project-detail`.
-- Use native Angular markup and the shared primitives in `frontend/src/styles.css` for cards, chips, buttons, panels, and hero treatments. Avoid PrimeNG generated DOM on projects/detail surfaces where it fights the native glass look.
-- Keep page CSS focused on route-specific layout and sizing. Push reusable look-and-feel into the highest reasonable shared CSS layer.
+- Use native Angular markup and the shared primitives in `frontend/src/styles/_site-primitives.scss` for cards, chips, buttons, panels, and hero treatments. Avoid PrimeNG generated DOM on projects/detail surfaces where it fights the native glass look.
+- Keep page SCSS focused on route-specific layout and sizing. Push reusable look-and-feel into the highest reasonable shared style layer.
 - Keep class names page-prefixed for route-specific layout (`projects-*`, `project-*`) and use global `site-*` classes for shared visual primitives.
 - PrimeIcons are acceptable for project-page content icons.
 - External source links must stop event propagation so they do not also trigger project-card navigation.
