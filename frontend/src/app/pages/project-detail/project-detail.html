@@ -36,7 +36,11 @@
         </aside>
       </section>
 
-      <section class="project-detail-grid" aria-label="Project narrative">
+      <section
+        class="project-detail-grid"
+        [class.has-project-notes]="hasProjectNotes(project)"
+        aria-label="Project narrative"
+      >
         <div class="project-detail-main">
           <article class="detail-panel site-panel">
             <h2>What this project is</h2>
@@ -47,9 +51,9 @@
             </div>
           </article>
 
-          <article class="detail-panel site-panel">
-            <h2>Related writing</h2>
-            @if (relatedWriting().length > 0) {
+          @if (relatedWriting().length > 0) {
+            <article class="detail-panel site-panel">
+              <h2>Related writing</h2>
               <div class="related-writing-list">
                 @for (post of relatedWriting(); track post.slug) {
                   <article class="related-writing-item">
@@ -64,33 +68,35 @@
                   </article>
                 }
               </div>
-            } @else {
-              <p class="detail-empty site-empty-state">
-                No related writing is attached to this project yet.
-              </p>
-            }
-          </article>
+            </article>
+          }
         </div>
 
-        <aside class="project-detail-aside" aria-label="Project notes">
-          <section class="detail-panel site-panel">
-            <h2>Highlights</h2>
-            <ul class="site-list">
-              @for (highlight of project.detail.highlights; track highlight) {
-                <li>{{ highlight }}</li>
-              }
-            </ul>
-          </section>
+        @if (hasProjectNotes(project)) {
+          <aside class="project-detail-aside" aria-label="Project notes">
+            @if (projectHighlights(project).length > 0) {
+              <section class="detail-panel site-panel">
+                <h2>Highlights</h2>
+                <ul class="site-list">
+                  @for (highlight of projectHighlights(project); track highlight) {
+                    <li>{{ highlight }}</li>
+                  }
+                </ul>
+              </section>
+            }
 
-          <section class="detail-panel site-panel">
-            <h2>Ownership notes</h2>
-            <ul class="site-list">
-              @for (note of project.detail.ownershipNotes; track note) {
-                <li>{{ note }}</li>
-              }
-            </ul>
-          </section>
-        </aside>
+            @if (projectOwnershipNotes(project).length > 0) {
+              <section class="detail-panel site-panel">
+                <h2>Ownership notes</h2>
+                <ul class="site-list">
+                  @for (note of projectOwnershipNotes(project); track note) {
+                    <li>{{ note }}</li>
+                  }
+                </ul>
+              </section>
+            }
+          </aside>
+        }
       </section>
     </div>
   </section>

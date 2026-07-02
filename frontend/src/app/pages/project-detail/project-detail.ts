@@ -3,7 +3,14 @@ import { toSignal } from '@angular/core/rxjs-interop'
 import { ActivatedRoute, RouterLink } from '@angular/router'
 import { map } from 'rxjs'
 
-import { projectBySlug, relatedWritingForProject, visibleProjectStack } from '../../portfolio-data'
+import {
+  type Project,
+  projectBySlug,
+  relatedWritingForProject,
+  visibleProjectStack,
+} from '../../portfolio-data'
+
+const placeholderDate = 'Placeholder'
 
 @Component({
   selector: 'app-project-detail',
@@ -23,6 +30,22 @@ export class ProjectDetail {
   protected readonly relatedWriting = computed(() => {
     const project = this.project()
 
-    return project ? relatedWritingForProject(project) : []
+    return project
+      ? relatedWritingForProject(project).filter((post) => post.date !== placeholderDate)
+      : []
   })
+
+  protected hasProjectNotes(project: Project): boolean {
+    return (
+      this.projectHighlights(project).length > 0 || this.projectOwnershipNotes(project).length > 0
+    )
+  }
+
+  protected projectHighlights(project: Project): string[] {
+    return project.detail.highlights ?? []
+  }
+
+  protected projectOwnershipNotes(project: Project): string[] {
+    return project.detail.ownershipNotes ?? []
+  }
 }
