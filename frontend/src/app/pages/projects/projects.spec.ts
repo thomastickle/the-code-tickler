@@ -38,6 +38,25 @@ describe('Projects', () => {
     expect(compiled.textContent).not.toContain('Work samples and case-study slots')
   })
 
+  it('renders unboxed hero stats as icon, value, label rows', () => {
+    const stats = Array.from(compiled.querySelectorAll('.projects-stat-item'))
+    const firstStatParts = Array.from(stats[0]?.children ?? []).map((element) => element.className)
+
+    expect(stats).toHaveLength(3)
+    expect(compiled.querySelector('.projects-stat-card')).toBeNull()
+    expect(stats.every((stat) => !stat.classList.contains('site-card-surface'))).toBe(true)
+    expect(firstStatParts[0]).toContain('projects-stat-icon')
+    expect(firstStatParts[1]).toBe('projects-stat-value')
+    expect(firstStatParts[2]).toBe('projects-stat-label')
+    expect(stats.map((stat) => stat.textContent)).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining('Published projects'),
+        expect.stringContaining('Technologies shown'),
+        expect.stringContaining('Source links'),
+      ]),
+    )
+  })
+
   it('shows The Code Tickler under the active section eyebrow', () => {
     const sections = Array.from(compiled.querySelectorAll('.projects-section'))
     const activeSection = sections.find((section) => section.textContent?.includes('Active'))

@@ -17,11 +17,11 @@
 ## Layout
 
 - Desktop:
-  - Hero area with eyebrow, large gradient title, summary copy, and compact real-data stats.
+  - Hero area with eyebrow, large gradient title, summary copy, and a vertical unboxed stat stack. Each stat row uses three columns: icon, number, then short label.
   - Group projects by Active, Maintained, and Legacy sections.
   - Use dense glass cards for listed projects with icon, status/section label, summary, optional impact, stack tags, links, and detail cue.
 - Tablet/mobile:
-  - Stack the hero and stats.
+  - Stack the hero and keep the stat group as vertical rows so the title area does not compete with card-like metric blocks.
   - Project sections and cards become single-column.
   - Preserve keyboard-accessible card navigation and accessible external links.
 - Detail route:

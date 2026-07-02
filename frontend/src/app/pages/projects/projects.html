@@ -16,14 +16,12 @@
 
       <div class="projects-stat-grid" aria-label="Project portfolio summary">
         @for (stat of projectStats(); track stat.label) {
-          <article class="projects-stat-card site-card-surface">
+          <article class="projects-stat-item">
             <span class="projects-stat-icon site-icon-surface" aria-hidden="true">
               <i [class]="stat.icon"></i>
             </span>
-            <span>
-              <strong>{{ stat.value }}</strong>
-              <small>{{ stat.label }}</small>
-            </span>
+            <strong class="projects-stat-value">{{ stat.value }}</strong>
+            <span class="projects-stat-label">{{ stat.label }}</span>
           </article>
         }
       </div>
