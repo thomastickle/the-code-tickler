@@ -27,7 +27,8 @@
 - Detail route:
   - Use the same global `site-*` primitives for shell width, eyebrow, hero title, summary, glass panels, chips, icons, and links.
   - Keep the stack/source panel beside the title on desktop and stacked below it on narrower screens.
-  - Use narrative glass panels for project description, related writing, highlights, and ownership notes.
+  - Let the project title use the main hero column width; do not cap it so tightly that short names wrap early.
+  - Render only real narrative content. Keep placeholder related writing, provisional highlights, and provisional ownership notes hidden until the data is publishable.
 
 ## Implementation Notes
 
@@ -38,3 +39,4 @@
 - Keep class names page-prefixed for route-specific layout (`projects-*`, `project-*`) and use global `site-*` classes for shared visual primitives.
 - PrimeIcons are acceptable for project-page content icons.
 - External source links must stop event propagation so they do not also trigger project-card navigation.
+- Treat writing entries with `date: 'Placeholder'` as unpublished for project-detail related-writing panels.

@@ -15,8 +15,8 @@ export interface Project {
   impact?: string
   detail: {
     blurb: string[]
-    highlights: string[]
-    ownershipNotes: string[]
+    highlights?: string[]
+    ownershipNotes?: string[]
   }
   stack: string[]
   links: LinkItem[]
@@ -83,17 +83,6 @@ export const projects: Project[] = [
         'The Code Tickler is the working home for my independent software projects, writing, and public-facing engineering notes. It is intentionally small enough to keep moving and structured enough to show how I think about product shape, delivery, maintenance, and long-term ownership.',
         'This site is also a useful proving ground. The frontend, content model, routing, visual system, and deployment path all live in one Angular codebase, which makes it easier to try ideas quickly while still treating the work like a maintainable product.',
         'The project detail view is the first step toward making each project card more useful than a summary tile. Over time, each project can gather deeper writeups, decisions, related articles, source links, and notes about what changed after launch.',
-      ],
-      highlights: [
-        'Angular standalone components with lazy-loaded routes',
-        'PrimeNG surfaces styled with Tailwind utility classes and token-backed colors',
-        'Cloudflare Pages-oriented static deployment',
-        'Shared portfolio data that can grow into richer project records',
-      ],
-      ownershipNotes: [
-        'Keep the project list honest by separating active, maintained, and legacy work.',
-        'Use project detail pages for context that does not fit cleanly on summary cards.',
-        'Tie writing back to the project that prompted it so articles feel connected to real work.',
       ],
     },
     stack: ['Angular', 'PrimeNG', 'Tailwind CSS', 'Cloudflare Pages'],
