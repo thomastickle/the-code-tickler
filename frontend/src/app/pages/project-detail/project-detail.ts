@@ -16,7 +16,7 @@ const placeholderDate = 'Placeholder'
   selector: 'app-project-detail',
   imports: [RouterLink],
   templateUrl: './project-detail.html',
-  styleUrl: './project-detail.css',
+  styleUrl: './project-detail.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectDetail {

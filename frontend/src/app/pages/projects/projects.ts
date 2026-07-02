@@ -12,7 +12,7 @@ interface ProjectStat {
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.html',
-  styleUrl: './projects.css',
+  styleUrl: './projects.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Projects {

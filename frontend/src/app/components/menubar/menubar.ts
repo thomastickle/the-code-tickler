@@ -34,7 +34,7 @@ interface InitialThemePreference {
   selector: 'app-menubar',
   imports: [MobileNavDrawer, RouterLink, RouterLinkActive, ThemeSwitch],
   templateUrl: './menubar.html',
-  styleUrl: './menubar.css',
+  styleUrl: './menubar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Menubar {

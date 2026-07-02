@@ -1,0 +1,108 @@
+:root {
+  color-scheme: dark;
+  --ink: var(--p-text-color);
+  --muted: var(--p-surface-400);
+  --surface: color-mix(in srgb, var(--p-content-background) 88%, transparent);
+  --surface-alt: color-mix(in srgb, var(--p-surface-800) 82%, transparent);
+  --line: color-mix(in srgb, var(--p-primary-500) 28%, transparent);
+  --accent: var(--p-primary-500);
+  --accent-strong: #22d3ee;
+  --code: #34d399;
+  --page-bg: #020411;
+  --body-wash:
+    radial-gradient(circle at 10% 18%, rgba(124, 58, 237, 0.08), transparent 18rem),
+    radial-gradient(circle at 92% 10%, rgba(34, 211, 238, 0.05), transparent 20rem);
+  --chrome-bg: rgba(4, 9, 30, 0.76);
+  --chrome-line: rgba(125, 211, 252, 0.18);
+  --nav-active: #ffffff;
+  --nav-active-bg: color-mix(in srgb, var(--p-primary-500) 22%, transparent);
+  --button-glass: rgba(15, 23, 42, 0.74);
+  --card-bg: color-mix(in srgb, var(--p-content-background) 78%, transparent);
+  --card-border: rgba(125, 211, 252, 0.2);
+  --card-shadow: 0 1.2rem 3rem rgba(2, 6, 23, 0.16);
+  --empty-state-bg: rgba(15, 23, 42, 0.35);
+  --empty-state-border: var(--p-surface-700);
+  --site-text: #f8fbff;
+  --site-muted: #aab5d6;
+  --site-cyan: #75dbff;
+  --site-blue: #1aa7ff;
+  --site-purple: #9c4dff;
+  --site-purple-soft: #a98cff;
+  --site-purple-action: #b26aff;
+  --site-pink: #d25dff;
+  --site-panel: rgba(5, 14, 39, 0.72);
+  --site-panel-strong: rgba(8, 20, 54, 0.86);
+  --site-line: rgba(91, 150, 255, 0.22);
+  --site-line-soft: rgba(91, 150, 255, 0.18);
+  --site-line-strong: rgba(183, 178, 255, 0.76);
+  --site-glass-panel-bg:
+    linear-gradient(145deg, rgba(7, 22, 58, 0.82), rgba(3, 10, 31, 0.72)), var(--site-panel);
+  --site-glass-card-bg: linear-gradient(145deg, rgba(10, 29, 72, 0.74), rgba(4, 12, 36, 0.74));
+  --site-glass-field-bg: rgba(3, 11, 34, 0.76);
+  --site-gradient-text: linear-gradient(92deg, #4dbbff 0%, #846cff 48%, #d25dff 100%);
+  --site-action-gradient: linear-gradient(100deg, #09a7ff 0%, #596dff 52%, #ab31e8 100%);
+  --site-panel-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.2), inset 0 0 2rem rgba(26, 167, 255, 0.04);
+  --site-focus-shadow: 0 0 0 3px rgba(156, 77, 255, 0.16);
+  --hero-wash:
+    radial-gradient(circle at 75% 40%, rgba(34, 211, 238, 0.18), transparent 22rem),
+    radial-gradient(circle at 60% 58%, rgba(124, 58, 237, 0.32), transparent 30rem),
+    linear-gradient(110deg, #020617 0%, #050816 38%, #080d32 64%, #020617 100%);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+}
+
+html.app-light {
+  color-scheme: light;
+  --ink: var(--p-text-color);
+  --muted: var(--p-surface-600);
+  --surface: color-mix(in srgb, var(--p-content-background) 92%, transparent);
+  --surface-alt: color-mix(in srgb, var(--p-surface-100) 92%, transparent);
+  --line: color-mix(in srgb, var(--p-surface-950) 12%, transparent);
+  --accent: var(--p-primary-600);
+  --accent-strong: #0f766e;
+  --code: #0369a1;
+  --page-bg: var(--p-surface-50);
+  --body-wash:
+    radial-gradient(circle at 9% 20%, rgba(139, 92, 246, 0.22), transparent 20rem),
+    radial-gradient(circle at 92% 8%, rgba(34, 211, 238, 0.12), transparent 22rem);
+  --chrome-bg: rgba(255, 255, 255, 0.84);
+  --chrome-line: rgba(15, 23, 42, 0.1);
+  --nav-active: #111827;
+  --nav-active-bg: color-mix(in srgb, var(--p-primary-600) 18%, transparent);
+  --button-glass: rgba(255, 255, 255, 0.86);
+  --card-bg: color-mix(in srgb, #f8fbff 94%, var(--p-primary-50));
+  --card-border: color-mix(in srgb, var(--p-surface-950) 18%, var(--p-primary-600) 8%);
+  --card-shadow: 0 1rem 2.4rem rgba(15, 23, 42, 0.12);
+  --empty-state-bg: color-mix(in srgb, var(--p-surface-0) 86%, var(--p-surface-100));
+  --empty-state-border: color-mix(in srgb, var(--p-surface-950) 22%, transparent);
+  --site-text: #0f172a;
+  --site-muted: #475569;
+  --site-cyan: #0369a1;
+  --site-blue: #0369a1;
+  --site-purple: #6d28d9;
+  --site-purple-soft: #6d28d9;
+  --site-purple-action: #6d28d9;
+  --site-pink: #7e22ce;
+  --site-panel: rgba(255, 255, 255, 0.82);
+  --site-panel-strong: rgba(255, 255, 255, 0.92);
+  --site-line: rgba(52, 87, 145, 0.22);
+  --site-line-soft: rgba(109, 40, 217, 0.24);
+  --site-line-strong: rgba(95, 104, 214, 0.56);
+  --site-glass-panel-bg: rgba(255, 255, 255, 0.78);
+  --site-glass-card-bg: rgba(255, 255, 255, 0.78);
+  --site-glass-field-bg: rgba(255, 255, 255, 0.78);
+  --site-gradient-text: linear-gradient(92deg, #0369a1 0%, #4f46e5 52%, #7e22ce 100%);
+  --site-action-gradient: linear-gradient(100deg, #0369a1 0%, #4f46e5 52%, #7e22ce 100%);
+  --site-panel-shadow: 0 1.25rem 2.75rem rgba(15, 23, 42, 0.12);
+  --site-focus-shadow: 0 0 0 3px rgba(109, 40, 217, 0.16);
+  --hero-wash:
+    radial-gradient(circle at 72% 38%, rgba(124, 58, 237, 0.14), transparent 20rem),
+    radial-gradient(circle at 58% 62%, rgba(34, 211, 238, 0.12), transparent 28rem),
+    linear-gradient(110deg, #ffffff 0%, #f8fafc 42%, #eef2ff 72%, #ffffff 100%);
+}

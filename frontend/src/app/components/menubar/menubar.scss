@@ -34,11 +34,10 @@
   gap: 0.9rem;
   color: var(--nav-active);
   text-decoration: none;
-}
 
-.brand-link:hover,
-.brand-link:focus-visible {
-  color: #ffffff;
+  &:is(:hover, :focus-visible) {
+    color: #ffffff;
+  }
 }
 
 .brandmark {
@@ -78,35 +77,33 @@
   transition:
     color 160ms ease,
     text-shadow 160ms ease;
-}
 
-.nav-link::after {
-  position: absolute;
-  right: 0;
-  bottom: -0.65rem;
-  left: 0;
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #38bdf8, var(--p-primary-400));
-  box-shadow: 0 0 0.75rem rgba(139, 92, 246, 0.62);
-  content: '';
-  opacity: 0;
-  transform: scaleX(0.4);
-  transition:
-    opacity 160ms ease,
-    transform 160ms ease;
-}
+  &::after {
+    position: absolute;
+    right: 0;
+    bottom: -0.65rem;
+    left: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #38bdf8, var(--p-primary-400));
+    box-shadow: 0 0 0.75rem rgba(139, 92, 246, 0.62);
+    content: '';
+    opacity: 0;
+    transform: scaleX(0.4);
+    transition:
+      opacity 160ms ease,
+      transform 160ms ease;
+  }
 
-.nav-link:hover,
-.nav-link:focus-visible,
-.nav-link.active {
-  color: var(--nav-active);
-  text-shadow: 0 0 0.8rem rgba(125, 211, 252, 0.28);
-}
+  &:is(:hover, :focus-visible, .active) {
+    color: var(--nav-active);
+    text-shadow: 0 0 0.8rem rgba(125, 211, 252, 0.28);
+  }
 
-.nav-link.active::after {
-  opacity: 1;
-  transform: scaleX(1);
+  &.active::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
 }
 
 .mobile-menu-button {
@@ -123,33 +120,34 @@
   cursor: pointer;
 }
 
-.mobile-menu-icon,
-.mobile-menu-icon::before,
-.mobile-menu-icon::after {
+.mobile-menu-icon {
+  position: relative;
   display: block;
   width: 1.1rem;
   height: 2px;
   border-radius: 999px;
   background: currentColor;
   content: '';
-}
 
-.mobile-menu-icon {
-  position: relative;
-}
+  &::before,
+  &::after {
+    position: absolute;
+    left: 0;
+    display: block;
+    width: 1.1rem;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    content: '';
+  }
 
-.mobile-menu-icon::before,
-.mobile-menu-icon::after {
-  position: absolute;
-  left: 0;
-}
+  &::before {
+    top: -0.38rem;
+  }
 
-.mobile-menu-icon::before {
-  top: -0.38rem;
-}
-
-.mobile-menu-icon::after {
-  top: 0.38rem;
+  &::after {
+    top: 0.38rem;
+  }
 }
 
 :host-context(.app-light) .menubar-panel {
@@ -163,10 +161,7 @@
     inset 0 0 1.15rem rgba(124, 58, 237, 0.08);
 }
 
-:host-context(.app-light) .brand-link,
-:host-context(.app-light) .nav-link:hover,
-:host-context(.app-light) .nav-link:focus-visible,
-:host-context(.app-light) .nav-link.active {
+:host-context(.app-light) :is(.brand-link, .nav-link:is(:hover, :focus-visible, .active)) {
   color: #0f172a;
 }
 

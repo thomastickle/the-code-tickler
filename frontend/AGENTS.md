@@ -20,7 +20,7 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - Standalone component model is the default; do not add NgModules for app code unless a library integration truly requires one.
 - PrimeNG 21 provides interactive controls, navigation/chrome primitives, cards, tags, drawers, and repeated UI surfaces.
 - PrimeUIX Aura theming is configured through `providePrimeNG` in `src/app/app.config.ts`.
-- Tailwind CSS v4 and `tailwindcss-primeui` are loaded from `src/styles.css`.
+- Tailwind CSS v4, `tailwindcss-primeui`, and PrimeIcons are loaded from the tiny CSS entrypoint at `src/styles.css`; app-authored global styles are composed from `src/styles.scss` and the partials in `src/styles/`.
 - PrimeIcons is the icon set.
 - Track PrimeNG fit problems in `../docs/frontend/primeng-fit.md`; use it to decide when PrimeNG should be avoided or removed.
 - Codex CLI MCP configuration lives at the repository root in `.codex/config.toml`.
@@ -37,7 +37,7 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - Do not set `standalone: true`; it is already the Angular default. Use `standalone: false` only for rare compatibility cases.
 - Do not use `@HostBinding` or `@HostListener`; put host bindings in the component or directive `host` object.
 - Prefer `input()` and `output()` for new component APIs unless decorators make an integration clearer.
-- Keep components focused, with separate `.ts`, `.html`, and `.css` files.
+- Keep components focused, with separate `.ts`, `.html`, and `.scss` files.
 - Use paths relative to the component TypeScript file for external templates and styles.
 
 ## Template And UI Rules
@@ -57,7 +57,7 @@ This directory contains the Angular frontend for The Code Tickler portfolio site
 - Dark and light mode are class-driven through `.app-dark` and `.app-light`.
 - Theme defaulting and persistence behavior belongs in `../docs/frontend/design/theme-switch.md`; update that design doc before changing theme behavior.
 - Use page-prefixed class names for page-specific visual components. Avoid generic names such as `.hero-visual` unless the intent is to share global behavior; the contact hero visual was broken by an unrelated global `.hero-visual` minimum height.
-- Use global `site-*` classes in `src/styles.css` for reusable page primitives such as shells, glass panels, cards, chips, links, icons, hero titles, summaries, and empty states. Keep route CSS focused on layout and page-specific sizing.
+- Use global `site-*` classes in `src/styles/_site-primitives.scss` for reusable page primitives such as shells, glass panels, cards, chips, links, icons, hero titles, summaries, and empty states. Keep route SCSS focused on layout and page-specific sizing.
 
 ## Menubar Rules
 
