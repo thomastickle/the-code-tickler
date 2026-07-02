@@ -18,7 +18,8 @@
 - The right side of the menubar has a set of options which link out to other pages. Use Projects, Writing, and Contact. Do not include About while that content is being folded into the home page.
 - Clicking on the brandmark or text "The Code Tickler" should return the user to the home page.
 - Do not include Home as a right-side nav item; the brand link is the home affordance.
-- The rightmost element should be a toggle switch between the default dark mode and light mode. The site should remember the user's choice there.
+- The rightmost element should be a toggle switch between dark mode and light mode. The site should default to the browser/OS color scheme until the user chooses a theme there.
+- Manual theme choices should persist for returning users, then reset to the browser/OS default after 182 days since the user's last visit with that manual preference active.
 - The theme toggle should match the sample direction: light mode on the left/off side and dark mode on the right/on side.
 - On narrow screens, collapse the page links into a mobile menu button while keeping the brand and theme toggle visible.
 
@@ -43,6 +44,9 @@
 - Keep the switch visually close to the sample: small dark pill, thin gradient border, subdued sun left, white moon in the right selected area, and no glow on the moving thumb.
 - Build the switch as separate visual layers: the outer pill/background, static endpoint icons, and a moving thumb. This keeps the sample-like geometry controllable without fighting generated component DOM.
 - Render the sun and moon as CSS shapes inside `ThemeSwitch`; do not require PrimeIcons for the extracted control.
-- Persist the theme preference under `the-code-tickler-theme`.
+- Persist manual theme preferences under `the-code-tickler-theme` as JSON with `version: 1`, `value: 'dark' | 'light'`, `selectedAt`, and `lastSeenAt`.
+- Treat legacy raw `dark` / `light` storage values as valid manual preferences and upgrade them to the JSON shape on the next visit.
+- Do not write `the-code-tickler-theme` while the site is using the system/browser default. Only a manual switch interaction should write a preference.
+- While no active manual preference exists, resolve the initial theme from `matchMedia('(prefers-color-scheme: dark)')`, fall back to dark when browser APIs are unavailable, and follow live OS color-scheme changes.
 - Apply theme classes to `document.documentElement` as `.app-dark` and `.app-light`.
 - Reuse `MobileNavDrawer` for collapsed mobile navigation.
