@@ -1,12 +1,12 @@
-<section class="writing-page" aria-labelledby="writing-title">
-  <div class="writing-shell">
+<section class="writing-page site-page" aria-labelledby="writing-title">
+  <div class="writing-shell site-shell">
     <aside class="writing-sidebar" aria-label="Writing navigation">
-      <section class="sidebar-panel" aria-labelledby="topics-title">
-        <h2 id="topics-title">Explore Topics</h2>
+      <section class="sidebar-panel site-panel" aria-labelledby="topics-title">
+        <h2 id="topics-title" class="site-section-kicker">Explore Topics</h2>
         <div class="topic-list">
           @for (topic of topics; track topic.title) {
             <button type="button" class="topic-button" [class.active]="topic.active">
-              <span class="sidebar-icon" aria-hidden="true">
+              <span class="sidebar-icon site-icon-surface" aria-hidden="true">
                 <i [class]="topic.icon"></i>
               </span>
               <span>
@@ -18,8 +18,8 @@
         </div>
       </section>
 
-      <section class="sidebar-panel" aria-labelledby="filters-title">
-        <h2 id="filters-title">Filters</h2>
+      <section class="sidebar-panel site-panel" aria-labelledby="filters-title">
+        <h2 id="filters-title" class="site-section-kicker">Filters</h2>
         <div class="filter-list">
           @for (filter of filters; track filter.label) {
             <button type="button" class="filter-button" [class.active]="filter.active">
@@ -33,21 +33,21 @@
         </div>
       </section>
 
-      <section class="sidebar-panel" aria-labelledby="tags-title">
-        <h2 id="tags-title">Popular Tags</h2>
+      <section class="sidebar-panel site-panel" aria-labelledby="tags-title">
+        <h2 id="tags-title" class="site-section-kicker">Popular Tags</h2>
         <div class="tag-cloud" aria-label="Popular tags">
           @for (tag of popularTags; track tag) {
-            <span>{{ tag }}</span>
+            <span class="site-chip">{{ tag }}</span>
           }
         </div>
       </section>
 
-      <section class="subscribe-panel" aria-labelledby="subscribe-title">
-        <h2 id="subscribe-title">Stay in the Loop</h2>
+      <section class="subscribe-panel site-panel" aria-labelledby="subscribe-title">
+        <h2 id="subscribe-title" class="site-section-kicker">Stay in the Loop</h2>
         <p>New notes, distilled. No spam. Just signal.</p>
         <div class="subscribe-preview" aria-label="Newsletter signup preview">
-          <input type="email" placeholder="Enter your email" disabled />
-          <button type="button" disabled>Subscribe</button>
+          <input class="site-field-surface" type="email" placeholder="Enter your email" disabled />
+          <button class="site-primary-action" type="button" disabled>Subscribe</button>
         </div>
       </section>
     </aside>
@@ -55,12 +55,12 @@
     <main class="writing-content">
       <section class="writing-hero" aria-label="Writing overview">
         <div class="hero-copy">
-          <p class="writing-eyebrow">Writing</p>
-          <h1 id="writing-title">
+          <p class="site-eyebrow">Writing</p>
+          <h1 id="writing-title" class="writing-title site-hero-title">
             Notes from
-            <span>the Workbench</span>
+            <span class="site-gradient-text">the Workbench</span>
           </h1>
-          <p class="hero-summary">
+          <p class="writing-summary site-summary">
             Deep dives, patterns, and field notes on software architecture, reliability, delivery,
             and technical leadership. Written for engineers who build systems that matter and lead
             teams that do the same.
@@ -68,15 +68,15 @@
         </div>
       </section>
 
-      <section class="featured-note" aria-labelledby="featured-note-title">
-        <p class="section-kicker">Featured Note</p>
+      <section class="featured-note site-panel" aria-labelledby="featured-note-title">
+        <p class="site-section-kicker">Featured Note</p>
         <div class="featured-art" aria-hidden="true">
           <span></span>
           <span></span>
           <span></span>
         </div>
         <article class="featured-copy">
-          <p>{{ featuredNote.category }}</p>
+          <p class="site-card-kicker">{{ featuredNote.category }}</p>
           <h2 id="featured-note-title">{{ featuredNote.title }}</h2>
           <p>{{ featuredNote.summary }}</p>
           <div class="note-meta" aria-label="Featured note status">
@@ -100,11 +100,11 @@
 
         <div class="notes-grid">
           @for (note of notes; track note.title) {
-            <article class="note-card">
-              <span class="note-icon" aria-hidden="true">
+            <article class="note-card site-card-surface">
+              <span class="note-icon site-icon-surface" aria-hidden="true">
                 <i [class]="note.icon"></i>
               </span>
-              <p class="note-category">{{ note.category }}</p>
+              <p class="note-category site-card-kicker">{{ note.category }}</p>
               <h3>{{ note.title }}</h3>
               <p>{{ note.summary }}</p>
               <div class="note-meta" aria-label="Note status">
@@ -119,7 +119,7 @@
               </div>
               <div class="tag-row" aria-label="Note tags">
                 @for (tag of note.tags; track tag) {
-                  <span>{{ tag }}</span>
+                  <span class="site-chip">{{ tag }}</span>
                 }
               </div>
             </article>
@@ -127,8 +127,8 @@
         </div>
       </section>
 
-      <section class="field-notes" aria-labelledby="field-notes-title">
-        <h2 id="field-notes-title">Recent Field Notes</h2>
+      <section class="field-notes site-panel" aria-labelledby="field-notes-title">
+        <h2 id="field-notes-title" class="site-section-kicker">Recent Field Notes</h2>
         <div class="field-note-grid">
           @for (fieldNote of fieldNotes; track fieldNote.title) {
             <article class="field-note-row">

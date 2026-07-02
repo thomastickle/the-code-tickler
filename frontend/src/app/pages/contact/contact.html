@@ -1,14 +1,14 @@
-<section class="contact-page" aria-labelledby="contact-title">
-  <div class="contact-shell">
+<section class="contact-page site-page" aria-labelledby="contact-title">
+  <div class="contact-shell site-shell">
     <section class="contact-hero" aria-label="Contact overview">
       <div class="hero-copy">
-        <p class="contact-eyebrow">Let's Connect</p>
-        <h1 id="contact-title">
+        <p class="site-eyebrow">Let's Connect</p>
+        <h1 id="contact-title" class="contact-title site-hero-title">
           Open to meaningful
-          <span>problems and good teams.</span>
+          <span class="site-gradient-text">problems and good teams.</span>
         </h1>
 
-        <p class="hero-summary">
+        <p class="contact-summary site-summary">
           I partner with organizations to deliver modern systems, raise the bar on engineering
           practices, and build teams that thrive. Whether you're tackling modernization,
           reliability, or scaling challenges, I'd love to hear what you're building.
@@ -17,7 +17,7 @@
         <div class="focus-grid" aria-label="Working style">
           @for (item of focusItems; track item.label) {
             <article class="focus-item">
-              <span class="focus-icon" aria-hidden="true">
+              <span class="focus-icon site-icon-surface" aria-hidden="true">
                 <i [class]="item.icon"></i>
               </span>
               <div>
@@ -31,19 +31,22 @@
     </section>
 
     <div class="contact-columns">
-      <section class="contact-panel contact-methods" aria-labelledby="contact-methods-title">
-        <h2 id="contact-methods-title">Get in touch</h2>
+      <section
+        class="contact-panel contact-methods site-panel"
+        aria-labelledby="contact-methods-title"
+      >
+        <h2 id="contact-methods-title" class="site-section-kicker">Get in touch</h2>
 
         <div class="method-list">
           @for (method of contactMethods; track method.label) {
             @if (method.href) {
               <a
-                class="method-card"
+                class="method-card site-card-surface site-interactive-surface"
                 [href]="method.href"
                 [attr.target]="method.external ? '_blank' : null"
                 [attr.rel]="method.external ? 'noopener' : null"
               >
-                <span class="method-icon" aria-hidden="true">
+                <span class="method-icon site-icon-surface" aria-hidden="true">
                   <i [class]="method.icon"></i>
                 </span>
                 <span class="method-copy">
@@ -54,8 +57,12 @@
                 <span class="method-arrow" aria-hidden="true">-></span>
               </a>
             } @else {
-              <div class="method-card" role="group" [attr.aria-label]="method.label">
-                <span class="method-icon" aria-hidden="true">
+              <div
+                class="method-card site-card-surface"
+                role="group"
+                [attr.aria-label]="method.label"
+              >
+                <span class="method-icon site-icon-surface" aria-hidden="true">
                   <i [class]="method.icon"></i>
                 </span>
                 <span class="method-copy">
@@ -64,7 +71,7 @@
                   <span>{{ method.description }}</span>
                 </span>
                 @if (method.status === 'available') {
-                  <span class="status-dot" aria-label="Available"></span>
+                  <span class="status-dot site-status-dot" aria-label="Available"></span>
                 }
               </div>
             }
@@ -72,14 +79,15 @@
         </div>
       </section>
 
-      <section class="contact-panel message-panel" aria-labelledby="message-title">
-        <h2 id="message-title">Send a message</h2>
+      <section class="contact-panel message-panel site-panel" aria-labelledby="message-title">
+        <h2 id="message-title" class="site-section-kicker">Send a message</h2>
 
         <form [formGroup]="contactForm" (ngSubmit)="sendMessage()">
           <div class="form-row">
             <label>
               <span class="field-label">Your name</span>
               <input
+                class="site-field-surface"
                 type="text"
                 formControlName="name"
                 placeholder="Your name"
@@ -89,6 +97,7 @@
             <label>
               <span class="field-label">Your email</span>
               <input
+                class="site-field-surface"
                 type="email"
                 formControlName="email"
                 placeholder="Your email"
@@ -100,6 +109,7 @@
           <label>
             <span class="field-label">Company</span>
             <input
+              class="site-field-surface"
               type="text"
               formControlName="company"
               placeholder="Company (optional)"
@@ -109,7 +119,11 @@
 
           <label>
             <span class="field-label">What's on your mind?</span>
-            <select formControlName="topic" aria-label="What's on your mind?">
+            <select
+              class="site-field-surface"
+              formControlName="topic"
+              aria-label="What's on your mind?"
+            >
               @for (topic of topics; track topic.id) {
                 <option [value]="topic.id">{{ topic.title }}</option>
               }
@@ -119,6 +133,7 @@
           <label>
             <span class="field-label">Message</span>
             <textarea
+              class="site-field-surface"
               formControlName="message"
               placeholder="Tell me a bit about your challenge or opportunity..."
               rows="6"
@@ -135,7 +150,7 @@
               <i class="pi pi-lock" aria-hidden="true"></i>
               Your message opens an email draft; no backend submission yet.
             </p>
-            <button type="submit" class="send-button">
+            <button type="submit" class="send-button site-primary-action">
               <span>Send message</span>
               <i class="pi pi-arrow-right" aria-hidden="true"></i>
             </button>
@@ -144,27 +159,27 @@
       </section>
     </div>
 
-    <section class="topics-panel" aria-labelledby="topics-title">
-      <h2 id="topics-title">Let's talk about</h2>
+    <section class="topics-panel site-panel" aria-labelledby="topics-title">
+      <h2 id="topics-title" class="site-section-kicker">Let's talk about</h2>
 
       <div class="topic-grid">
         @for (topic of topics; track topic.id) {
-          <article class="topic-card">
-            <span class="topic-icon" aria-hidden="true">
+          <article class="topic-card site-card-surface">
+            <span class="topic-icon site-icon-surface" aria-hidden="true">
               <i [class]="topic.icon"></i>
             </span>
             <h3>{{ topic.title }}</h3>
             <p>{{ topic.summary }}</p>
             <div class="tag-row" aria-label="Related terms">
               @for (tag of topic.tags; track tag) {
-                <span>{{ tag }}</span>
+                <span class="site-chip">{{ tag }}</span>
               }
             </div>
           </article>
         }
       </div>
 
-      <aside class="contact-callout" aria-label="Engagement availability">
+      <aside class="contact-callout site-callout" aria-label="Engagement availability">
         <i class="pi pi-send" aria-hidden="true"></i>
         <p>
           Open to full-time, fractional, and advisory engagements.
