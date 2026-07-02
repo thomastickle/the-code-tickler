@@ -45,4 +45,4 @@
 - Keep the page as a standalone Angular component with separate `.ts`, `.html`, and `.css` files.
 - Use local typed data for contact methods, focus items, and topics until shared content modeling resumes.
 - PrimeIcons are acceptable for contact-page content icons. The PrimeNG-free rule only applies to menubar chrome components.
-- Use custom native controls and CSS for the form and panels so the page can stay close to the mockup.
+- Use shared `site-*` primitives for shells, hero text, glass panels, cards, chips, icons, form fields, and primary actions. Keep contact CSS focused on route-specific layout, sizing, and form arrangement.
