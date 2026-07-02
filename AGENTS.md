@@ -25,6 +25,15 @@ This repository contains The Code Tickler portfolio frontend. It is an Angular 2
 - Do not treat editor-specific MCP files as Codex CLI configuration.
 - If MCP tools are unavailable, use installed package metadata and official Angular/PrimeNG documentation instead of guessing.
 
+## Codex Planning And PR Workflow
+
+- For non-trivial work, use a planning phase before implementation. The plan should be decision-complete enough to hand to the main thread or a subagent.
+- Implementation work should happen on isolated git state: main-thread work uses a dedicated branch, while delegated subagent work uses its own worktree with a dedicated branch. If the current branch is `main` or `development`, create that branch or worktree before starting implementation.
+- After the first coherent implementation pass, commit the work, push the branch, and open a draft PR. Treat that draft PR as the active review and iteration surface.
+- Keep PRs in draft by default unless the user explicitly asks for a ready PR or the work has already been accepted as complete.
+- When the user requests corrections or tweaks after inspecting the result, make each update as a new commit on the existing PR branch instead of amending or holding changes locally.
+- For UI-impacting work, keep or start a local preview environment when practical and report its URL/port alongside the draft PR.
+
 ## Verification
 
 - For UI-impacting frontend changes, run verification from `frontend/`:
